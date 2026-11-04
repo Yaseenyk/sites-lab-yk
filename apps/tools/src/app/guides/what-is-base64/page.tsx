@@ -43,7 +43,7 @@ export default function Page() {
           must be secret, encrypt it first; Base64 is then only the way you carry the encrypted bytes as text.
         </p>
 
-        <AdSlot slot={AD_SLOT_CONTENT} />
+        <AdSlot slot={AD_SLOT_CONTENT} placement="in-article" />
 
         <h2>Common uses</h2>
         <ul>
@@ -76,6 +76,7 @@ export default function Page() {
           choice. Encoding text with accents or emoji through a function that assumes single-byte characters
           produces wrong output, which is why the tool encodes as UTF-8.
         </p>
+        <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>
   );

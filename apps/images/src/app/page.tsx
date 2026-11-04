@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Icon } from "@sites/shell";
-import { guides, tools, type Tool } from "@/site";
+import { AdSlot, Icon } from "@sites/shell";
+import { AD_SLOT_CONTENT, guides, tools, type Tool } from "@/site";
 
 const features = [
   {
@@ -84,6 +84,8 @@ export default function Home() {
         </h2>
         <Cards items={tools.filter((t) => t.group !== "compress")} />
       </section>
+
+      <AdSlot slot={AD_SLOT_CONTENT} placement="home-mid" />
 
       <section className="pt-12" aria-labelledby="why-h">
         <p className="eyebrow">Why these</p>

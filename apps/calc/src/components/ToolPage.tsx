@@ -24,6 +24,8 @@ export default function ToolPage({
   children: ReactNode;
 }) {
   const tool = toolBySlug(slug);
+  // No duplicates, and never link a page to itself.
+  const relatedUnique = Array.from(new Set(related)).filter((s) => s !== slug);
   const crumbs: Crumb[] = [
     { name: "Home", href: "/" },
     { name: tool.h1, href: tool.path },
@@ -42,12 +44,24 @@ export default function ToolPage({
         })}
       />
       <Breadcrumbs items={crumbs} />
-      <p className="eyebrow mb-3">Free · instant · no sign-up</p>
+      <p className="eyebrow mb-3 hidden sm:block">Free · instant · no sign-up</p>
       <h1 className="page-h1">{tool.h1}</h1>
       <p className="lede">{lede}</p>
       {widget}
-      <AdSlot slot={AD_SLOT_CONTENT} />
+      <nav aria-label="Try next" className="related-row">
+        <span className="related-label">Try next</span>
+        {relatedUnique.slice(0, 3).map((s) => {
+          const t = toolBySlug(s);
+          return (
+            <Link key={s} href={t.path}>
+              <Icon name={t.icon} size={14} /> {t.h1}
+            </Link>
+          );
+        })}
+      </nav>
+      <AdSlot slot={AD_SLOT_CONTENT} placement="after-tool" />
       <div className="doc mt-10">{children}</div>
+      <AdSlot slot={AD_SLOT_CONTENT} placement="mid-content" />
       <section aria-labelledby="faq-h">
         <h2 id="faq-h" className="page-h2">
           Frequently asked questions
@@ -66,7 +80,7 @@ export default function ToolPage({
           Related tools
         </h2>
         <div className="related">
-          {related.map((s) => {
+          {relatedUnique.map((s) => {
             const t = toolBySlug(s);
             return (
               <Link key={s} href={t.path}>

@@ -21,10 +21,10 @@ export const SIZE_PAGES: SizePage[] = [
   {
     slug: "compress-image-to-20kb",
     kb: 20,
-    seoTitle: "Compress Image to 20KB Online (JPG, Free, Private)",
+    seoTitle: "Compress Image to 20KB or Less Online (No Upload)",
     h1: "Compress Image to 20KB",
     description:
-      "Compress a JPG or PNG to under 20 KB in your browser. Free, instant and private: your photo is never uploaded. Download the result in one click.",
+      "Compress a JPG or PNG to 20 KB or less online, with no upload. Free and instant: your photo never leaves your device. Download the result in one click.",
     blurb: "Shrink a photo or signature scan to under 20 KB for upload forms.",
     lede: "Drop in a photo or a signature scan and get a JPEG under 20 KB. The tool lowers quality first and shrinks the dimensions only if it has to.",
     about: [
@@ -67,10 +67,10 @@ export const SIZE_PAGES: SizePage[] = [
   {
     slug: "compress-image-to-50kb",
     kb: 50,
-    seoTitle: "Compress Image to 50KB Online (JPG, Free, Private)",
+    seoTitle: "Compress Image to 50KB or Less Online (No Upload)",
     h1: "Compress Image to 50KB",
     description:
-      "Compress a JPG or PNG to under 50 KB in your browser. Free, instant and private: your picture is never uploaded. Download the result in one click.",
+      "Compress a JPG or PNG to 50 KB or less online, with no upload. Free and instant: your picture never leaves your device. Download the result in one click.",
     blurb: "Get a photo under 50 KB for application forms and profile uploads.",
     lede: "Add a picture and download a JPEG under 50 KB. Quality is set automatically to the best value that fits.",
     about: [
@@ -109,10 +109,10 @@ export const SIZE_PAGES: SizePage[] = [
   {
     slug: "compress-image-to-100kb",
     kb: 100,
-    seoTitle: "Compress Image to 100KB Online (JPG, Free, Private)",
+    seoTitle: "Compress Image to 100KB or Less Online (No Upload)",
     h1: "Compress Image to 100KB",
     description:
-      "Compress a JPG or PNG to under 100 KB in your browser. Free, instant and private: your picture is never uploaded. Download the result in one click.",
+      "Compress a JPG or PNG to 100 KB or less online, with no upload. Free and instant: your picture never leaves your device. Download the result in one click.",
     blurb: "Reduce a photo to under 100 KB with the best quality that fits.",
     lede: "Add an image and get a JPEG under 100 KB. Handy for forms, email attachments and websites with upload limits.",
     about: [
@@ -319,6 +319,45 @@ export const CONVERT_PAGES: ConvertPage[] = [
       {
         q: "Is the JPG larger than the AVIF?",
         a: "Usually yes. AVIF is more efficient than JPG, so the same picture takes more bytes as a JPG.",
+      },
+    ],
+  },
+  {
+    slug: "image-to-jpg",
+    from: "Image",
+    to: "JPG",
+    mime: "image/jpeg",
+    hint: "PNG, WebP, AVIF or JPG images. Files stay on your device.",
+    seoTitle: "Convert Image to JPG Online: PNG, WebP, AVIF to JPG",
+    h1: "Image to JPG Converter",
+    description:
+      "Convert any image to JPG online: PNG, WebP, AVIF and more. Free and private, with no upload. Set the quality and the background for transparent areas.",
+    blurb: "Convert PNG, WebP, AVIF and other images to JPG in one step.",
+    lede: "Convert almost any image to JPG in your browser. Drop in PNG, WebP, AVIF or other pictures, pick the quality, and download the JPGs.",
+    about: [
+      "JPG is the format almost every website, form and program accepts, which is why people convert other formats to it. Phones, screenshots and web downloads often produce PNG or WebP files that a form refuses, and a JPG solves that.",
+      "This converter reads the image with your browser, so it can convert any format your browser can display, which includes PNG, WebP, AVIF and JPG. HEIC photos from an iPhone are the main format it cannot read. JPG has no transparency, so transparent areas are filled with the colour you choose.",
+    ],
+    faq: [
+      {
+        q: "How do I convert an image to JPG?",
+        a: "Add the images, choose the quality, and download the JPGs. The conversion runs in your browser, so nothing is uploaded.",
+      },
+      {
+        q: "Which formats can I convert to JPG?",
+        a: "Any format your browser can display, including PNG, WebP, AVIF and other JPGs. Current Chrome, Edge, Firefox and Safari all read these.",
+      },
+      {
+        q: "Can I convert HEIC photos from an iPhone?",
+        a: "No. Most browsers cannot read HEIC, so this tool cannot convert it. On an iPhone you can switch the camera to save as Most Compatible, or share the photo as a JPG.",
+      },
+      {
+        q: "What quality should I choose?",
+        a: "About 90% is a good default: files are much smaller than PNG and the difference is hard to see. Lower the quality to shrink the file further, or raise it for photos you will print.",
+      },
+      {
+        q: "What happens to transparent backgrounds?",
+        a: "JPG cannot be transparent, so transparent pixels are painted with the background colour you pick, white by default.",
       },
     ],
   },

@@ -39,9 +39,19 @@ export default function Page({ params }: { params: { pair: string } }) {
     <ToolPage
       slug={pair.slug}
       lede={pair.lede}
-      widget={<CurrencyConverter initialFrom={pair.from} initialTo={pair.to} initialAmount="1" />}
+      widget={
+        <CurrencyConverter
+          initialFrom={pair.from}
+          initialTo={pair.to}
+          initialAmount={pair.from === "INR" ? "100000" : "1"}
+        />
+      }
       faq={pair.faq}
-      related={["currency-converter", ...(isUsdInr ? ["usd-salary-to-inr-calculator"] : []), ...others]}
+      related={[
+        "currency-converter",
+        ...(isUsdInr ? ["inr-to-usd", "usd-salary-to-inr-calculator"] : []),
+        ...others,
+      ]}
     >
       <h2>
         How to convert {pair.from} to {pair.to}

@@ -35,6 +35,7 @@ jobs:
         run: npm run build:tools
         env:
           NEXT_PUBLIC_CONTACT_EMAIL: ${{ vars.TOOLS_CONTACT_EMAIL }}
+          NEXT_PUBLIC_CLARITY_ID: ${{ vars.TOOLS_CLARITY_ID }}
           NEXT_PUBLIC_ADSENSE_CLIENT: ${{ vars.ADSENSE_CLIENT }}
           NEXT_PUBLIC_ADSENSE_SLOT_CONTENT: ${{ vars.TOOLS_ADSENSE_SLOT_CONTENT }}
 

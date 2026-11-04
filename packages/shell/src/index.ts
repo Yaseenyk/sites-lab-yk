@@ -6,3 +6,5 @@ export * from "./seo";
 export * from "./Logo";
 export * from "./Icons";
 export * from "./Breadcrumbs";
+export * from "./ThemeToggle";
+export * from "./ClarityScript";

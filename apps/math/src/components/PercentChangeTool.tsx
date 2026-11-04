@@ -4,7 +4,7 @@ import { useState } from "react";
 import { decreaseBy, fmt, increaseBy, num, percentChange, percentDifference } from "@/lib/percent";
 import { Block, Field, Hint, Tile } from "./ui";
 
-type Kind = "increase" | "decrease" | "change";
+type Kind = "increase" | "decrease" | "change" | "difference";
 
 /**
  * increase: apply an increase, or find the percent increase between two numbers.
@@ -14,12 +14,43 @@ type Kind = "increase" | "decrease" | "change";
 export default function PercentChangeTool({ kind }: { kind: Kind }) {
   const [v, setV] = useState(kind === "decrease" ? "200" : "80");
   const [p, setP] = useState(kind === "decrease" ? "15" : "25");
-  const [from, setFrom] = useState(kind === "decrease" ? "80" : kind === "change" ? "40" : "50");
-  const [to, setTo] = useState(kind === "decrease" ? "60" : kind === "change" ? "50" : "65");
+  const [from, setFrom] = useState(
+    kind === "decrease" ? "80" : kind === "change" || kind === "difference" ? "40" : "50",
+  );
+  const [to, setTo] = useState(
+    kind === "decrease" ? "60" : kind === "change" || kind === "difference" ? "50" : "65",
+  );
 
   const applied = kind === "decrease" ? decreaseBy(num(v), num(p)) : increaseBy(num(v), num(p));
   const change = percentChange(num(from), num(to));
   const word = kind === "decrease" ? "decrease" : "increase";
+
+  if (kind === "difference") {
+    const pd = percentDifference(num(from), num(to));
+    return (
+      <div className="tool">
+        <Block title="Percentage difference between two values">
+          <div className="fields">
+            <Field id="c-from" label="First value" value={from} onChange={setFrom} />
+            <Field id="c-to" label="Second value" value={to} onChange={setTo} />
+            <div className="fld">
+              {Number.isFinite(pd) ? (
+                <Tile hero label="Percentage difference" value={`${fmt(pd, 4)}%`} />
+              ) : (
+                <Hint>Enter two numbers that do not average to 0.</Hint>
+              )}
+            </div>
+          </div>
+          {Number.isFinite(pd) && (
+            <div className="tile-grid">
+              <Tile label="Absolute difference" value={fmt(Math.abs(num(to) - num(from)))} />
+              <Tile label="Average of the two" value={fmt((num(from) + num(to)) / 2)} />
+            </div>
+          )}
+        </Block>
+      </div>
+    );
+  }
 
   return (
     <div className="tool">

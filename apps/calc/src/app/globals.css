@@ -5,25 +5,24 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    color-scheme: dark;
   }
 
   body {
     @apply font-sans text-zinc-100 antialiased;
     overflow-x: hidden;
-    background-color: #05070a;
+    background-color: rgb(var(--ink));
     background-image:
-      radial-gradient(55rem 40rem at 50% -12%, rgba(34, 211, 238, 0.08), transparent 60%),
-      radial-gradient(48rem 38rem at 100% 8%, rgba(168, 85, 247, 0.07), transparent 60%);
+      radial-gradient(55rem 40rem at 50% -12%, rgb(var(--glow-1)), transparent 60%),
+      radial-gradient(48rem 38rem at 100% 8%, rgb(var(--glow-2)), transparent 60%);
     background-attachment: fixed;
   }
 
   ::selection {
-    @apply bg-cyan text-ink;
+    @apply bg-cyan text-on-accent;
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-cyan;
+    @apply outline-2 outline-offset-2 outline-accent;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -42,7 +41,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-cyan via-purple to-cyan bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-accent via-accent-2 to-accent bg-clip-text text-transparent;
     background-size: 200% auto;
   }
 }
@@ -50,7 +49,23 @@
 @layer components {
   /* Long-form content: typography plugin, tuned to the portfolio palette. */
   .doc {
-    @apply prose prose-zinc prose-invert max-w-[72ch] prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-cyan prose-a:no-underline hover:prose-a:underline prose-code:rounded prose-code:border prose-code:border-zinc-800 prose-code:bg-zinc-900/70 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-[0.85em] prose-code:font-normal prose-code:text-ice prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-zinc-800/60 prose-pre:bg-zinc-950/70 prose-th:font-mono prose-th:text-[11px] prose-th:uppercase prose-th:tracking-[0.18em] prose-th:text-zinc-500;
+    @apply prose max-w-[72ch] prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-accent prose-a:underline prose-a:decoration-accent/40 prose-a:underline-offset-4 hover:prose-a:decoration-accent prose-code:rounded prose-code:border prose-code:border-zinc-800 prose-code:bg-zinc-900/70 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-[0.85em] prose-code:font-normal prose-code:text-accent prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-zinc-800/60 prose-pre:bg-zinc-950/70 prose-th:font-mono prose-th:text-xs prose-th:uppercase prose-th:tracking-[0.12em] prose-th:text-zinc-400;
+    --tw-prose-body: rgb(var(--z-300));
+    --tw-prose-headings: rgb(var(--z-50));
+    --tw-prose-lead: rgb(var(--z-400));
+    --tw-prose-links: rgb(var(--accent));
+    --tw-prose-bold: rgb(var(--z-50));
+    --tw-prose-counters: rgb(var(--z-400));
+    --tw-prose-bullets: rgb(var(--z-500));
+    --tw-prose-hr: rgb(var(--z-800));
+    --tw-prose-quotes: rgb(var(--z-100));
+    --tw-prose-quote-borders: rgb(var(--z-700));
+    --tw-prose-captions: rgb(var(--z-500));
+    --tw-prose-code: rgb(var(--accent));
+    --tw-prose-pre-code: rgb(var(--z-200));
+    --tw-prose-pre-bg: rgb(var(--z-950) / 0.7);
+    --tw-prose-th-borders: rgb(var(--z-700));
+    --tw-prose-td-borders: rgb(var(--z-800));
   }
   .doc pre code {
     @apply border-0 bg-transparent p-0 text-zinc-200;
@@ -58,19 +73,19 @@
 
   /* Page furniture */
   .eyebrow {
-    @apply font-mono text-xs uppercase tracking-[0.25em] text-cyan;
+    @apply font-mono text-xs uppercase tracking-[0.25em] text-accent;
   }
   .lede {
-    @apply mb-6 max-w-[62ch] text-lg leading-relaxed text-zinc-400;
+    @apply mb-6 max-w-[62ch] text-base leading-relaxed text-zinc-400 sm:text-lg;
   }
   .page-h1 {
-    @apply mb-3 text-[clamp(2rem,5vw,3rem)] font-bold leading-[1.1] tracking-tight text-zinc-50;
+    @apply mb-3 text-[clamp(1.75rem,6vw,3rem)] font-bold leading-[1.1] tracking-tight text-zinc-50;
   }
   .page-h2 {
     @apply mb-3 mt-12 text-2xl font-semibold tracking-tight text-zinc-50;
   }
   .meta {
-    @apply font-mono text-xs text-zinc-600;
+    @apply font-mono text-xs text-zinc-500;
   }
   .crumbs ol {
     @apply mb-5 flex flex-wrap gap-1.5 font-mono text-xs text-zinc-500;
@@ -80,7 +95,7 @@
     @apply ml-1.5 text-zinc-700;
   }
   .crumbs a {
-    @apply transition-colors hover:text-cyan;
+    @apply transition-colors hover:text-accent;
   }
   .crumbs [aria-current] {
     @apply text-zinc-300;
@@ -88,16 +103,16 @@
 
   /* Buttons and chips */
   .btn {
-    @apply inline-flex items-center gap-2 rounded-full bg-cyan px-5 py-2.5 text-sm font-semibold text-ink transition-shadow hover:shadow-[0_0_18px_-2px_rgba(34,211,238,0.7)];
+    @apply inline-flex items-center gap-2 rounded-full bg-cyan px-5 py-2.5 text-sm font-semibold text-on-accent transition-shadow hover:shadow-[0_0_18px_-2px_rgba(34,211,238,0.7)];
   }
   .btn.ghost {
-    @apply border border-zinc-700 bg-transparent text-zinc-200 hover:border-cyan/50 hover:text-cyan hover:shadow-none;
+    @apply border border-zinc-700 bg-transparent text-zinc-200 hover:border-cyan/50 hover:text-accent hover:shadow-none;
   }
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-zinc-800/60 bg-zinc-950/60 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-400;
+    @apply inline-flex items-center gap-1.5 rounded-full border border-zinc-800/60 bg-zinc-950/60 px-3 py-1 font-mono text-xs uppercase tracking-[0.12em] text-zinc-400;
   }
   .chip svg {
-    @apply text-cyan;
+    @apply text-accent;
   }
 
   /* Cards */
@@ -108,19 +123,19 @@
     @apply flex flex-col rounded-2xl border border-zinc-800/60 bg-zinc-950/60 p-6 backdrop-blur-md transition-colors hover:border-cyan/50;
   }
   .card h3 {
-    @apply text-lg font-semibold tracking-tight text-zinc-50 transition-colors group-hover:text-cyan;
+    @apply text-lg font-semibold tracking-tight text-zinc-50 transition-colors group-hover:text-accent;
   }
   .card p {
     @apply mt-2 text-sm leading-relaxed text-zinc-400;
   }
   .card .ico {
-    @apply mb-4 grid h-11 w-11 place-items-center rounded-xl border border-zinc-800 bg-gradient-to-br from-cyan/10 to-purple/10 text-cyan;
+    @apply mb-4 grid h-11 w-11 place-items-center rounded-xl border border-zinc-800 bg-gradient-to-br from-cyan/10 to-purple/10 text-accent;
   }
   .card .more {
-    @apply mt-4 inline-flex items-center gap-1 font-mono text-xs text-zinc-500 transition-colors group-hover:text-cyan;
+    @apply mt-4 inline-flex items-center gap-1 font-mono text-xs text-zinc-500 transition-colors group-hover:text-accent;
   }
   .feature .ico {
-    @apply mb-3 text-cyan;
+    @apply mb-3 text-accent;
   }
   .feature h3 {
     @apply text-base font-semibold text-zinc-50;
@@ -132,7 +147,7 @@
     @apply mt-4 flex flex-wrap gap-2.5;
   }
   .related a {
-    @apply inline-flex items-center gap-2 rounded-full border border-zinc-800/60 bg-zinc-950/60 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-cyan/50 hover:text-cyan;
+    @apply inline-flex items-center gap-2 rounded-full border border-zinc-800/60 bg-zinc-950/60 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-cyan/50 hover:text-accent;
   }
 
   /* Tool widget */
@@ -143,13 +158,13 @@
     @apply grid gap-4 md:grid-cols-2;
   }
   .tool .field label {
-    @apply mb-1.5 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500;
+    @apply mb-1.5 flex items-center justify-between font-mono text-xs uppercase tracking-[0.14em] text-zinc-400;
   }
   .tool .field .stat {
-    @apply normal-case tracking-normal text-zinc-600;
+    @apply normal-case tracking-normal text-zinc-500;
   }
   .tool textarea {
-    @apply min-h-[320px] w-full resize-y rounded-xl border border-zinc-800 bg-ink/70 p-3 font-mono text-[13px] leading-relaxed text-zinc-100 placeholder:text-zinc-600 focus:border-cyan/60 focus:outline-none focus:ring-1 focus:ring-cyan/40;
+    @apply min-h-[320px] w-full resize-y rounded-xl border border-zinc-800 bg-ink/70 p-3 font-mono text-[13px] leading-relaxed text-zinc-100 placeholder:text-zinc-500 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/40;
   }
   .tool .row {
     @apply mt-4 flex flex-wrap items-center gap-2;
@@ -158,10 +173,10 @@
     @apply flex-1;
   }
   .tool button {
-    @apply rounded-full bg-cyan px-4 py-2 text-sm font-semibold text-ink transition-shadow hover:shadow-[0_0_18px_-2px_rgba(34,211,238,0.7)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:shadow-none;
+    @apply rounded-full bg-cyan px-4 py-2 text-sm font-semibold text-on-accent transition-shadow hover:shadow-[0_0_18px_-2px_rgba(34,211,238,0.7)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:shadow-none;
   }
   .tool button.secondary {
-    @apply border border-zinc-700 bg-transparent font-medium text-zinc-200 hover:border-cyan/50 hover:text-cyan hover:shadow-none;
+    @apply border border-zinc-700 bg-transparent font-medium text-zinc-200 hover:border-cyan/50 hover:text-accent hover:shadow-none;
   }
   .tool .opt {
     @apply inline-flex items-center gap-2 text-sm text-zinc-400;
@@ -176,10 +191,10 @@
     @apply mt-3 flex min-h-[2.5rem] items-center gap-2 rounded-xl border border-zinc-800/60 bg-zinc-900/40 px-3.5 py-2 font-mono text-[13px] text-zinc-500;
   }
   .status.ok {
-    @apply border-emerald-500/30 bg-emerald-500/10 text-emerald-300;
+    @apply border-ok/30 bg-ok/10 text-ok;
   }
   .status.err {
-    @apply border-rose-500/30 bg-rose-500/10 text-rose-300;
+    @apply border-err/30 bg-err/10 text-err;
   }
   .diff-list {
     @apply mt-3 grid list-none gap-2 p-0 font-mono text-[13px] leading-relaxed;
@@ -191,13 +206,13 @@
     @apply pt-0.5 text-[11px] font-bold uppercase tracking-[0.14em];
   }
   .diff-list .added .tag {
-    @apply text-emerald-400;
+    @apply text-ok;
   }
   .diff-list .removed .tag {
-    @apply text-rose-400;
+    @apply text-err;
   }
   .diff-list .changed .tag {
-    @apply text-purple;
+    @apply text-accent-2;
   }
 
   /* FAQ accordion */
@@ -215,7 +230,7 @@
   }
   .faq summary::after {
     content: "+";
-    @apply font-mono text-lg text-cyan;
+    @apply font-mono text-lg text-accent;
   }
   .faq details[open] summary::after {
     content: "−";
@@ -235,11 +250,11 @@
     @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
   }
   .tool .fld label {
-    @apply mb-1.5 block font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500;
+    @apply mb-1.5 block font-mono text-xs uppercase tracking-[0.14em] text-zinc-400;
   }
   .tool .fld input[type="text"],
   .tool .fld select {
-    @apply w-full rounded-xl border border-zinc-800 bg-ink/70 px-3 py-2.5 text-[15px] text-zinc-100 placeholder:text-zinc-600 focus:border-cyan/60 focus:outline-none focus:ring-1 focus:ring-cyan/40;
+    @apply w-full rounded-xl border border-zinc-800 bg-ink/70 px-3 py-2.5 text-[15px] text-zinc-100 placeholder:text-zinc-500 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/40;
   }
   .tool .tabs {
     @apply flex flex-wrap gap-2;
@@ -254,7 +269,7 @@
     @apply flex flex-col gap-1 rounded-2xl border border-zinc-800/60 bg-zinc-900/40 p-4;
   }
   .tile-label {
-    @apply font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500;
+    @apply font-mono text-xs uppercase tracking-[0.12em] text-zinc-400;
   }
   .tile-value {
     @apply text-2xl font-bold tracking-tight text-zinc-50;
@@ -273,7 +288,7 @@
     @apply border-b border-zinc-800/60 px-3 py-2.5 text-left font-normal text-zinc-300;
   }
   .result-table thead th {
-    @apply font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500;
+    @apply font-mono text-xs uppercase tracking-[0.12em] text-zinc-400;
   }
   .result-table tbody th {
     @apply text-zinc-400;
@@ -286,6 +301,71 @@
   }
   .result-table .is-focus th,
   .result-table .is-focus td {
-    @apply bg-cyan/5 text-cyan;
+    @apply bg-cyan/5 text-accent;
+  }
+}
+
+@layer components {
+  /* Mobile */
+  .doc table {
+    @apply block max-w-full overflow-x-auto;
+  }
+  .doc pre {
+    @apply max-w-full;
+  }
+  .tool,
+  .faq details,
+  .card {
+    @apply min-w-0;
+  }
+  @media (max-width: 640px) {
+    .result-table {
+      @apply block max-w-full overflow-x-auto;
+    }
+    .tool {
+      @apply p-3;
+    }
+    /* 16px stops iOS Safari from zooming the page when an input is focused. */
+    .tool input,
+    .tool select,
+    .tool textarea {
+      font-size: 16px !important;
+    }
+    .tool input[type="text"],
+    .tool input[type="date"],
+    .tool input[type="time"],
+    .tool select {
+      min-height: 44px;
+    }
+    .tool button,
+    .btn {
+      min-height: 44px;
+    }
+    .tool textarea {
+      min-height: 200px;
+    }
+    .tile-value {
+      overflow-wrap: anywhere;
+    }
+    .faq summary {
+      min-height: 48px;
+    }
+    .related a {
+      min-height: 44px;
+    }
+  }
+}
+
+@layer components {
+  /* Compact next-step links under the tool */
+  .related-row {
+    @apply mt-4 flex items-center gap-2 overflow-x-auto pb-1;
+    scrollbar-width: thin;
+  }
+  .related-label {
+    @apply shrink-0 font-mono text-xs uppercase tracking-[0.12em] text-zinc-500;
+  }
+  .related-row a {
+    @apply inline-flex shrink-0 items-center gap-1.5 rounded-full border border-zinc-800/60 bg-zinc-950/60 px-3 py-1.5 text-sm text-zinc-300 transition-colors hover:border-cyan/50 hover:text-accent;
   }
 }

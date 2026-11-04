@@ -51,7 +51,7 @@ export default function Page() {
           <Link href="/png-to-jpg">PNG to JPG converter</Link>.
         </p>
 
-        <AdSlot slot={AD_SLOT_CONTENT} />
+        <AdSlot slot={AD_SLOT_CONTENT} placement="in-article" />
 
         <h2>3. Quality: lower it, but not too far</h2>
         <p>
@@ -76,6 +76,7 @@ export default function Page() {
           fits, and reduces dimensions in steps if quality alone is not enough. Always keep the original,
           because lossy compression cannot be undone.
         </p>
+        <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>
   );

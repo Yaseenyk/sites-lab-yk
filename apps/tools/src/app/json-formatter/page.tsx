@@ -13,6 +13,10 @@ export const metadata = pageMetadata(site, {
 
 const faq = [
   {
+    q: "How do I pretty print JSON?",
+    a: "Paste it into the Input box and press Format. The JSON is re-indented with 2 spaces, 4 spaces or tabs, with each key and array item on its own line. Pretty printing changes only whitespace, never the data.",
+  },
+  {
     q: "Is my JSON uploaded anywhere?",
     a: "No. Parsing and formatting run in your browser with JavaScript's built-in JSON parser. The text never leaves your device.",
   },
@@ -41,7 +45,7 @@ export default function Page() {
       lede="Paste JSON and make it readable in one click. It runs in your browser, so nothing you paste is uploaded, and any error shows its line and column."
       widget={<JsonTool primary="format" />}
       faq={faq}
-      related={["json-validator", "json-minifier", "json-compare", "json-to-csv"]}
+      related={["json-viewer", "json-validator", "json-minifier", "json-compare"]}
     >
       <h2>How to format JSON</h2>
       <ol>

@@ -41,7 +41,7 @@ export default function Page() {
           days.
         </p>
 
-        <AdSlot slot={AD_SLOT_CONTENT} />
+        <AdSlot slot={AD_SLOT_CONTENT} placement="in-article" />
 
         <h2>Years, months and days</h2>
         <p>
@@ -69,6 +69,7 @@ export default function Page() {
           February as the anniversary. Some countries&apos; laws use 1 March instead, so use the rule that
           applies where it matters legally.
         </p>
+        <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>
   );

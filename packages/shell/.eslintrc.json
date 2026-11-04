@@ -57,7 +57,9 @@
     {
       "files": [
         "src/seo.tsx",
-        "src/AdSlot.tsx"
+        "src/AdSlot.tsx",
+        "src/ThemeToggle.tsx",
+        "src/ClarityScript.tsx"
       ],
       "rules": {
         "react/no-danger": "off"

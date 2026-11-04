@@ -54,7 +54,7 @@ export default function Page() {
           </li>
         </ul>
 
-        <AdSlot slot={AD_SLOT_CONTENT} />
+        <AdSlot slot={AD_SLOT_CONTENT} placement="in-article" />
 
         <h2>Your effective hourly rate</h2>
         <p>
@@ -77,6 +77,7 @@ export default function Page() {
           <Link href="/hourly-to-salary-calculator">hourly to salary calculator</Link> goes the other way. The{" "}
           <Link href="/salary-calculator">salary calculator</Link> shows every pay period at once.
         </p>
+        <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>
   );

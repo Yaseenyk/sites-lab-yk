@@ -45,7 +45,7 @@ new after Y% change  = old x (1 +/- Y / 100)         80 +25%  = 100`}</pre>
           has to double to recover.
         </p>
 
-        <AdSlot slot={AD_SLOT_CONTENT} />
+        <AdSlot slot={AD_SLOT_CONTENT} placement="in-article" />
 
         <h2>Mistake 3: adding discounts</h2>
         <p>
@@ -69,6 +69,7 @@ new after Y% change  = old x (1 +/- Y / 100)         80 +25%  = 100`}</pre>
           <li>5%: half of 10%. 1%: move the decimal point two places.</li>
           <li>15% is 10% plus 5%. 25% is a quarter. 50% is half.</li>
         </ul>
+        <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>
   );

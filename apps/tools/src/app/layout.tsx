@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
-import { AdSenseScript, JsonLd, SiteShell, siteJsonLd } from "@sites/shell";
+import { AdSenseScript, ClarityScript, JsonLd, SiteShell, ThemeScript, siteJsonLd } from "@sites/shell";
+import "@sites/shell/theme.css";
 import "./globals.css";
 import { GA_ID, GSC_VERIFICATION, author, site } from "@/site";
 
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <head>
+        <ThemeScript />
         {/* Plain head scripts: Google's tag checker does not see next/script output. */}
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
         <script
@@ -53,6 +55,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           }}
         />
         <AdSenseScript />
+        <ClarityScript />
         <JsonLd data={siteJsonLd(site, author)} />
       </head>
       <body>

@@ -20,7 +20,7 @@ export const PAIRS: Pair[] = [
     slug: "usd-to-inr",
     from: "USD",
     to: "INR",
-    seoTitle: "USD to INR: US Dollar to Indian Rupee Converter (Live)",
+    seoTitle: "USD to INR: 1 US Dollar to Indian Rupee Converter (Live)",
     h1: "USD to INR: US Dollar to Indian Rupee",
     description:
       "Convert US dollars to Indian rupees at live exchange rates. Instant USD to INR (dollar to rupee) calculator with common amounts and rate details.",
@@ -56,6 +56,49 @@ export const PAIRS: Pair[] = [
       {
         q: "What is a lakh and a crore?",
         a: "A lakh is 100,000 and a crore is 10,000,000. They are written 1,00,000 and 1,00,00,000 in Indian grouping, which is how rupee amounts appear above.",
+      },
+    ],
+  },
+  {
+    slug: "inr-to-usd",
+    from: "INR",
+    to: "USD",
+    seoTitle: "INR to USD: Indian Rupee to US Dollar Converter (Live)",
+    h1: "INR to USD: Indian Rupee to US Dollar",
+    description:
+      "Convert Indian rupees to US dollars at live exchange rates. Instant INR to USD (rupee to dollar) calculator with common amounts, including lakh and crore.",
+    blurb: "Indian rupees to US dollars at live rates, from a few rupees to lakhs.",
+    lede: "Enter an amount in Indian rupees, including lakh and crore sums, to see it in US dollars at the latest rate.",
+    about: [
+      "People convert rupees to dollars to plan study or travel in the United States, to price overseas software and services, to compare a rupee salary with a dollar one, and to see what a remittance or an investment is worth in dollars.",
+      "Rupee amounts here are typed and shown in the Indian style, where 1,00,000 is one lakh and 1,00,00,000 is one crore. Type 100000 for one lakh. The dollar figure is the mid-market amount, before any bank or transfer fee.",
+    ],
+    uses: [
+      "Estimating tuition, rent and living costs in the United States against a rupee budget.",
+      "Pricing overseas subscriptions, software and online purchases billed in dollars.",
+      "Comparing a rupee salary or a freelance rate with a dollar one.",
+      "Checking what a rupee investment or a lump sum is worth in dollars.",
+    ],
+    faq: [
+      {
+        q: "How do I convert rupees to dollars?",
+        a: "Divide the rupee amount by the USD to INR rate, or multiply it by the INR to USD rate. If 1 dollar is 90 rupees, then 9,000 rupees is 9,000 / 90 = 100 dollars. The converter does this with the live rate.",
+      },
+      {
+        q: "How many dollars is one lakh rupees?",
+        a: "One lakh is 100,000 rupees. Enter 100000 above to see the dollar amount at today's rate. It changes through the day because the rupee floats against the dollar.",
+      },
+      {
+        q: "What is the difference between INR to USD and USD to INR?",
+        a: "They are the same exchange rate read in opposite directions. If 1 dollar buys 90 rupees, 1 rupee buys 1 / 90, about 0.0111 dollars. Use the swap button to flip the pair.",
+      },
+      {
+        q: "Why does my bank give me fewer dollars?",
+        a: "The page shows the mid-market rate. Banks and transfer services use a rate with their margin built in, and may add a fee, so the dollars you receive are lower. Compare the final amount, not the headline rate.",
+      },
+      {
+        q: "Is the rate updated live?",
+        a: "It is loaded from a public rates feed when you open the page. These feeds publish about once a day, and the date of the rates is shown under the result.",
       },
     ],
   },

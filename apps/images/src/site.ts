@@ -59,6 +59,17 @@ export const tools: Tool[] = [
     icon: "image",
     group: "compress",
   },
+  {
+    slug: "jpeg-compressor",
+    path: "/jpeg-compressor/",
+    seoTitle: "JPEG Compressor: Reduce JPG File Size Online (No Upload)",
+    h1: "JPEG Compressor",
+    description:
+      "JPEG compressor online: reduce the file size of JPG photos by quality or to an exact KB limit. Free and instant, with no upload: photos stay on your device.",
+    blurb: "Shrink JPG photos by quality or to an exact file-size limit.",
+    icon: "image",
+    group: "compress",
+  },
   ...SIZE_PAGES.map((p): Tool => ({
     slug: p.slug,
     path: `/${p.slug}/`,
@@ -72,10 +83,10 @@ export const tools: Tool[] = [
   {
     slug: "image-resizer",
     path: "/image-resizer/",
-    seoTitle: "Image Resizer: Resize Photos by Pixels or Percent",
+    seoTitle: "Image Resizer: Resize Photo by Pixels or Percent (No Upload)",
     h1: "Image Resizer",
     description:
-      "Resize images online by width, height or percentage, keeping the aspect ratio. Free, instant, and private: your photos stay on your device.",
+      "Photo resizer online: resize images by width, height or percentage, keeping the aspect ratio. Free and instant, with no upload: photos stay on your device.",
     blurb: "Resize by pixels or percent, keeping the aspect ratio.",
     icon: "resize",
     group: "resize",

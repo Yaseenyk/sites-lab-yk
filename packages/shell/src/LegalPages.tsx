@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { SiteConfig } from "./config";
+import { CLARITY_ID, type SiteConfig } from "./config";
 
 export function Article({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -43,6 +43,20 @@ export function PrivacyBody({ site, extra }: { site: SiteConfig; extra?: ReactNo
         </a>
         . We do not sell personal information.
       </p>
+      {CLARITY_ID && (
+        <>
+          <h2>Usage recording</h2>
+          <p>
+            This site uses Microsoft Clarity to see how pages are used, through heatmaps and anonymised
+            session recordings. Clarity is configured to mask the text on the page, so what you type or load
+            into a tool is not recorded. Clarity uses cookies; see{" "}
+            <a href="https://privacy.microsoft.com/privacystatement" rel="noopener noreferrer">
+              Microsoft&apos;s privacy statement
+            </a>
+            .
+          </p>
+        </>
+      )}
       <h2>Contact</h2>
       <p>
         Questions about this policy: see the <a href="/contact">contact page</a>.

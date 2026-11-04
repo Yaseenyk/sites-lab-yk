@@ -10,6 +10,7 @@ export const site: SiteConfig = {
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
   nav: [
     { href: "/json-formatter", label: "JSON Formatter" },
+    { href: "/json-viewer", label: "JSON Viewer" },
     { href: "/json-compare", label: "JSON Compare" },
     { href: "/json-to-csv", label: "JSON to CSV" },
     { href: "/base64", label: "Base64" },
@@ -48,12 +49,22 @@ export const tools: Tool[] = [
   {
     slug: "json-formatter",
     path: "/json-formatter/",
-    seoTitle: "JSON Formatter & Beautifier Online (Free, Private)",
+    seoTitle: "JSON Formatter & Pretty Print Online (Free, Private)",
     h1: "JSON Formatter & Beautifier",
     description:
-      "Format and beautify JSON online. Free, instant and private: it runs in your browser and shows the exact line and column of any error.",
+      "JSON formatter and pretty print online: format and beautify JSON instantly. Free and private, runs in your browser, shows the line and column of any error.",
     blurb: "Pretty-print JSON with 2 or 4 spaces or tabs, sort keys, and see errors with line and column.",
     icon: "braces",
+  },
+  {
+    slug: "json-viewer",
+    path: "/json-viewer/",
+    seoTitle: "JSON Viewer: View JSON as a Tree Online (Free, Private)",
+    h1: "JSON Viewer",
+    description:
+      "JSON viewer online: browse JSON as a collapsible tree, copy the path to any value, and see exactly where invalid JSON breaks. Free and private, no upload.",
+    blurb: "Browse JSON as a collapsible tree and copy the path to any value.",
+    icon: "list",
   },
   {
     slug: "json-validator",
@@ -78,10 +89,10 @@ export const tools: Tool[] = [
   {
     slug: "json-compare",
     path: "/json-compare/",
-    seoTitle: "JSON Compare: Diff Two JSON Documents Online",
+    seoTitle: "JSON Diff & Compare: Compare Two JSON Files Online",
     h1: "JSON Compare (JSON Diff)",
     description:
-      "Compare two JSON documents online and see every added, removed and changed value by path. Key order is ignored. Runs in your browser.",
+      "JSON diff tool: compare two JSON documents online and see every added, removed and changed value by path. Key order is ignored. Private, in your browser.",
     blurb: "Paste two JSON documents and see every added, removed and changed value by path.",
     icon: "diff",
   },

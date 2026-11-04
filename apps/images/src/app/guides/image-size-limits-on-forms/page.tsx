@@ -65,7 +65,7 @@ export default function Page() {
           </li>
         </ol>
 
-        <AdSlot slot={AD_SLOT_CONTENT} />
+        <AdSlot slot={AD_SLOT_CONTENT} placement="in-article" />
 
         <h2>If it will not get small enough</h2>
         <p>
@@ -87,6 +87,7 @@ export default function Page() {
           work in your browser, so the picture never leaves your device, and the saved file has its camera and
           location data removed.
         </p>
+        <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>
   );

@@ -357,7 +357,7 @@ export default function ImageWorkbench({ mode, presetKB, convertTo = "image/jpeg
                   </p>
                 )}
                 {r.status === "error" && (
-                  <p className="text-sm text-rose-300">
+                  <p className="text-sm text-err">
                     <strong>{r.file.name}</strong>: {r.error}
                   </p>
                 )}
@@ -371,9 +371,7 @@ export default function ImageWorkbench({ mode, presetKB, convertTo = "image/jpeg
                         {formatBytes(r.out.original)} → <strong>{formatBytes(r.out.blob.size)}</strong>{" "}
                         <span
                           className={
-                            savedPercent(r.out.original, r.out.blob.size) >= 0
-                              ? "text-emerald-300"
-                              : "text-amber-300"
+                            savedPercent(r.out.original, r.out.blob.size) >= 0 ? "text-ok" : "text-warn"
                           }
                         >
                           ({savedPercent(r.out.original, r.out.blob.size) >= 0 ? "-" : "+"}
@@ -385,7 +383,7 @@ export default function ImageWorkbench({ mode, presetKB, convertTo = "image/jpeg
                         {r.out.quality !== null && ` · quality ${Math.round(r.out.quality * 100)}%`}
                       </p>
                       {mode === "compress" && positive(targetKB) !== null && !r.out.reached && (
-                        <p className="text-sm text-amber-300">
+                        <p className="text-sm text-warn">
                           Could not reach {targetKB} KB. This is the smallest result; try a smaller maximum
                           width.
                         </p>

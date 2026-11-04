@@ -40,7 +40,7 @@ weekly pay    = regular hours x rate + overtime hours x overtime rate`}</pre>
           does this with your own rate and hours.
         </p>
 
-        <AdSlot slot={AD_SLOT_CONTENT} />
+        <AdSlot slot={AD_SLOT_CONTENT} placement="in-article" />
 
         <h2>The &quot;regular rate&quot; is not always your base wage</h2>
         <p>
@@ -71,6 +71,7 @@ weekly pay    = regular hours x rate + overtime hours x overtime rate`}</pre>
           count toward the 40-hour total. See the{" "}
           <Link href="/time-and-a-half-calculator">time and a half calculator</Link> for the rates.
         </p>
+        <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>
   );

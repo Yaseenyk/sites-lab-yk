@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
-import { AdSenseScript, JsonLd, SiteShell, siteJsonLd } from "@sites/shell";
+import { AdSenseScript, ClarityScript, JsonLd, SiteShell, ThemeScript, siteJsonLd } from "@sites/shell";
+import "@sites/shell/theme.css";
 import "./globals.css";
 import { GA_ID, GSC_VERIFICATION, author, site } from "@/site";
 
@@ -34,13 +35,17 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#05070a",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#05070a" },
+    { media: "(prefers-color-scheme: light)", color: "#f6f8fb" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <head>
+        <ThemeScript />
         {/* Plain head scripts: Google's tag checker does not see next/script output. */}
         {GA_ID && (
           <>
@@ -53,6 +58,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </>
         )}
         <AdSenseScript />
+        <ClarityScript />
         <JsonLd data={siteJsonLd(site, author)} />
       </head>
       <body>

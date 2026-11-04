@@ -87,6 +87,43 @@ export default function Page() {
         </tbody>
       </table>
 
+      <h2>Overtime rules differ by state</h2>
+      <p>
+        The federal rule counts hours over 40 in a workweek. A few states also count hours in a single day, so
+        the same week can pay differently depending on where you work:
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>State</th>
+            <th>Daily overtime rule (general case)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>California</td>
+            <td>Over 8 hours in a day at time and a half; over 12 hours at double time</td>
+          </tr>
+          <tr>
+            <td>Alaska</td>
+            <td>Over 8 hours in a day, for covered employers</td>
+          </tr>
+          <tr>
+            <td>Nevada</td>
+            <td>Over 8 hours in a day for employees below a wage threshold</td>
+          </tr>
+          <tr>
+            <td>Colorado</td>
+            <td>Over 12 hours in a day, as well as over 40 in a week</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Exceptions, exemptions and thresholds apply, and rules change, so confirm with your state labor
+        department. To model a daily rule, set the threshold to the daily limit and enter that day&apos;s
+        hours.
+      </p>
+
       <h2>What this calculator does not cover</h2>
       <p>
         The regular rate used to compute overtime is not always your base wage: some bonuses and shift

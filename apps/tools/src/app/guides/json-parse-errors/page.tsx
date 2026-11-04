@@ -67,7 +67,7 @@ export default function Page() {
           must be <code>{'"C:\\\\temp"'}</code>.
         </p>
 
-        <AdSlot slot={AD_SLOT_CONTENT} />
+        <AdSlot slot={AD_SLOT_CONTENT} placement="in-article" />
 
         <h2>Reading the error message</h2>
         <p>
@@ -78,6 +78,7 @@ export default function Page() {
           follows it.
         </p>
         <p>Still stuck? Bisect: remove half the document and check again, repeating until the error moves.</p>
+        <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>
   );

@@ -18,3 +18,9 @@ export interface SiteConfig {
 
 /** AdSense publisher id (ca-pub-...) from the environment; empty until approved. */
 export const ADSENSE_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT ?? "";
+
+/** Draw dashed placeholders where ads will go. For reviewing the layout before AdSense is approved. */
+export const ADS_PREVIEW = process.env.NEXT_PUBLIC_ADS_PREVIEW === "1";
+
+/** Microsoft Clarity project id; empty means Clarity is off. */
+export const CLARITY_ID = process.env.NEXT_PUBLIC_CLARITY_ID ?? "";

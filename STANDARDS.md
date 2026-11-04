@@ -76,3 +76,44 @@ every push and pull request.
 - Conventional commits (`feat(tools): ...`, `fix(shell): ...`). Small pull requests.
 - Required before merge: `npm run check:tools` and `npm run build:tools` green (CI does both).
 - Dependency updates arrive weekly through Dependabot; merge minor and patch groups after CI passes.
+
+## Theming (light and dark)
+
+- Colors are semantic tokens defined once in `packages/shell/src/theme.css` and mapped in
+  `packages/shell/tailwind-preset.ts`. The `zinc` scale is inverted in light mode, so `text-zinc-100`,
+  `border-zinc-800/60` and `bg-zinc-950/60` read correctly in both themes. Do not add `dark:` variants or
+  hard-coded hex colors in components.
+- Use `text-accent` / `text-accent-2` for text (it darkens in light mode), `bg-cyan` for bright fills with
+  `text-on-accent` on top, and `text-ok` / `text-warn` / `text-err` for status. Never use `text-zinc-600` or darker
+  for text (decorative only); small text needs `text-zinc-500` or lighter-in-dark.
+- The theme follows the system setting until the visitor chooses one with the header toggle. A head script
+  (`ThemeScript`) applies a saved choice before first paint, so there is no flash.
+- Contrast must meet WCAG AA (4.5:1 body text, 3:1 large text) in both themes. Check with a real-browser scan, not by eye.
+
+## Responsive rules
+
+- No horizontal scroll at 360 px. Wide tables and result tables scroll inside their own container.
+- Inputs are 16 px on phones (stops iOS zooming on focus); buttons and form controls are at least 44 px tall.
+- The main nav collapses into `MobileNav` below `lg`. The tool must be reachable without scrolling past a long
+  header block on a phone.
+
+## Ads
+
+- Placements are fixed by `AdPlacement` in `packages/shell/src/AdSlot.tsx`: `after-tool`, `mid-content`, `in-article`,
+  `article-end`, `home-mid`. At most two on a tool page, two on a guide, one on a home page; none above the fold,
+  in the header or footer, or inside a tool card.
+- Every slot reserves its height so a late ad cannot shift the layout. With no AdSense id configured a slot renders
+  nothing. Build with `NEXT_PUBLIC_ADS_PREVIEW=1` to draw dashed placeholders and review the layout.
+
+## Client rendering
+
+- Anything that depends on the visitor's browser (Intl currency lists and names, today's date, locale) must not
+  differ between the server render and the first client render. Render a stable first pass, then fill in after mount.
+  A mismatch throws a React hydration error (#418/#425) and discards the server HTML.
+
+## Tests
+
+- `npm run check` runs lint, types, unit tests and a format check for every app. Component tests use Vitest,
+  jsdom and Testing Library: type into the real inputs and assert what the user sees, including failure paths.
+- Mock the network and the canvas in tests (see `apps/calc` and `apps/images`). Real-browser checks (every page,
+  both themes, console errors, contrast, mobile overflow) are run against a production build before a release.

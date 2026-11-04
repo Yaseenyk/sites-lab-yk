@@ -39,7 +39,7 @@ export default function Page() {
           the margin is large.
         </p>
 
-        <AdSlot slot={AD_SLOT_CONTENT} />
+        <AdSlot slot={AD_SLOT_CONTENT} placement="in-article" />
 
         <h2>How to compare offers</h2>
         <ol>
@@ -68,6 +68,7 @@ rate (B to A) = 1 / rate (A to B)`}</pre>
           converter for a live example, or open a popular pair such as{" "}
           <Link href="/usd-to-inr">USD to INR</Link>.
         </p>
+        <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>
   );

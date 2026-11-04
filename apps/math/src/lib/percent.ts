@@ -15,6 +15,10 @@ export const increaseBy = (v: number, p: number): number => v * (1 + p / 100);
 /** Decrease `v` by `p` percent. */
 export const decreaseBy = (v: number, p: number): number => v * (1 - p / 100);
 
+/** Price after applying discounts one after another: 20% then 10% leaves 72% of the price. */
+export const stackedPrice = (price: number, discounts: number[]): number =>
+  discounts.reduce((p, d) => decreaseBy(p, d), price);
+
 /** Percent change from `from` to `to`, relative to the starting value. Negative for a decrease. */
 export const percentChange = (from: number, to: number): number =>
   from === 0 ? NaN : ((to - from) / Math.abs(from)) * 100;
@@ -83,6 +87,12 @@ export interface Stats {
   min: number;
   max: number;
   range: number;
+  /** Population variance and standard deviation (divide by n). */
+  variance: number;
+  stdDev: number;
+  /** Sample variance and standard deviation (divide by n - 1). Null when there is only one value. */
+  sampleVariance: number | null;
+  sampleStdDev: number | null;
 }
 
 /** Descriptive statistics for a list of numbers. Null for an empty list. */
@@ -104,7 +114,24 @@ export function stats(values: number[]): Stats | null {
   const modes = top > 1 ? [...counts.entries()].filter(([, c]) => c === top).map(([v]) => v) : [];
   const min = sorted[0] as number;
   const max = sorted[n - 1] as number;
-  return { count: n, sum, mean: sum / n, median, modes, min, max, range: max - min };
+  const mean = sum / n;
+  const squares = sorted.reduce((acc, v) => acc + (v - mean) ** 2, 0);
+  const variance = squares / n;
+  const sampleVariance = n > 1 ? squares / (n - 1) : null;
+  return {
+    count: n,
+    sum,
+    mean,
+    median,
+    modes,
+    min,
+    max,
+    range: max - min,
+    variance,
+    stdDev: Math.sqrt(variance),
+    sampleVariance,
+    sampleStdDev: sampleVariance === null ? null : Math.sqrt(sampleVariance),
+  };
 }
 
 /** Pull numbers out of free text separated by commas, spaces or new lines. Returns the numbers and any bad tokens. */

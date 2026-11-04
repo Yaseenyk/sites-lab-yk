@@ -74,10 +74,10 @@ const payTools: Tool[] = [
   {
     slug: "hourly-to-salary-calculator",
     path: "/hourly-to-salary-calculator/",
-    seoTitle: "Hourly to Salary Calculator (Annual, Monthly, Weekly)",
+    seoTitle: "Hourly to Salary Calculator: Convert Wages to Annual Pay",
     h1: "Hourly to Salary Calculator",
     description:
-      "Convert an hourly wage to annual, monthly, bi-weekly and weekly salary. Uses a 2,080-hour year by default and lets you set your own hours.",
+      "Hourly salary calculator: convert wages to annual, monthly, bi-weekly and weekly pay. Uses a 2,080-hour year by default and lets you set your own hours.",
     blurb: "Turn an hourly wage into an annual salary and every other period.",
     icon: "dollar",
     group: "pay",
@@ -85,10 +85,10 @@ const payTools: Tool[] = [
   {
     slug: "salary-to-hourly-calculator",
     path: "/salary-to-hourly-calculator/",
-    seoTitle: "Salary to Hourly Calculator: What Is My Hourly Pay?",
+    seoTitle: "Salary to Hourly Calculator: Convert Salary to Hourly Wage",
     h1: "Salary to Hourly Calculator",
     description:
-      "Convert an annual salary to an hourly wage. Uses a 2,080-hour year by default, and you can set your own hours and weeks worked.",
+      "Salary to hourly calculator: convert an annual or monthly salary to an hourly wage. Uses a 2,080-hour year by default; set your own hours and weeks.",
     blurb: "Find the hourly wage behind any annual or monthly salary.",
     icon: "clock",
     group: "pay",
@@ -99,7 +99,7 @@ const payTools: Tool[] = [
     seoTitle: "Overtime Pay Calculator: Weekly Pay with Overtime",
     h1: "Overtime Pay Calculator",
     description:
-      "Calculate overtime pay for a week: regular hours at your base rate and extra hours at time and a half, double time or your own multiplier.",
+      "Overtime pay calculator: work out a week of pay with regular hours at your base rate and extra hours at time and a half, double time or your own multiplier.",
     blurb: "Work out a week of pay with overtime at 1.5x, 2x or your own multiplier.",
     icon: "clock",
     group: "pay",

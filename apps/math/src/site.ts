@@ -109,7 +109,7 @@ export const tools: Tool[] = [
     seoTitle: "Days Between Dates Calculator (Calendar and Working Days)",
     h1: "Days Between Dates Calculator",
     description:
-      "Count the days between two dates, with weeks, months and working days. Optionally count the end date too. Free and instant, with the method explained.",
+      "Date duration calculator: count the days between two dates, with weeks, months and working days. Optionally count the end date too. Free and instant.",
     blurb: "Days, weeks, months and working days between any two dates.",
     icon: "calendar",
     group: "dates",
@@ -137,6 +137,50 @@ export const tools: Tool[] = [
     group: "dates",
   },
   {
+    slug: "time-calculator",
+    path: "/time-calculator/",
+    seoTitle: "Time Calculator: Add or Subtract Hours, Minutes, Days",
+    h1: "Time Calculator",
+    description:
+      "Time calculator: add or subtract two lengths of time in days, hours, minutes and seconds. See the result in words and as total hours and minutes.",
+    blurb: "Add or subtract days, hours, minutes and seconds.",
+    icon: "clock",
+    group: "dates",
+  },
+  {
+    slug: "percentage-difference-calculator",
+    path: "/percentage-difference-calculator/",
+    seoTitle: "Percentage Difference Calculator: Compare Two Numbers",
+    h1: "Percentage Difference Calculator",
+    description:
+      "Calculate the percentage difference between two numbers using their average as the base. Free and instant, with the formula and worked examples.",
+    blurb: "The percentage difference between two values, the same in either direction.",
+    icon: "diff",
+    group: "percent",
+  },
+  {
+    slug: "discount-calculator",
+    path: "/discount-calculator/",
+    seoTitle: "Discount Calculator: Sale Price and Percentage Off",
+    h1: "Discount Calculator",
+    description:
+      "Discount calculator and percentage off calculator: find the sale price and savings, stack a second discount, or work out the percent off from two prices.",
+    blurb: "Sale price, savings and stacked discounts, or the percent off from two prices.",
+    icon: "percent",
+    group: "percent",
+  },
+  {
+    slug: "standard-deviation-calculator",
+    path: "/standard-deviation-calculator/",
+    seoTitle: "Standard Deviation Calculator: Sample and Population",
+    h1: "Standard Deviation Calculator",
+    description:
+      "Paste a list of numbers to get the sample and population standard deviation, variance and mean. Free and instant, with the formulas and a worked example.",
+    blurb: "Sample and population standard deviation, variance and mean.",
+    icon: "list",
+    group: "numbers",
+  },
+  {
     slug: "ratio-calculator",
     path: "/ratio-calculator/",
     seoTitle: "Ratio Calculator: Simplify and Solve Ratios",
@@ -153,7 +197,7 @@ export const tools: Tool[] = [
     seoTitle: "Average Calculator: Mean, Median, Mode and Range",
     h1: "Average Calculator",
     description:
-      "Paste a list of numbers to get the mean, median, mode, sum, minimum, maximum and range instantly. Free, with each statistic explained.",
+      "Mean, median, mode calculator: paste a list of numbers to get the average, sum, minimum, maximum and range instantly, with each statistic explained.",
     blurb: "Mean, median, mode and range for any list of numbers.",
     icon: "list",
     group: "numbers",

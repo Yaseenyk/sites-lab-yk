@@ -53,7 +53,7 @@ export function RatioCalculator() {
 }
 
 /** Mean, median, mode, sum and range for a pasted list of numbers. */
-export function AverageCalculator() {
+export function AverageCalculator({ variant = "average" }: { variant?: "average" | "deviation" }) {
   const [text, setText] = useState("4, 8, 8, 10, 15");
   const parsed = useMemo(() => parseNumbers(text), [text]);
   const s = useMemo(() => stats(parsed.values), [parsed]);
@@ -83,9 +83,23 @@ export function AverageCalculator() {
       ) : (
         <div role="status" aria-live="polite">
           <div className="tile-grid">
-            <Tile hero label="Mean (average)" value={fmt(s.mean)} />
-            <Tile label="Median" value={fmt(s.median)} />
-            <Tile label="Mode" value={s.modes.length ? s.modes.map((m) => fmt(m)).join(", ") : "none"} />
+            {variant === "deviation" ? (
+              <>
+                <Tile
+                  hero
+                  label="Sample standard deviation (s)"
+                  value={s.sampleStdDev === null ? "needs 2+ values" : fmt(s.sampleStdDev, 6)}
+                />
+                <Tile label="Population standard deviation (σ)" value={fmt(s.stdDev, 6)} />
+                <Tile label="Mean" value={fmt(s.mean)} />
+              </>
+            ) : (
+              <>
+                <Tile hero label="Mean (average)" value={fmt(s.mean)} />
+                <Tile label="Median" value={fmt(s.median)} />
+                <Tile label="Mode" value={s.modes.length ? s.modes.map((m) => fmt(m)).join(", ") : "none"} />
+              </>
+            )}
           </div>
           <table className="result-table">
             <tbody>
@@ -95,6 +109,12 @@ export function AverageCalculator() {
                 ["Minimum", fmt(s.min)],
                 ["Maximum", fmt(s.max)],
                 ["Range", fmt(s.range)],
+                ...(variant === "deviation"
+                  ? ([
+                      ["Variance (population)", fmt(s.variance, 6)],
+                      ["Variance (sample)", s.sampleVariance === null ? "-" : fmt(s.sampleVariance, 6)],
+                    ] as [string, string][])
+                  : []),
               ].map(([k, v]) => (
                 <tr key={k}>
                   <th scope="row">{k}</th>
