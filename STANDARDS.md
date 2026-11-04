@@ -102,8 +102,8 @@ every push and pull request.
 - Placements are fixed by `AdPlacement` in `packages/shell/src/AdSlot.tsx`: `after-tool`, `mid-content`, `in-article`,
   `article-end`, `home-mid`. At most two on a tool page, two on a guide, one on a home page; none above the fold,
   in the header or footer, or inside a tool card.
-- Every slot reserves its height so a late ad cannot shift the layout. With no AdSense id configured a slot renders
-  nothing. Build with `NEXT_PUBLIC_ADS_PREVIEW=1` to draw dashed placeholders and review the layout.
+- Every slot reserves its height so a late ad cannot shift the layout. With no AdSense id configured a slot shows a quiet
+  labelled box of that height, so the space is already in the layout. Build with `NEXT_PUBLIC_ADS_PREVIEW=1` to draw dashed placeholders and review the layout.
 
 ## Client rendering
 

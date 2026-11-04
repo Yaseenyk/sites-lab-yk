@@ -5,7 +5,7 @@ One monorepo holds the shared shell and every app; each app is published to its 
 GitHub Pages serves one site per repo.
 
 ```
-packages/shell   layout, legal pages, SEO + JSON-LD helpers, AdSlot (renders nothing until configured)
+packages/shell   layout, legal pages, SEO + JSON-LD helpers, AdSlot (reserved space until AdSense is configured)
 apps/tools       tools.streamerosai.com  (JSON and Base64 tools, guides)
 apps/calc        calc.streamerosai.com   (pay raise, salary, overtime, currency)
 apps/images      images.streamerosai.com (compress, resize, convert images in the browser)
