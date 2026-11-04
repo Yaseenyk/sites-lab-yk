@@ -8,6 +8,8 @@ import sys
 SITES = {
     "tools": dict(lead="StreamerOS", accent="Dev Tools", mark="braces", h1="Developer tools that", h2="run in your browser",
                   chips=("JSON formatter", "JSON compare", "JSON to CSV", "Base64"), host="tools.streamerosai.com"),
+    "images": dict(lead="StreamerOS", accent="Image Tools", mark="image", h1="Image tools that", h2="never upload your photos",
+                   chips=("Compress to 50 KB", "Resize", "PNG to JPG", "WebP to JPG"), host="images.streamerosai.com"),
     "calc": dict(lead="StreamerOS", accent="Money Calculators", mark="calc", h1="Money calculators that", h2="show the math",
                  chips=("Pay raise", "Salary", "USD to INR", "Currency"), host="calc.streamerosai.com"),
 }
@@ -44,6 +46,17 @@ def logo(size, mark="braces"):
             d.text((cx - (bb[0] + bb[2]) / 2, s * 0.5 - (bb[1] + bb[3]) / 2), text, font=f, fill="white")
         r = s * 0.055
         d.ellipse((s / 2 - r, s / 2 - r, s / 2 + r, s / 2 + r), fill="white")
+    elif mark == "image":
+        w = int(s * 0.07)
+        u = s / 64
+        def seg(pts):
+            for (x1, y1), (x2, y2) in zip(pts, pts[1:]):
+                d.line((x1 * u, y1 * u, x2 * u, y2 * u), fill="white", width=w)
+            for x, y in pts:
+                d.ellipse((x * u - w / 2, y * u - w / 2, x * u + w / 2, y * u + w / 2), fill="white")
+        d.rounded_rectangle((14 * u, 16 * u, 50 * u, 48 * u), radius=5 * u, outline="white", width=w)
+        seg([(14, 42), (24, 32), (32, 40), (38, 34), (50, 46)])
+        d.ellipse((37.4 * u, 23.4 * u, 42.6 * u, 28.6 * u), fill="white")
     else:
         w = int(s * 0.07)
         u = s / 64

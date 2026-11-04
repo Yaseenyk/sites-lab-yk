@@ -13,6 +13,11 @@ const base = {
 };
 
 export type IconName =
+  | "image"
+  | "resize"
+  | "swap"
+  | "download"
+  | "upload"
   | "braces"
   | "calc"
   | "clock"
@@ -29,6 +34,17 @@ export type IconName =
   | "arrow";
 
 const paths: Record<IconName, ReactNode> = {
+  image: (
+    <>
+      <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" />
+      <path d="M3.5 16l5-5 4 4 3-3 5 5" />
+      <circle cx="16.5" cy="9" r="1.2" />
+    </>
+  ),
+  resize: <path d="M4 14v6h6M20 10V4h-6M4 20l7-7M20 4l-7 7" />,
+  swap: <path d="M4 8h13l-3-3M20 16H7l3 3" />,
+  download: <path d="M12 4v11M7.5 11l4.5 4.5 4.5-4.5M5 20h14" />,
+  upload: <path d="M12 16V5M7.5 9L12 4.500 16.500 9M5 20h14" />,
   calc: (
     <>
       <rect x="5" y="3.5" width="14" height="17" rx="2" />

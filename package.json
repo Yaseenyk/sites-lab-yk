@@ -13,7 +13,10 @@
     "dev:calc": "npm run dev -w @sites/calc",
     "build:calc": "npm run build -w @sites/calc",
     "check:calc": "npm run check -w @sites/calc",
-    "check": "npm run check:tools && npm run check:calc"
+    "check": "npm run check:tools && npm run check:calc && npm run check:images",
+    "dev:images": "npm run dev -w @sites/images",
+    "build:images": "npm run build -w @sites/images",
+    "check:images": "npm run check -w @sites/images"
   },
   "engines": {
     "node": ">=20"

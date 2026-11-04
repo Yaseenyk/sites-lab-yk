@@ -3,9 +3,9 @@ import { Breadcrumbs, JsonLd, breadcrumbJsonLd, pageMetadata } from "@sites/shel
 import { guides, site } from "@/site";
 
 export const metadata = pageMetadata(site, {
-  title: "JSON and Base64 Guides for Developers",
+  title: "Money Guides: Salary, Overtime and Exchange Rates",
   description:
-    "Short, practical guides that go with the tools: why JSON.parse fails, what Base64 is, and how to fix common errors.",
+    "Short, practical guides that go with the calculators: salary to hourly, how overtime pay works, and how exchange rates work.",
   path: "/guides/",
 });
 
@@ -20,7 +20,7 @@ export default function Page() {
       <JsonLd data={{ "@context": "https://schema.org", ...breadcrumbJsonLd(site.url, crumbs) }} />
       <Breadcrumbs items={crumbs} />
       <p className="eyebrow mb-3">Guides</p>
-      <h1 className="page-h1">Guides for JSON and Base64</h1>
+      <h1 className="page-h1">Guides for pay and currency</h1>
       <p className="lede">
         Short explanations that go with the tools, written to fix the problem you came with.
       </p>

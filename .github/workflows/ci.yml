@@ -31,4 +31,4 @@ jobs:
         run: npm run check
 
       - name: Build all sites
-        run: npm run build:tools && npm run build:calc
+        run: npm run build:tools && npm run build:calc && npm run build:images
