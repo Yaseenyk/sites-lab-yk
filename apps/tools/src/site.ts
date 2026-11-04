@@ -2,6 +2,9 @@ import type { IconName, SiteConfig } from "@sites/shell";
 
 export const site: SiteConfig = {
   name: "StreamerOS Dev Tools",
+  brand: { lead: "StreamerOS", accent: "Dev Tools", mark: "braces" },
+  cta: { label: "Open a tool", href: "/json-formatter" },
+  toolsHeading: "Tools",
   tagline: "Free developer tools that run in your browser. Your input is never uploaded.",
   url: "https://tools.streamerosai.com",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
@@ -116,7 +119,9 @@ export const tools: Tool[] = [
 
 export const toolBySlug = (slug: string): Tool => {
   const t = tools.find((x) => x.slug === slug);
-  if (!t) throw new Error(`unknown tool ${slug}`);
+  if (!t) {
+    throw new Error(`unknown tool ${slug}`);
+  }
   return t;
 };
 

@@ -60,6 +60,8 @@ export function toolPageJsonLd(
     crumbs: Crumb[];
     faq?: { q: string; a: string }[];
     dateModified: string;
+    /** schema.org applicationCategory, e.g. "FinanceApplication". Defaults to DeveloperApplication. */
+    category?: string;
   },
 ) {
   const url = `${site.url}${opts.path}`;
@@ -70,7 +72,7 @@ export function toolPageJsonLd(
       name: opts.name,
       description: opts.description,
       url,
-      applicationCategory: "DeveloperApplication",
+      applicationCategory: opts.category ?? "DeveloperApplication",
       operatingSystem: "Any (web browser)",
       browserRequirements: "Requires JavaScript",
       isAccessibleForFree: true,

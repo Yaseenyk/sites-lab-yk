@@ -16,7 +16,9 @@ function encodeUtf8(text: string, urlSafe: boolean): string {
 
 function decodeUtf8(b64: string): string {
   let s = b64.trim().replace(/\s+/g, "").replace(/-/g, "+").replace(/_/g, "/");
-  while (s.length % 4) s += "=";
+  while (s.length % 4) {
+    s += "=";
+  }
   const bin = atob(s);
   const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
   return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
@@ -53,7 +55,9 @@ export default function Base64Tool({ primary = "encode" }: { primary?: Mode }) {
   }
 
   async function copy() {
-    if (!output) return;
+    if (!output) {
+      return;
+    }
     try {
       await navigator.clipboard.writeText(output);
       setStatus({ kind: "ok", text: "Copied to clipboard" });
@@ -77,7 +81,9 @@ export default function Base64Tool({ primary = "encode" }: { primary?: Mode }) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {
-              if ((e.ctrlKey || e.metaKey) && e.key === "Enter") run(primary);
+              if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+                run(primary);
+              }
             }}
             placeholder={primary === "encode" ? "Text to encode" : "Base64 to decode"}
             spellCheck={false}

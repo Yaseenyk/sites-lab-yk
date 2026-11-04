@@ -28,7 +28,7 @@ jobs:
       - run: npm ci
 
       - name: Lint, typecheck, test, format
-        run: npm run check:tools
+        run: npm run check
 
-      - name: Build
-        run: npm run build:tools
+      - name: Build all sites
+        run: npm run build:tools && npm run build:calc

@@ -4,7 +4,9 @@ import { UPDATED, guides, site } from "@/site";
 /** Breadcrumbs, a "last reviewed" line and TechArticle JSON-LD for one guide. */
 export default function GuideHead({ slug }: { slug: string }) {
   const guide = guides.find((g) => g.slug === slug);
-  if (!guide) throw new Error(`unknown guide ${slug}`);
+  if (!guide) {
+    throw new Error(`unknown guide ${slug}`);
+  }
   const crumbs: Crumb[] = [
     { name: "Home", href: "/" },
     { name: "Guides", href: "/guides/" },

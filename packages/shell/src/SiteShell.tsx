@@ -3,16 +3,16 @@ import type { ReactNode } from "react";
 import type { SiteConfig } from "./config";
 import { LogoMark } from "./Logo";
 
-function Brand({ size }: { size: number }) {
+function Brand({ site, size }: { site: SiteConfig; size: number }) {
   return (
     <Link
       href="/"
       className="group inline-flex items-center gap-2.5 whitespace-nowrap"
-      aria-label="StreamerOS Dev Tools home"
+      aria-label={`${site.name} home`}
     >
-      <LogoMark size={size} />
+      <LogoMark size={size} mark={site.brand.mark} label={`${site.name} logo`} />
       <span className="text-sm font-bold tracking-tight text-zinc-50">
-        StreamerOS <span className="text-gradient">Dev Tools</span>
+        {site.brand.lead} <span className="text-gradient">{site.brand.accent}</span>
       </span>
     </Link>
   );
@@ -29,7 +29,7 @@ export function SiteShell({ site, children }: { site: SiteConfig; children: Reac
       </a>
       <header className="sticky top-0 z-30 border-b border-zinc-800/60 bg-ink/60 backdrop-blur-md">
         <div className="mx-auto flex h-16 w-full max-w-[1200px] items-center justify-between gap-4 px-6 md:px-10">
-          <Brand size={30} />
+          <Brand site={site} size={30} />
           <nav aria-label="Main" className="hidden items-center gap-0.5 lg:flex">
             {site.nav.map((n) => (
               <Link
@@ -42,10 +42,10 @@ export function SiteShell({ site, children }: { site: SiteConfig; children: Reac
             ))}
           </nav>
           <Link
-            href="/json-formatter"
+            href={site.cta.href}
             className="whitespace-nowrap rounded-full bg-cyan px-3.5 py-1.5 text-sm font-semibold text-ink transition-shadow hover:shadow-[0_0_18px_-2px_rgba(34,211,238,0.7)]"
           >
-            Open a tool
+            {site.cta.label}
           </Link>
         </div>
       </header>
@@ -58,11 +58,13 @@ export function SiteShell({ site, children }: { site: SiteConfig; children: Reac
         <div className="mx-auto w-full max-w-[1200px] px-6 py-12 md:px-10">
           <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
             <div>
-              <Brand size={26} />
+              <Brand site={site} size={26} />
               <p className="mt-4 max-w-[40ch] text-sm leading-relaxed text-zinc-400">{site.tagline}</p>
             </div>
-            <nav aria-label="Tools">
-              <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">Tools</h2>
+            <nav aria-label={site.toolsHeading}>
+              <h2 className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">
+                {site.toolsHeading}
+              </h2>
               <ul className="mt-3 space-y-2">
                 {site.nav.map((n) => (
                   <li key={n.href}>
@@ -94,7 +96,7 @@ export function SiteShell({ site, children }: { site: SiteConfig; children: Reac
             </nav>
           </div>
           <p className="mt-10 border-t border-zinc-800/60 pt-6 font-mono text-xs text-zinc-600">
-            © {new Date().getFullYear()} {site.name}. Your input never leaves your browser.
+            © {new Date().getFullYear()} {site.name}.
           </p>
         </div>
       </footer>

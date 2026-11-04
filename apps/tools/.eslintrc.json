@@ -33,7 +33,7 @@
         "null": "ignore"
       }
     ],
-    "curly": ["error", "multi-line"],
+    "curly": ["error", "all"],
     "react/jsx-no-target-blank": "error",
     "react/self-closing-comp": "error",
     "react/no-danger": ["warn"],

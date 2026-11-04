@@ -6,7 +6,8 @@ GitHub Pages serves one site per repo.
 
 ```
 packages/shell   layout, legal pages, SEO + JSON-LD helpers, AdSlot (renders nothing until configured)
-apps/tools       tools.streamerosai.com  (JSON formatter, Base64, guides)
+apps/tools       tools.streamerosai.com  (JSON and Base64 tools, guides)
+apps/calc        calc.streamerosai.com   (pay raise, salary, overtime calculators, guides)
 ```
 
 ## Rules

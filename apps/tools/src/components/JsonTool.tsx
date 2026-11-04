@@ -19,7 +19,9 @@ export default function JsonTool({ primary = "format" }: { primary?: Action }) {
 
   // Live validity of the input, so the verdict appears while you type or paste.
   const live: Status = useMemo(() => {
-    if (!input.trim()) return { kind: "idle", text: "Paste JSON above, or load the sample." };
+    if (!input.trim()) {
+      return { kind: "idle", text: "Paste JSON above, or load the sample." };
+    }
     try {
       JSON.parse(input);
       return { kind: "ok", text: "Valid JSON" };
@@ -30,19 +32,25 @@ export default function JsonTool({ primary = "format" }: { primary?: Action }) {
 
   function run(action: Action) {
     setNotice(null);
-    if (action === "validate") return; // the live status already shows the result
+    if (action === "validate") {
+      return;
+    } // the live status already shows the result
     if (live.kind !== "ok") {
       setOutput("");
       return;
     }
     let value: unknown = JSON.parse(input);
-    if (sorted) value = sortKeys(value);
+    if (sorted) {
+      value = sortKeys(value);
+    }
     const space = indent === "tab" ? "\t" : Number(indent);
     setOutput(action === "minify" ? JSON.stringify(value) : JSON.stringify(value, null, space));
   }
 
   async function copy() {
-    if (!output) return;
+    if (!output) {
+      return;
+    }
     try {
       await navigator.clipboard.writeText(output);
       setNotice("Copied to clipboard");
@@ -69,7 +77,9 @@ export default function JsonTool({ primary = "format" }: { primary?: Action }) {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {
-              if ((e.ctrlKey || e.metaKey) && e.key === "Enter") run(primary);
+              if ((e.ctrlKey || e.metaKey) && e.key === "Enter") {
+                run(primary);
+              }
             }}
             placeholder='{"paste": "your JSON here"}'
             spellCheck={false}

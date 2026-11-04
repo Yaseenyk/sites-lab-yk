@@ -13,9 +13,38 @@ const base = {
 };
 
 export type IconName =
-  "braces" | "check" | "minify" | "lock" | "diff" | "table" | "zap" | "shield" | "user" | "arrow";
+  | "braces"
+  | "calc"
+  | "clock"
+  | "dollar"
+  | "trend"
+  | "check"
+  | "minify"
+  | "lock"
+  | "diff"
+  | "table"
+  | "zap"
+  | "shield"
+  | "user"
+  | "arrow";
 
 const paths: Record<IconName, ReactNode> = {
+  calc: (
+    <>
+      <rect x="5" y="3.5" width="14" height="17" rx="2" />
+      <path d="M8.5 8h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01" />
+    </>
+  ),
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M12 7.5V12l3 2" />
+    </>
+  ),
+  dollar: (
+    <path d="M12 3.5v17M16.5 7.5c-.8-1.200-2.400-2-4.500-2-2.600 0-4.200 1.200-4.200 3 0 4.400 8.900 2 8.900 6.200 0 1.900-1.800 3.300-4.700 3.300-2.200 0-4-.9-4.800-2.400" />
+  ),
+  trend: <path d="M3.500 17l5.500-5.500 4 4 7.500-8M15.500 7.500h5v5" />,
   braces: (
     <g transform="scale(0.375)" strokeWidth="4.8">
       <path d="M25 15c-6 0-7 3-7 8v4c0 3-2 5-5 5 3 0 5 2 5 5v4c0 5 1 8 7 8" />

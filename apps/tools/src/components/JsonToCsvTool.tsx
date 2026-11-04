@@ -44,7 +44,9 @@ export default function JsonToCsvTool() {
   }
 
   async function copy() {
-    if (!output) return;
+    if (!output) {
+      return;
+    }
     try {
       await navigator.clipboard.writeText(output);
       setStatus({ kind: "ok", text: "Copied to clipboard" });
@@ -54,7 +56,9 @@ export default function JsonToCsvTool() {
   }
 
   function download() {
-    if (!output) return;
+    if (!output) {
+      return;
+    }
     const blob = new Blob(["﻿" + output], { type: "text/csv;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

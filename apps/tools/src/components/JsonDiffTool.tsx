@@ -16,7 +16,9 @@ export default function JsonDiffTool() {
   const [ran, setRan] = useState(false);
 
   const result: Result = useMemo(() => {
-    if (!ran) return { kind: "idle" };
+    if (!ran) {
+      return { kind: "idle" };
+    }
     let pa: unknown, pb: unknown;
     try {
       pa = JSON.parse(a);
