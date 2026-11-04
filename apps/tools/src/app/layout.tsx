@@ -1,20 +1,59 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
-import { AdSenseScript, SiteShell } from "@sites/shell";
-import "@sites/shell/styles.css";
-import { site } from "@/site";
+import { AdSenseScript, JsonLd, SiteShell, siteJsonLd } from "@sites/shell";
+import "./globals.css";
+import { GA_ID, GSC_VERIFICATION, author, site } from "@/site";
+
+const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
+const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", variable: "--font-mono" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: `${site.name}: free JSON, Base64 and developer tools`, template: `%s | ${site.name}` },
-  description: site.tagline,
+  title: {
+    default: "StreamerOS Dev Tools: free JSON, Base64 and developer tools",
+    template: "%s | StreamerOS Dev Tools",
+  },
+  description:
+    "Free browser-based developer tools: JSON formatter, validator, minifier, compare and CSV converter, plus Base64. Private: nothing is uploaded.",
+  applicationName: site.name,
+  authors: [{ name: author.name, url: author.url }],
+  alternates: { canonical: `${site.url}/` },
+  verification: { google: GSC_VERIFICATION },
+  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  openGraph: {
+    siteName: site.name,
+    type: "website",
+    locale: "en_US",
+    url: `${site.url}/`,
+    title: "StreamerOS Dev Tools: free JSON, Base64 and developer tools",
+    description:
+      "Free browser-based developer tools: JSON formatter, validator, minifier, compare and CSV converter, plus Base64. Private: nothing is uploaded.",
+    images: [{ url: `${site.url}/og.png`, width: 1200, height: 630, alt: site.name }],
+  },
+  twitter: { card: "summary_large_image", images: [`${site.url}/og.png`] },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#05070a" },
+    { media: "(prefers-color-scheme: light)", color: "#f6f8fb" },
+  ],
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <head>
+        {/* Plain head scripts: Google's tag checker does not see next/script output. */}
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_ID}');`,
+          }}
+        />
         <AdSenseScript />
+        <JsonLd data={siteJsonLd(site, author)} />
       </head>
       <body>
         <SiteShell site={site}>{children}</SiteShell>

@@ -17,9 +17,7 @@ export function AdSlot({ slot, height = 280 }: { slot: string; height?: number }
         data-ad-format="auto"
         data-full-width-responsive="true"
       />
-      <script
-        dangerouslySetInnerHTML={{ __html: "(adsbygoogle=window.adsbygoogle||[]).push({});" }}
-      />
+      <script dangerouslySetInnerHTML={{ __html: "(adsbygoogle=window.adsbygoogle||[]).push({});" }} />
     </aside>
   );
 }

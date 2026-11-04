@@ -2,9 +2,16 @@
   "name": "sites-lab",
   "private": true,
   "version": "0.0.0",
-  "workspaces": ["packages/*", "apps/*"],
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
   "scripts": {
     "dev:tools": "npm run dev -w @sites/tools",
-    "build:tools": "npm run build -w @sites/tools"
+    "build:tools": "npm run build -w @sites/tools",
+    "check:tools": "npm run check -w @sites/tools"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

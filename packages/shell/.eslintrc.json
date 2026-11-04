@@ -1,0 +1,70 @@
+{
+  "root": true,
+  "extends": [
+    "next/core-web-vitals"
+  ],
+  "ignorePatterns": [
+    "node_modules"
+  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports",
+        "fixStyle": "inline-type-imports"
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "no-var": "error",
+    "prefer-const": "error",
+    "eqeqeq": [
+      "error",
+      "always",
+      {
+        "null": "ignore"
+      }
+    ],
+    "curly": [
+      "error",
+      "multi-line"
+    ],
+    "react/jsx-no-target-blank": "error",
+    "react/self-closing-comp": "error",
+    "react/no-danger": [
+      "warn"
+    ],
+    "react-hooks/exhaustive-deps": "error",
+    "jsx-a11y/alt-text": "error",
+    "jsx-a11y/anchor-is-valid": "error"
+  },
+  "overrides": [
+    {
+      "files": [
+        "src/seo.tsx",
+        "src/AdSlot.tsx"
+      ],
+      "rules": {
+        "react/no-danger": "off"
+      }
+    }
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ]
+}
