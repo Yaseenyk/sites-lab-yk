@@ -29,11 +29,11 @@ npm run build:tools   # static export -> apps/tools/out
 ## Deploy (per app)
 
 `.github/workflows/deploy-<app>.yml` builds the app and force-pushes `out/` to
-`Yaseenyk/site-<app>` (`gh-pages` branch). Repo-level config:
+`Yaseenyk/site-<app>-yk` (`gh-pages` branch). Repo-level config:
 
 | Name | Kind | Purpose |
 |---|---|---|
-| `SITES_DEPLOY_TOKEN` | secret | fine-grained token, Contents read/write on the `site-*` repos |
+| `SITES_DEPLOY_TOKEN` | secret | fine-grained token, Contents read/write on the `site-*-yk` repos |
 | `TOOLS_CONTACT_EMAIL` | variable | address shown on the Contact page |
 | `ADSENSE_CLIENT` | variable | `ca-pub-...`, set after approval |
 | `TOOLS_ADSENSE_SLOT_CONTENT` | variable | in-content ad unit id |
@@ -45,4 +45,4 @@ branch, custom domain from the `CNAME` file, Enforce HTTPS.
 
 1. Copy `apps/tools` to `apps/<name>`, change `site.ts`, `public/CNAME`, the tools and guides.
 2. Copy the workflow, change the paths, app name and target repo.
-3. Create `Yaseenyk/site-<name>`, add the CNAME at GoDaddy, then verify in Search Console.
+3. Create `Yaseenyk/site-<name>-yk`, add the CNAME at GoDaddy, then verify in Search Console.
