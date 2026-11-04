@@ -1,0 +1,50 @@
+name: Deploy tools.streamerosai.com
+
+# Builds apps/tools and publishes the static export to the site's own repo
+# (GitHub Pages serves one site per repo). Needs the SITES_DEPLOY_TOKEN secret:
+# a fine-grained token with Contents: read/write on Yaseenyk/site-tools only.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/tools/**"
+      - "packages/shell/**"
+      - "package-lock.json"
+      - ".github/workflows/deploy-tools.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-tools
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build:tools
+        env:
+          NEXT_PUBLIC_CONTACT_EMAIL: ${{ vars.TOOLS_CONTACT_EMAIL }}
+          NEXT_PUBLIC_ADSENSE_CLIENT: ${{ vars.ADSENSE_CLIENT }}
+          NEXT_PUBLIC_ADSENSE_SLOT_CONTENT: ${{ vars.TOOLS_ADSENSE_SLOT_CONTENT }}
+
+      - name: Publish to Yaseenyk/site-tools (gh-pages)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.SITES_DEPLOY_TOKEN }}
+          external_repository: Yaseenyk/site-tools
+          publish_branch: gh-pages
+          publish_dir: apps/tools/out
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
