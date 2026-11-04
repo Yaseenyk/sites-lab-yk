@@ -40,7 +40,7 @@ jobs:
           NEXT_PUBLIC_ADSENSE_CLIENT: ${{ vars.ADSENSE_CLIENT }}
           NEXT_PUBLIC_ADSENSE_SLOT_CONTENT: ${{ vars.MATH_ADSENSE_SLOT_CONTENT }}
 
-      - name: Publish to Yaseenyk/site-site-math-yk (gh-pages)
+      - name: Publish to Yaseenyk/site-math-yk (gh-pages)
         uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.SITES_DEPLOY_TOKEN }}
