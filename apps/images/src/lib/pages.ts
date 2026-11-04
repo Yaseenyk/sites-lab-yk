@@ -51,6 +51,10 @@ export const SIZE_PAGES: SizePage[] = [
         a: "No. The image is decoded and re-encoded in your browser. It never leaves your device, which matters for ID-style photos.",
       },
       {
+        q: "How is 20 KB counted, 1,000 or 1,024 bytes?",
+        a: "Forms differ, so the tool counts 1 KB as 1,000 bytes. A file under 20,000 bytes is also under 20 KB when a form counts 1,024 bytes per KB.",
+      },
+      {
         q: "Why is the result under 20 KB but the form still rejects it?",
         a: "Check the other requirements: the exact pixel size, the format (JPG vs PNG) and whether the limit is a maximum or a range. Some forms also set a minimum size.",
       },

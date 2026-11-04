@@ -42,6 +42,8 @@ type Row =
   | { id: string; file: File; status: "error"; error: string }
   | { id: string; file: File; status: "done"; out: Output };
 
+/** 1,000 bytes per KB: a file under this limit is also under it when a form counts 1 KB as 1,024 bytes. */
+const BYTES_PER_KB = 1000;
 const num = (v: string): number => (v.trim() === "" ? NaN : Number(v));
 const positive = (v: string): number | null => (Number.isFinite(num(v)) && num(v) > 0 ? num(v) : null);
 const MIME_LABEL: Record<Mime, string> = { "image/jpeg": "JPEG", "image/webp": "WebP", "image/png": "PNG" };
@@ -133,7 +135,7 @@ export default function ImageWorkbench({ mode, presetKB, convertTo = "image/jpeg
         if (limit) {
           const result = await compressToTarget(
             (scale, quality01) => encodeImage(img, scaleDims(base, scale), mime, quality01, "#ffffff"),
-            limit * 1024,
+            limit * BYTES_PER_KB,
           );
           blob = result.blob;
           q = result.quality;

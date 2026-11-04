@@ -78,8 +78,8 @@ export type Encoder<T extends { size: number }> = (scale: number, quality: numbe
 
 /**
  * Find the best-looking encoding that fits `targetBytes`.
- * At each scale it looks for the highest quality (binary search) that fits; if even the lowest quality is too big, it
- * shrinks the image and tries again. Returns the smallest attempt, flagged `reached: false`, when nothing fits.
+ * At each scale it looks for the highest quality (binary search) that fits. Quality never drops below `minQuality`
+ * (a floor that keeps results presentable); if even the floor is too big, it shrinks the image and tries again. Returns the smallest attempt, flagged `reached: false`, when nothing fits.
  */
 export async function compressToTarget<T extends { size: number }>(
   encode: Encoder<T>,
@@ -92,7 +92,7 @@ export async function compressToTarget<T extends { size: number }>(
     scaleStep?: number;
   } = {},
 ): Promise<TargetResult<T>> {
-  const { minQuality = 0.05, maxQuality = 0.95, steps = 7, minScale = 0.1, scaleStep = 0.85 } = opts;
+  const { minQuality = 0.35, maxQuality = 0.95, steps = 7, minScale = 0.1, scaleStep = 0.85 } = opts;
   let smallest: Attempt<T> | null = null;
 
   for (let scale = 1; scale >= minScale; scale *= scaleStep) {
