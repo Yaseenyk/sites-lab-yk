@@ -7,10 +7,11 @@ export const site: SiteConfig = {
   cta: { label: "Convert currency", href: "/currency-converter" },
   toolsHeading: "Calculators",
   tagline:
-    "Free money calculators: pay raises, salary and hourly pay, overtime, and live currency conversion for any currency. Instant, with the formula shown.",
+    "Free money calculators: take-home pay, pay raises, salary and hourly pay, overtime, and live currency conversion for any currency. Instant, with the formula shown.",
   url: "https://calc.streamerosai.com",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
   nav: [
+    { href: "/paycheck-calculator", label: "Paycheck" },
     { href: "/pay-raise-calculator", label: "Pay Raise" },
     { href: "/salary-calculator", label: "Salary" },
     { href: "/overtime-pay-calculator", label: "Overtime" },
@@ -49,6 +50,28 @@ export interface Tool {
 }
 
 const payTools: Tool[] = [
+  {
+    slug: "paycheck-calculator",
+    path: "/paycheck-calculator/",
+    seoTitle: "Paycheck Calculator: Take-Home Pay After Tax (2026)",
+    h1: "Paycheck Calculator",
+    description:
+      "Paycheck calculator for 2026: see your take-home pay after federal tax, Social Security, Medicare and state tax, for any pay frequency and filing status.",
+    blurb: "Take-home pay after federal tax, FICA and state tax, per paycheck and per year.",
+    icon: "dollar",
+    group: "pay",
+  },
+  {
+    slug: "hourly-paycheck-calculator",
+    path: "/hourly-paycheck-calculator/",
+    seoTitle: "Hourly Paycheck Calculator: Take-Home Pay (2026)",
+    h1: "Hourly Paycheck Calculator",
+    description:
+      "Hourly paycheck calculator for 2026: enter your hourly rate and weekly hours to see take-home pay after federal tax, Social Security, Medicare and state tax.",
+    blurb: "Your hourly rate and hours as take-home pay after tax.",
+    icon: "clock",
+    group: "pay",
+  },
   {
     slug: "pay-raise-calculator",
     path: "/pay-raise-calculator/",

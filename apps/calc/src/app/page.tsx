@@ -58,12 +58,12 @@ export default function Home() {
           Money calculators that <span className="text-gradient">show the math</span>
         </h1>
         <p className="lede mt-5">
-          Work out a raise, convert salary to hourly pay, add up overtime, or convert between currencies such
-          as USD to INR. Every answer comes with the formula behind it.
+          Work out your take-home pay, a raise, convert salary to hourly pay, add up overtime, or convert
+          between currencies such as USD to INR. Every answer comes with the formula behind it.
         </p>
         <div className="flex flex-wrap gap-3">
-          <Link href="/pay-raise-calculator" className="btn">
-            Pay raise calculator <Icon name="arrow" size={16} />
+          <Link href="/paycheck-calculator" className="btn">
+            Paycheck calculator <Icon name="arrow" size={16} />
           </Link>
           <Link href="/usd-to-inr" className="btn ghost">
             USD to INR
