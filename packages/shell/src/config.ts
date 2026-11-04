@@ -2,7 +2,7 @@ export interface SiteConfig {
   /** Display name, e.g. "StreamerOS Dev Tools". */
   name: string;
   /** Wordmark: plain lead word(s) and the gradient accent word(s), e.g. "StreamerOS" + "Dev Tools". */
-  brand: { lead: string; accent: string; mark: "braces" | "calc" | "image" };
+  brand: { lead: string; accent: string; mark: "braces" | "calc" | "image" | "percent" };
   /** One sentence used in meta description and the footer. */
   tagline: string;
   /** Canonical origin without trailing slash, e.g. https://tools.streamerosai.com */

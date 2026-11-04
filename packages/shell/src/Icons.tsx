@@ -13,6 +13,9 @@ const base = {
 };
 
 export type IconName =
+  | "percent"
+  | "calendar"
+  | "list"
   | "image"
   | "resize"
   | "swap"
@@ -34,6 +37,20 @@ export type IconName =
   | "arrow";
 
 const paths: Record<IconName, ReactNode> = {
+  percent: (
+    <>
+      <circle cx="7.5" cy="7.5" r="2.5" />
+      <circle cx="16.5" cy="16.5" r="2.5" />
+      <path d="M18 5L6 19" />
+    </>
+  ),
+  calendar: (
+    <>
+      <rect x="3.5" y="5" width="17" height="15" rx="2.5" />
+      <path d="M3.5 10h17M8 3v4M16 3v4" />
+    </>
+  ),
+  list: <path d="M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01" />,
   image: (
     <>
       <rect x="3.5" y="4.5" width="17" height="15" rx="2.5" />

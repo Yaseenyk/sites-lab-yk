@@ -9,7 +9,7 @@ export function LogoMark({
   label = "StreamerOS logo",
 }: {
   size?: number;
-  mark?: "braces" | "calc" | "image";
+  mark?: "braces" | "calc" | "image" | "percent";
   label?: string;
 }) {
   return (
@@ -35,11 +35,17 @@ export function LogoMark({
           <path d="M36 24h13" />
           <path d="M16 42h33M16 51h33" />
         </g>
-      ) : (
+      ) : mark === "image" ? (
         <g fill="none" stroke="#fff" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round">
           <rect x="14" y="16" width="36" height="32" rx="5" />
           <path d="M14 42l10-10 8 8 6-6 12 12" />
           <circle cx="40" cy="26" r="2.6" fill="#fff" stroke="none" />
+        </g>
+      ) : (
+        <g fill="none" stroke="#fff" strokeWidth="4.5" strokeLinecap="round">
+          <circle cx="23" cy="23" r="6.5" />
+          <circle cx="41" cy="41" r="6.5" />
+          <path d="M44 18L20 46" />
         </g>
       )}
     </svg>

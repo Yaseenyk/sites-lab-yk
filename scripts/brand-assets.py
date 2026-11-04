@@ -10,6 +10,8 @@ SITES = {
                   chips=("JSON formatter", "JSON compare", "JSON to CSV", "Base64"), host="tools.streamerosai.com"),
     "images": dict(lead="StreamerOS", accent="Image Tools", mark="image", h1="Image tools that", h2="never upload your photos",
                    chips=("Compress to 50 KB", "Resize", "PNG to JPG", "WebP to JPG"), host="images.streamerosai.com"),
+    "math": dict(lead="StreamerOS", accent="Math Calculators", mark="percent", h1="Everyday math,", h2="shown step by step",
+                 chips=("Percentage", "Age", "Date", "Hours"), host="math.streamerosai.com"),
     "calc": dict(lead="StreamerOS", accent="Money Calculators", mark="calc", h1="Money calculators that", h2="show the math",
                  chips=("Pay raise", "Salary", "USD to INR", "Currency"), host="calc.streamerosai.com"),
 }
@@ -46,6 +48,14 @@ def logo(size, mark="braces"):
             d.text((cx - (bb[0] + bb[2]) / 2, s * 0.5 - (bb[1] + bb[3]) / 2), text, font=f, fill="white")
         r = s * 0.055
         d.ellipse((s / 2 - r, s / 2 - r, s / 2 + r, s / 2 + r), fill="white")
+    elif mark == "percent":
+        w = int(s * 0.07)
+        u = s / 64
+        for cx, cy in ((23, 23), (41, 41)):
+            d.ellipse(((cx - 6.5) * u, (cy - 6.5) * u, (cx + 6.5) * u, (cy + 6.5) * u), outline="white", width=w)
+        d.line((44 * u, 18 * u, 20 * u, 46 * u), fill="white", width=w)
+        for x, y in ((44, 18), (20, 46)):
+            d.ellipse((x * u - w / 2, y * u - w / 2, x * u + w / 2, y * u + w / 2), fill="white")
     elif mark == "image":
         w = int(s * 0.07)
         u = s / 64

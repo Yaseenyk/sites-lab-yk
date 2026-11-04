@@ -9,6 +9,7 @@ packages/shell   layout, legal pages, SEO + JSON-LD helpers, AdSlot (renders not
 apps/tools       tools.streamerosai.com  (JSON and Base64 tools, guides)
 apps/calc        calc.streamerosai.com   (pay raise, salary, overtime, currency)
 apps/images      images.streamerosai.com (compress, resize, convert images in the browser)
+apps/math        math.streamerosai.com   (percentage, age, date, hours, ratio, average)
 ```
 
 ## Rules

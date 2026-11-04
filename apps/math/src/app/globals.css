@@ -1,0 +1,324 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  body {
+    @apply font-sans text-zinc-100 antialiased;
+    overflow-x: hidden;
+    background-color: #05070a;
+    background-image:
+      radial-gradient(55rem 40rem at 50% -12%, rgba(34, 211, 238, 0.08), transparent 60%),
+      radial-gradient(48rem 38rem at 100% 8%, rgba(168, 85, 247, 0.07), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    @apply bg-cyan text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-cyan;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-cyan via-purple to-cyan bg-clip-text text-transparent;
+    background-size: 200% auto;
+  }
+}
+
+@layer components {
+  /* Long-form content: typography plugin, tuned to the portfolio palette. */
+  .doc {
+    @apply prose prose-zinc prose-invert max-w-[72ch] prose-headings:font-semibold prose-headings:tracking-tight prose-a:text-cyan prose-a:no-underline hover:prose-a:underline prose-code:rounded prose-code:border prose-code:border-zinc-800 prose-code:bg-zinc-900/70 prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-[0.85em] prose-code:font-normal prose-code:text-ice prose-code:before:content-none prose-code:after:content-none prose-pre:rounded-xl prose-pre:border prose-pre:border-zinc-800/60 prose-pre:bg-zinc-950/70 prose-th:font-mono prose-th:text-[11px] prose-th:uppercase prose-th:tracking-[0.18em] prose-th:text-zinc-500;
+  }
+  .doc pre code {
+    @apply border-0 bg-transparent p-0 text-zinc-200;
+  }
+
+  /* Page furniture */
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.25em] text-cyan;
+  }
+  .lede {
+    @apply mb-6 max-w-[62ch] text-lg leading-relaxed text-zinc-400;
+  }
+  .page-h1 {
+    @apply mb-3 text-[clamp(2rem,5vw,3rem)] font-bold leading-[1.1] tracking-tight text-zinc-50;
+  }
+  .page-h2 {
+    @apply mb-3 mt-12 text-2xl font-semibold tracking-tight text-zinc-50;
+  }
+  .meta {
+    @apply font-mono text-xs text-zinc-600;
+  }
+  .crumbs ol {
+    @apply mb-5 flex flex-wrap gap-1.5 font-mono text-xs text-zinc-500;
+  }
+  .crumbs li:not(:last-child)::after {
+    content: "/";
+    @apply ml-1.5 text-zinc-700;
+  }
+  .crumbs a {
+    @apply transition-colors hover:text-cyan;
+  }
+  .crumbs [aria-current] {
+    @apply text-zinc-300;
+  }
+
+  /* Buttons and chips */
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-full bg-cyan px-5 py-2.5 text-sm font-semibold text-ink transition-shadow hover:shadow-[0_0_18px_-2px_rgba(34,211,238,0.7)];
+  }
+  .btn.ghost {
+    @apply border border-zinc-700 bg-transparent text-zinc-200 hover:border-cyan/50 hover:text-cyan hover:shadow-none;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-zinc-800/60 bg-zinc-950/60 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-zinc-400;
+  }
+  .chip svg {
+    @apply text-cyan;
+  }
+
+  /* Cards */
+  .card-grid {
+    @apply my-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  .card {
+    @apply flex flex-col rounded-2xl border border-zinc-800/60 bg-zinc-950/60 p-6 backdrop-blur-md transition-colors hover:border-cyan/50;
+  }
+  .card h3 {
+    @apply text-lg font-semibold tracking-tight text-zinc-50 transition-colors group-hover:text-cyan;
+  }
+  .card p {
+    @apply mt-2 text-sm leading-relaxed text-zinc-400;
+  }
+  .card .ico {
+    @apply mb-4 grid h-11 w-11 place-items-center rounded-xl border border-zinc-800 bg-gradient-to-br from-cyan/10 to-purple/10 text-cyan;
+  }
+  .card .more {
+    @apply mt-4 inline-flex items-center gap-1 font-mono text-xs text-zinc-500 transition-colors group-hover:text-cyan;
+  }
+  .feature .ico {
+    @apply mb-3 text-cyan;
+  }
+  .feature h3 {
+    @apply text-base font-semibold text-zinc-50;
+  }
+  .feature p {
+    @apply mt-1 text-sm leading-relaxed text-zinc-400;
+  }
+  .related {
+    @apply mt-4 flex flex-wrap gap-2.5;
+  }
+  .related a {
+    @apply inline-flex items-center gap-2 rounded-full border border-zinc-800/60 bg-zinc-950/60 px-4 py-2 text-sm text-zinc-300 transition-colors hover:border-cyan/50 hover:text-cyan;
+  }
+
+  /* Tool widget */
+  .tool {
+    @apply rounded-2xl border border-zinc-800/60 bg-zinc-950/60 p-4 shadow-2xl shadow-cyan-900/10 backdrop-blur-md sm:p-5;
+  }
+  .tool-grid {
+    @apply grid gap-4 md:grid-cols-2;
+  }
+  .tool .field label {
+    @apply mb-1.5 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500;
+  }
+  .tool .field .stat {
+    @apply normal-case tracking-normal text-zinc-600;
+  }
+  .tool textarea {
+    @apply min-h-[320px] w-full resize-y rounded-xl border border-zinc-800 bg-ink/70 p-3 font-mono text-[13px] leading-relaxed text-zinc-100 placeholder:text-zinc-600 focus:border-cyan/60 focus:outline-none focus:ring-1 focus:ring-cyan/40;
+  }
+  .tool .row {
+    @apply mt-4 flex flex-wrap items-center gap-2;
+  }
+  .tool .row .sp {
+    @apply flex-1;
+  }
+  .tool button {
+    @apply rounded-full bg-cyan px-4 py-2 text-sm font-semibold text-ink transition-shadow hover:shadow-[0_0_18px_-2px_rgba(34,211,238,0.7)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:shadow-none;
+  }
+  .tool button.secondary {
+    @apply border border-zinc-700 bg-transparent font-medium text-zinc-200 hover:border-cyan/50 hover:text-cyan hover:shadow-none;
+  }
+  .tool .opt {
+    @apply inline-flex items-center gap-2 text-sm text-zinc-400;
+  }
+  .tool select {
+    @apply rounded-lg border border-zinc-800 bg-ink/70 px-2.5 py-1.5 text-sm text-zinc-200;
+  }
+  .tool input[type="checkbox"] {
+    @apply h-4 w-4 accent-cyan;
+  }
+  .status {
+    @apply mt-3 flex min-h-[2.5rem] items-center gap-2 rounded-xl border border-zinc-800/60 bg-zinc-900/40 px-3.5 py-2 font-mono text-[13px] text-zinc-500;
+  }
+  .status.ok {
+    @apply border-emerald-500/30 bg-emerald-500/10 text-emerald-300;
+  }
+  .status.err {
+    @apply border-rose-500/30 bg-rose-500/10 text-rose-300;
+  }
+  .diff-list {
+    @apply mt-3 grid list-none gap-2 p-0 font-mono text-[13px] leading-relaxed;
+  }
+  .diff-list li {
+    @apply grid grid-cols-[84px_1fr] gap-3 break-words rounded-xl border border-zinc-800/60 bg-ink/60 px-3 py-2;
+  }
+  .diff-list .tag {
+    @apply pt-0.5 text-[11px] font-bold uppercase tracking-[0.14em];
+  }
+  .diff-list .added .tag {
+    @apply text-emerald-400;
+  }
+  .diff-list .removed .tag {
+    @apply text-rose-400;
+  }
+  .diff-list .changed .tag {
+    @apply text-purple;
+  }
+
+  /* FAQ accordion */
+  .faq {
+    @apply mt-3 grid gap-3;
+  }
+  .faq details {
+    @apply rounded-2xl border border-zinc-800/60 bg-zinc-950/60 px-5;
+  }
+  .faq summary {
+    @apply flex cursor-pointer list-none items-center justify-between gap-3 py-4 font-medium text-zinc-100;
+  }
+  .faq summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq summary::after {
+    content: "+";
+    @apply font-mono text-lg text-cyan;
+  }
+  .faq details[open] summary::after {
+    content: "−";
+  }
+  .faq details p {
+    @apply mb-4 text-sm leading-relaxed text-zinc-400;
+  }
+
+  .ad-slot {
+    @apply my-7;
+  }
+}
+
+@layer components {
+  /* Calculator widgets */
+  .tool .fields {
+    @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  .tool .fld label {
+    @apply mb-1.5 block font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500;
+  }
+  .tool .fld input[type="text"],
+  .tool .fld select {
+    @apply w-full rounded-xl border border-zinc-800 bg-ink/70 px-3 py-2.5 text-[15px] text-zinc-100 placeholder:text-zinc-600 focus:border-cyan/60 focus:outline-none focus:ring-1 focus:ring-cyan/40;
+  }
+  .tool .tabs {
+    @apply flex flex-wrap gap-2;
+  }
+  .tool-grid-free {
+    @apply grid gap-4;
+  }
+  .tile-grid {
+    @apply mt-5 grid gap-3 sm:grid-cols-3;
+  }
+  .tile {
+    @apply flex flex-col gap-1 rounded-2xl border border-zinc-800/60 bg-zinc-900/40 p-4;
+  }
+  .tile-label {
+    @apply font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500;
+  }
+  .tile-value {
+    @apply text-2xl font-bold tracking-tight text-zinc-50;
+  }
+  .hero-tile {
+    @apply border-cyan/30 bg-cyan/5 sm:col-span-1;
+  }
+  .hero-tile .tile-value {
+    @apply text-gradient text-3xl;
+  }
+  .result-table {
+    @apply mt-4 w-full border-collapse text-sm;
+  }
+  .result-table th,
+  .result-table td {
+    @apply border-b border-zinc-800/60 px-3 py-2.5 text-left font-normal text-zinc-300;
+  }
+  .result-table thead th {
+    @apply font-mono text-[11px] uppercase tracking-[0.16em] text-zinc-500;
+  }
+  .result-table tbody th {
+    @apply text-zinc-400;
+  }
+  .result-table td {
+    @apply font-mono tabular-nums;
+  }
+  .result-table .text-right {
+    text-align: right;
+  }
+  .result-table .is-focus th,
+  .result-table .is-focus td {
+    @apply bg-cyan/5 text-cyan;
+  }
+}
+
+@layer components {
+  /* Math calculators */
+  .tool .fld input[type="date"],
+  .tool .fld input[type="time"] {
+    @apply w-full rounded-xl border border-zinc-800 bg-ink/70 px-3 py-2.5 text-[15px] text-zinc-100 focus:border-cyan/60 focus:outline-none focus:ring-1 focus:ring-cyan/40;
+    color-scheme: dark;
+  }
+  .block + .block {
+    @apply mt-6 border-t border-zinc-800/60 pt-6;
+  }
+  .block-title {
+    @apply mb-3 text-sm font-semibold text-zinc-300;
+  }
+  .block .tile-grid {
+    @apply mt-4;
+  }
+  .hours-row {
+    @apply mb-3 items-end border-b border-zinc-800/60 pb-3;
+  }
+  .hours-total {
+    @apply flex items-center gap-3 self-end pb-1 font-mono text-lg text-zinc-100;
+  }
+  .hours-total button {
+    @apply px-3 py-1.5 text-xs;
+  }
+  .fld-label {
+    @apply mb-1.5 block font-mono text-[11px] uppercase tracking-[0.18em] text-zinc-500;
+  }
+  .avg-area {
+    @apply min-h-[120px];
+  }
+}
