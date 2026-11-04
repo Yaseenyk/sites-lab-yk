@@ -8,13 +8,13 @@ import { GA_ID, GSC_VERIFICATION, author, site } from "@/site";
 const inter = Inter({ subsets: ["latin"], display: "swap", variable: "--font-inter" });
 const mono = JetBrains_Mono({ subsets: ["latin"], display: "swap", variable: "--font-mono" });
 
-const TITLE = "StreamerOS Pay Calculators: raise, salary, hourly and overtime";
+const TITLE = "Money Calculators: Pay Raise, Salary, Overtime and Currency";
 const DESCRIPTION =
-  "Free pay calculators: pay raise, salary to hourly and hourly to salary, overtime and time and a half. Instant, with the formula shown.";
+  "Free money calculators: pay raise, salary to hourly, overtime, and live currency conversion between any currencies, including USD to INR.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: TITLE, template: "%s | StreamerOS Pay Calculators" },
+  title: { default: TITLE, template: "%s | StreamerOS Money Calculators" },
   description: DESCRIPTION,
   applicationName: site.name,
   authors: [{ name: author.name, url: author.url }],

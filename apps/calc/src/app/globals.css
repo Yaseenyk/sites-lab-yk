@@ -282,7 +282,7 @@
     @apply font-mono tabular-nums;
   }
   .result-table .text-right {
-    @apply text-right;
+    text-align: right;
   }
   .result-table .is-focus th,
   .result-table .is-focus td {

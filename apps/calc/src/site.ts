@@ -1,19 +1,21 @@
 import type { IconName, SiteConfig } from "@sites/shell";
+import { PAIRS } from "@/lib/pairs";
 
 export const site: SiteConfig = {
-  name: "StreamerOS Pay Calculators",
-  brand: { lead: "StreamerOS", accent: "Pay Calculators", mark: "calc" },
-  cta: { label: "Calculate pay", href: "/salary-calculator" },
+  name: "StreamerOS Money Calculators",
+  brand: { lead: "StreamerOS", accent: "Money Calculators", mark: "calc" },
+  cta: { label: "Convert currency", href: "/currency-converter" },
   toolsHeading: "Calculators",
   tagline:
-    "Free pay calculators: raises, salary and hourly pay, overtime and time and a half. Instant, with the formula shown.",
+    "Free money calculators: pay raises, salary and hourly pay, overtime, and live currency conversion for any currency. Instant, with the formula shown.",
   url: "https://calc.streamerosai.com",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
   nav: [
     { href: "/pay-raise-calculator", label: "Pay Raise" },
     { href: "/salary-calculator", label: "Salary" },
     { href: "/overtime-pay-calculator", label: "Overtime" },
-    { href: "/time-and-a-half-calculator", label: "Time and a Half" },
+    { href: "/currency-converter", label: "Currency" },
+    { href: "/usd-to-inr", label: "USD to INR" },
     { href: "/guides", label: "Guides" },
   ],
 };
@@ -43,9 +45,10 @@ export interface Tool {
   description: string;
   blurb: string;
   icon: IconName;
+  group: "pay" | "currency";
 }
 
-export const tools: Tool[] = [
+const payTools: Tool[] = [
   {
     slug: "pay-raise-calculator",
     path: "/pay-raise-calculator/",
@@ -55,6 +58,7 @@ export const tools: Tool[] = [
       "Calculate your new pay after a raise by percent or dollar amount, or find the percentage raise between two pay rates. Free and instant.",
     blurb: "See your new pay after a raise, or find what percent raise you got.",
     icon: "trend",
+    group: "pay",
   },
   {
     slug: "salary-calculator",
@@ -65,6 +69,7 @@ export const tools: Tool[] = [
       "Convert any pay figure between hourly, daily, weekly, bi-weekly, monthly and annual salary. Set your own hours and weeks. Free and instant.",
     blurb: "Turn any pay figure into every other pay period in one step.",
     icon: "calc",
+    group: "pay",
   },
   {
     slug: "hourly-to-salary-calculator",
@@ -75,6 +80,7 @@ export const tools: Tool[] = [
       "Convert an hourly wage to annual, monthly, bi-weekly and weekly salary. Uses a 2,080-hour year by default and lets you set your own hours.",
     blurb: "Turn an hourly wage into an annual salary and every other period.",
     icon: "dollar",
+    group: "pay",
   },
   {
     slug: "salary-to-hourly-calculator",
@@ -85,6 +91,7 @@ export const tools: Tool[] = [
       "Convert an annual salary to an hourly wage. Uses a 2,080-hour year by default, and you can set your own hours and weeks worked.",
     blurb: "Find the hourly wage behind any annual or monthly salary.",
     icon: "clock",
+    group: "pay",
   },
   {
     slug: "overtime-pay-calculator",
@@ -95,6 +102,7 @@ export const tools: Tool[] = [
       "Calculate overtime pay for a week: regular hours at your base rate and extra hours at time and a half, double time or your own multiplier.",
     blurb: "Work out a week of pay with overtime at 1.5x, 2x or your own multiplier.",
     icon: "clock",
+    group: "pay",
   },
   {
     slug: "time-and-a-half-calculator",
@@ -105,8 +113,46 @@ export const tools: Tool[] = [
       "Find your time-and-a-half rate from your hourly wage, plus double time and pay for the overtime hours you worked. Free and instant.",
     blurb: "Your hourly rate at time and a half and double time, and pay for your hours.",
     icon: "dollar",
+    group: "pay",
   },
 ];
+
+const currencyTools: Tool[] = [
+  {
+    slug: "currency-converter",
+    path: "/currency-converter/",
+    seoTitle: "Currency Converter: Convert Any Currency at Live Rates",
+    h1: "Currency Converter",
+    description:
+      "Convert between any two currencies at live exchange rates, including USD, EUR, GBP, INR, AUD, CAD and AED. Free, instant, no sign-up.",
+    blurb: "Convert between any two currencies at live mid-market rates.",
+    icon: "dollar",
+    group: "currency",
+  },
+  {
+    slug: "usd-salary-to-inr-calculator",
+    path: "/usd-salary-to-inr-calculator/",
+    seoTitle: "USD Salary to INR Calculator: Annual, Monthly, Hourly",
+    h1: "USD Salary to INR Calculator",
+    description:
+      "Convert a US dollar salary or hourly wage to Indian rupees: annual, monthly, weekly and hourly pay at live exchange rates.",
+    blurb: "See a dollar salary or hourly wage as rupees, by year, month, week and hour.",
+    icon: "calc",
+    group: "currency",
+  },
+  ...PAIRS.map((p): Tool => ({
+    slug: p.slug,
+    path: `/${p.slug}/`,
+    seoTitle: p.seoTitle,
+    h1: p.h1,
+    description: p.description,
+    blurb: p.blurb,
+    icon: "dollar",
+    group: "currency",
+  })),
+];
+
+export const tools: Tool[] = [...payTools, ...currencyTools];
 
 export const toolBySlug = (slug: string): Tool => {
   const t = tools.find((x) => x.slug === slug);
@@ -142,6 +188,15 @@ export const guides: Guide[] = [
     description:
       "What the federal overtime rule requires, how time and a half is calculated, who is exempt, and why some states add daily overtime.",
     blurb: "The federal rule, the calculation, and the exceptions that change your pay.",
+    published: "2026-11-04",
+  },
+  {
+    slug: "how-exchange-rates-work",
+    path: "/guides/how-exchange-rates-work/",
+    title: "How exchange rates work: the mid-market rate vs the rate you get",
+    description:
+      "What an exchange rate is, what the mid-market rate means, why banks and transfer apps give you less, and how to compare what you will actually receive.",
+    blurb: "What the mid-market rate is, and how to compare what you will really receive.",
     published: "2026-11-04",
   },
 ];

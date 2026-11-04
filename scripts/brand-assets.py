@@ -8,8 +8,8 @@ import sys
 SITES = {
     "tools": dict(lead="StreamerOS", accent="Dev Tools", mark="braces", h1="Developer tools that", h2="run in your browser",
                   chips=("JSON formatter", "JSON compare", "JSON to CSV", "Base64"), host="tools.streamerosai.com"),
-    "calc": dict(lead="StreamerOS", accent="Pay Calculators", mark="calc", h1="Pay calculators that", h2="show the math",
-                 chips=("Pay raise", "Salary", "Overtime", "Time and a half"), host="calc.streamerosai.com"),
+    "calc": dict(lead="StreamerOS", accent="Money Calculators", mark="calc", h1="Money calculators that", h2="show the math",
+                 chips=("Pay raise", "Salary", "USD to INR", "Currency"), host="calc.streamerosai.com"),
 }
 INK = (5, 7, 10)
 CYAN = (34, 211, 238)

@@ -142,20 +142,32 @@ export function overtime(
   };
 }
 
-const usd = (digits: number) =>
-  new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits,
-  });
-const cache: Record<number, Intl.NumberFormat> = {};
+const formatters = new Map<string, Intl.NumberFormat>();
 
-export function money(n: number, digits = 2): string {
+/**
+ * Format an amount as currency. `digits` fixes the decimals; "auto" uses the currency's own decimals,
+ * widening to six places for amounts under one so small exchange results do not round to zero.
+ */
+export function money(n: number, digits: number | "auto" = 2, currency = "USD"): string {
   if (!Number.isFinite(n)) {
     return "-";
   }
-  return (cache[digits] ??= usd(digits)).format(n);
+  const key = `${currency}|${digits === "auto" ? (Math.abs(n) < 1 ? "small" : "auto") : digits}`;
+  let f = formatters.get(key);
+  if (!f) {
+    const options: Intl.NumberFormatOptions = { style: "currency", currency };
+    if (digits === "auto") {
+      if (Math.abs(n) < 1) {
+        options.maximumFractionDigits = 6;
+      }
+    } else {
+      options.minimumFractionDigits = digits;
+      options.maximumFractionDigits = digits;
+    }
+    f = new Intl.NumberFormat(currency === "INR" ? "en-IN" : "en-US", options);
+    formatters.set(key, f);
+  }
+  return f.format(n);
 }
 
 export function percent(n: number, digits = 2): string {

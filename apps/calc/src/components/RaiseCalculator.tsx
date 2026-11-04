@@ -1,14 +1,16 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { currencySymbol } from "@/lib/currency";
 import { money, num, percent, percentChange, projection, raiseByAmount, raiseByPercent } from "@/lib/pay";
+import CurrencySelect from "./CurrencySelect";
 
 type Mode = "percent" | "amount" | "find";
 type Basis = "year" | "hour" | "month" | "week";
 
 const MODES: { id: Mode; label: string }[] = [
   { id: "percent", label: "Raise by %" },
-  { id: "amount", label: "Raise by $ amount" },
+  { id: "amount", label: "Raise by amount" },
   { id: "find", label: "Find the % raise" },
 ];
 const BASIS_LABEL: Record<Basis, string> = {
@@ -21,6 +23,7 @@ const BASIS_LABEL: Record<Basis, string> = {
 export default function RaiseCalculator() {
   const [mode, setMode] = useState<Mode>("percent");
   const [basis, setBasis] = useState<Basis>("year");
+  const [currency, setCurrency] = useState("USD");
   const [current, setCurrent] = useState("60000");
   const [pct, setPct] = useState("3");
   const [amt, setAmt] = useState("2500");
@@ -74,7 +77,7 @@ export default function RaiseCalculator() {
 
       <div className="fields mt-4">
         <div className="fld">
-          <label htmlFor="r-current">Current pay ($)</label>
+          <label htmlFor="r-current">Current pay ({currencySymbol(currency)})</label>
           <input
             id="r-current"
             type="text"
@@ -93,6 +96,10 @@ export default function RaiseCalculator() {
             ))}
           </select>
         </div>
+        <div className="fld">
+          <label htmlFor="r-currency">Currency</label>
+          <CurrencySelect id="r-currency" value={currency} onChange={setCurrency} />
+        </div>
         {mode === "percent" && (
           <div className="fld">
             <label htmlFor="r-pct">Raise (%)</label>
@@ -107,7 +114,9 @@ export default function RaiseCalculator() {
         )}
         {mode === "amount" && (
           <div className="fld">
-            <label htmlFor="r-amt">Raise ($ {BASIS_LABEL[basis]})</label>
+            <label htmlFor="r-amt">
+              Raise ({currencySymbol(currency)} {BASIS_LABEL[basis]})
+            </label>
             <input
               id="r-amt"
               type="text"
@@ -119,7 +128,9 @@ export default function RaiseCalculator() {
         )}
         {mode === "find" && (
           <div className="fld">
-            <label htmlFor="r-next">New pay ($ {BASIS_LABEL[basis]})</label>
+            <label htmlFor="r-next">
+              New pay ({currencySymbol(currency)} {BASIS_LABEL[basis]})
+            </label>
             <input
               id="r-next"
               type="text"
@@ -140,11 +151,11 @@ export default function RaiseCalculator() {
           <div className="tile-grid">
             <div className="tile hero-tile">
               <span className="tile-label">New pay {BASIS_LABEL[basis]}</span>
-              <span className="tile-value">{money(result.next, digits)}</span>
+              <span className="tile-value">{money(result.next, digits, currency)}</span>
             </div>
             <div className="tile">
               <span className="tile-label">Increase</span>
-              <span className="tile-value">{money(result.diff, digits)}</span>
+              <span className="tile-value">{money(result.diff, digits, currency)}</span>
             </div>
             <div className="tile">
               <span className="tile-label">Raise</span>
@@ -169,7 +180,7 @@ export default function RaiseCalculator() {
                   {result.years.map((v, i) => (
                     <tr key={i}>
                       <th scope="row">Year {i + 1}</th>
-                      <td className="text-right">{money(v, digits)}</td>
+                      <td className="text-right">{money(v, digits, currency)}</td>
                     </tr>
                   ))}
                 </tbody>

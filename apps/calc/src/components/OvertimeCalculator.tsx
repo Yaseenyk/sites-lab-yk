@@ -1,7 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { currencySymbol } from "@/lib/currency";
 import { money, num, overtime } from "@/lib/pay";
+import CurrencySelect from "./CurrencySelect";
 
 /**
  * "overtime": a week of pay, with hours past a threshold paid at a multiple of the base rate.
@@ -12,6 +14,7 @@ export default function OvertimeCalculator({ mode }: { mode: "overtime" | "timeh
   const [hours, setHours] = useState(mode === "overtime" ? "45" : "5");
   const [threshold, setThreshold] = useState("40");
   const [multiplier, setMultiplier] = useState("1.5");
+  const [currency, setCurrency] = useState("USD");
 
   const result = useMemo(() => {
     const r = num(rate);
@@ -37,7 +40,7 @@ export default function OvertimeCalculator({ mode }: { mode: "overtime" | "timeh
     <div className="tool">
       <div className="fields">
         <div className="fld">
-          <label htmlFor="o-rate">Regular hourly rate ($)</label>
+          <label htmlFor="o-rate">Regular hourly rate ({currencySymbol(currency)})</label>
           <input
             id="o-rate"
             type="text"
@@ -45,6 +48,10 @@ export default function OvertimeCalculator({ mode }: { mode: "overtime" | "timeh
             value={rate}
             onChange={(e) => setRate(e.target.value)}
           />
+        </div>
+        <div className="fld">
+          <label htmlFor="o-currency">Currency</label>
+          <CurrencySelect id="o-currency" value={currency} onChange={setCurrency} />
         </div>
         <div className="fld">
           <label htmlFor="o-hours">
@@ -91,15 +98,15 @@ export default function OvertimeCalculator({ mode }: { mode: "overtime" | "timeh
               <div className="tile-grid">
                 <div className="tile hero-tile">
                   <span className="tile-label">Total pay for the week</span>
-                  <span className="tile-value">{money(result.ot.total)}</span>
+                  <span className="tile-value">{money(result.ot.total, 2, currency)}</span>
                 </div>
                 <div className="tile">
                   <span className="tile-label">Overtime rate</span>
-                  <span className="tile-value">{money(result.ot.overtimeRate)}/hr</span>
+                  <span className="tile-value">{money(result.ot.overtimeRate, 2, currency)}/hr</span>
                 </div>
                 <div className="tile">
                   <span className="tile-label">Overtime pay</span>
-                  <span className="tile-value">{money(result.ot.overtimePay)}</span>
+                  <span className="tile-value">{money(result.ot.overtimePay, 2, currency)}</span>
                 </div>
               </div>
               <table className="result-table">
@@ -116,14 +123,14 @@ export default function OvertimeCalculator({ mode }: { mode: "overtime" | "timeh
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">Regular hours at {money(result.r)}</th>
+                    <th scope="row">Regular hours at {money(result.r, 2, currency)}</th>
                     <td className="text-right">{result.ot.regularHours}</td>
-                    <td className="text-right">{money(result.ot.regularPay)}</td>
+                    <td className="text-right">{money(result.ot.regularPay, 2, currency)}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Overtime hours at {money(result.ot.overtimeRate)}</th>
+                    <th scope="row">Overtime hours at {money(result.ot.overtimeRate, 2, currency)}</th>
                     <td className="text-right">{result.ot.overtimeHours}</td>
-                    <td className="text-right">{money(result.ot.overtimePay)}</td>
+                    <td className="text-right">{money(result.ot.overtimePay, 2, currency)}</td>
                   </tr>
                 </tbody>
               </table>
@@ -133,13 +140,13 @@ export default function OvertimeCalculator({ mode }: { mode: "overtime" | "timeh
               <div className="tile-grid">
                 <div className="tile hero-tile">
                   <span className="tile-label">Rate at {result.m}x</span>
-                  <span className="tile-value">{money(result.r * result.m)}/hr</span>
+                  <span className="tile-value">{money(result.r * result.m, 2, currency)}/hr</span>
                 </div>
                 <div className="tile">
                   <span className="tile-label">
                     Pay for {result.h} hour{result.h === 1 ? "" : "s"}
                   </span>
-                  <span className="tile-value">{money(result.r * result.m * result.h)}</span>
+                  <span className="tile-value">{money(result.r * result.m * result.h, 2, currency)}</span>
                 </div>
               </div>
               <table className="result-table">
@@ -155,7 +162,7 @@ export default function OvertimeCalculator({ mode }: { mode: "overtime" | "timeh
                   {[1.5, 2, 2.5].map((m) => (
                     <tr key={m} className={m === result.m ? "is-focus" : ""}>
                       <th scope="row">{m}x</th>
-                      <td className="text-right">{money(result.r * m)}</td>
+                      <td className="text-right">{money(result.r * m, 2, currency)}</td>
                     </tr>
                   ))}
                 </tbody>
