@@ -7,7 +7,7 @@ export const site: SiteConfig = {
   cta: { label: "Convert currency", href: "/currency-converter" },
   toolsHeading: "Calculators",
   tagline:
-    "Free money calculators: take-home pay, pay raises, salary and hourly pay, overtime, and live currency conversion for any currency. Instant, with the formula shown.",
+    "Free money calculators: take-home pay, pay raises, salary and hourly pay, overtime, EMI, SIP, GST, India income tax, and live currency conversion for any currency. Instant, with the formula shown.",
   url: "https://calc.streamerosai.com",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
   nav: [
@@ -15,6 +15,9 @@ export const site: SiteConfig = {
     { href: "/pay-raise-calculator", label: "Pay Raise" },
     { href: "/salary-calculator", label: "Salary" },
     { href: "/overtime-pay-calculator", label: "Overtime" },
+    { href: "/emi-calculator", label: "EMI" },
+    { href: "/sip-calculator", label: "SIP" },
+    { href: "/income-tax-calculator-india", label: "India Tax" },
     { href: "/currency-converter", label: "Currency" },
     { href: "/usd-to-inr", label: "USD to INR" },
     { href: "/guides", label: "Guides" },
@@ -33,7 +36,7 @@ export const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION ?? "";
 export const AD_SLOT_CONTENT = process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT ?? "";
 
 /** Date the content was last reviewed; used for dateModified and sitemap lastmod. */
-export const UPDATED = "2026-11-04";
+export const UPDATED = "2026-11-12";
 
 export interface Tool {
   slug: string;
@@ -46,7 +49,7 @@ export interface Tool {
   description: string;
   blurb: string;
   icon: IconName;
-  group: "pay" | "currency";
+  group: "pay" | "currency" | "finance";
 }
 
 const payTools: Tool[] = [
@@ -140,6 +143,108 @@ const payTools: Tool[] = [
   },
 ];
 
+const financeTools: Tool[] = [
+  {
+    slug: "emi-calculator",
+    path: "/emi-calculator/",
+    seoTitle: "EMI Calculator: Monthly Loan EMI with Amortization Table",
+    h1: "EMI Calculator",
+    description:
+      "Calculate the monthly EMI for any loan from the amount, interest rate and term, with total interest and a year-by-year amortization table.",
+    blurb: "Monthly EMI for any loan, with total interest and a full amortization table.",
+    icon: "calc",
+    group: "finance",
+  },
+  {
+    slug: "home-loan-emi-calculator",
+    path: "/home-loan-emi-calculator/",
+    seoTitle: "Home Loan EMI Calculator: Monthly Payment & Interest",
+    h1: "Home Loan EMI Calculator",
+    description:
+      "Calculate your home loan EMI from the loan amount, interest rate and tenure, with total interest payable and a year-by-year breakdown.",
+    blurb: "Monthly EMI for a home loan, with the full repayment breakdown.",
+    icon: "dollar",
+    group: "finance",
+  },
+  {
+    slug: "car-loan-emi-calculator",
+    path: "/car-loan-emi-calculator/",
+    seoTitle: "Car Loan EMI Calculator: Monthly Payment & Interest",
+    h1: "Car Loan EMI Calculator",
+    description:
+      "Calculate your car or two-wheeler loan EMI from the loan amount, interest rate and tenure, with total interest payable and a repayment breakdown.",
+    blurb: "Monthly EMI for a car or bike loan, with the full repayment breakdown.",
+    icon: "trend",
+    group: "finance",
+  },
+  {
+    slug: "sip-calculator",
+    path: "/sip-calculator/",
+    seoTitle: "SIP Calculator: Mutual Fund SIP Returns",
+    h1: "SIP Calculator",
+    description:
+      "Project the future value of a monthly SIP (systematic investment plan) from the amount, expected return and duration, with a year-by-year growth table.",
+    blurb: "Project what a monthly SIP could grow to, year by year.",
+    icon: "trend",
+    group: "finance",
+  },
+  {
+    slug: "loan-eligibility-calculator",
+    path: "/loan-eligibility-calculator/",
+    seoTitle: "Loan Eligibility Calculator: Max Loan from Income",
+    h1: "Loan Eligibility Calculator",
+    description:
+      "Estimate the loan amount your income can support from your monthly income, existing EMIs, interest rate and tenure, using the FOIR lenders typically apply.",
+    blurb: "See roughly how large a loan your income could support.",
+    icon: "shield",
+    group: "finance",
+  },
+  {
+    slug: "gst-calculator",
+    path: "/gst-calculator/",
+    seoTitle: "GST Calculator: Add or Remove GST, with CGST/SGST",
+    h1: "GST Calculator",
+    description:
+      "Add GST to a price or extract it from a GST-inclusive price, at 5%, 12%, 18%, 28% or any rate, with the CGST and SGST split shown.",
+    blurb: "Add or remove GST at any rate, with the CGST/SGST split.",
+    icon: "percent",
+    group: "finance",
+  },
+  {
+    slug: "compound-interest-calculator",
+    path: "/compound-interest-calculator/",
+    seoTitle: "Compound Interest Calculator: Maturity Value by Year",
+    h1: "Compound Interest Calculator",
+    description:
+      "Calculate compound interest on a principal amount at any compounding frequency, with the maturity value and a year-by-year growth table.",
+    blurb: "Maturity value of a principal at compound interest, year by year.",
+    icon: "calc",
+    group: "finance",
+  },
+  {
+    slug: "percentage-calculator",
+    path: "/percentage-calculator/",
+    seoTitle: "Percentage Calculator: X% of Y and the Reverse",
+    h1: "Percentage Calculator",
+    description:
+      "Find X percent of Y, what percent one number is of another, or the original value before a percent change. Three calculators in one, free and instant.",
+    blurb: "X% of Y, what percent one number is of another, and the reverse.",
+    icon: "percent",
+    group: "finance",
+  },
+  {
+    slug: "income-tax-calculator-india",
+    path: "/income-tax-calculator-india/",
+    seoTitle: "Income Tax Calculator India: New vs Old Regime (FY 2026-27)",
+    h1: "Income Tax Calculator (India)",
+    description:
+      "Calculate India income tax for FY 2026-27 under the new or old regime, with the standard deduction, Section 87A rebate and 4% cess shown in the working.",
+    blurb: "India income tax for FY 2026-27, new regime vs old, with the full working.",
+    icon: "dollar",
+    group: "finance",
+  },
+];
+
 const currencyTools: Tool[] = [
   {
     slug: "currency-converter",
@@ -175,7 +280,7 @@ const currencyTools: Tool[] = [
   })),
 ];
 
-export const tools: Tool[] = [...payTools, ...currencyTools];
+export const tools: Tool[] = [...payTools, ...financeTools, ...currencyTools];
 
 export const toolBySlug = (slug: string): Tool => {
   const t = tools.find((x) => x.slug === slug);

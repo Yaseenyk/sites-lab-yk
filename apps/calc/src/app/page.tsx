@@ -39,6 +39,7 @@ function Cards({ items, more }: { items: Tool[]; more: string }) {
 
 export default function Home() {
   const pay = tools.filter((t) => t.group === "pay");
+  const finance = tools.filter((t) => t.group === "finance");
   const currency = tools.filter((t) => t.group === "currency");
   return (
     <>
@@ -77,6 +78,14 @@ export default function Home() {
           Pay and salary calculators
         </h2>
         <Cards items={pay} more="Open calculator" />
+      </section>
+
+      <section className="pt-12" aria-labelledby="fin-h">
+        <p className="eyebrow">Finance</p>
+        <h2 id="fin-h" className="page-h2 !mt-2">
+          EMI, SIP, GST and India tax calculators
+        </h2>
+        <Cards items={finance} more="Open calculator" />
       </section>
 
       <section className="pt-12" aria-labelledby="cur-h">
