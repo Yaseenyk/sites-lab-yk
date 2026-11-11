@@ -21,8 +21,7 @@ export function sipFutureValue(monthlyAmount: number, annualReturnPercent: numbe
     return { investedAmount, futureValue: 0, estimatedReturns: 0 };
   }
   const i = annualReturnPercent / 12 / 100;
-  const futureValue =
-    i === 0 ? investedAmount : monthlyAmount * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
+  const futureValue = i === 0 ? investedAmount : monthlyAmount * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
   return { investedAmount, futureValue, estimatedReturns: futureValue - investedAmount };
 }
 
@@ -33,7 +32,11 @@ export interface SipYearRow {
 }
 
 /** Invested amount and projected value at the end of each year, for a growth table. */
-export function sipYearlyGrowth(monthlyAmount: number, annualReturnPercent: number, years: number): SipYearRow[] {
+export function sipYearlyGrowth(
+  monthlyAmount: number,
+  annualReturnPercent: number,
+  years: number,
+): SipYearRow[] {
   const total = Math.round(years);
   const rows: SipYearRow[] = [];
   for (let y = 1; y <= total; y++) {

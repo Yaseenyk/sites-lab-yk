@@ -40,7 +40,13 @@ export default function Page() {
       slug="home-loan-emi-calculator"
       lede="Enter your home loan amount, interest rate and tenure to see the monthly EMI, total interest over the loan, and how the principal-to-interest split shifts year by year."
       widget={
-        <EmiCalculator amountLabel="Home loan amount" defaultAmount="3500000" defaultRate="8.5" defaultYears="20" maxYears={30} />
+        <EmiCalculator
+          amountLabel="Home loan amount"
+          defaultAmount="3500000"
+          defaultRate="8.5"
+          defaultYears="20"
+          maxYears={30}
+        />
       }
       faq={faq}
       related={["emi-calculator", "car-loan-emi-calculator", "loan-eligibility-calculator"]}
@@ -49,23 +55,24 @@ export default function Page() {
       <p>
         A home loan is typically the longest-tenure EMI most people take. Because interest is charged on the
         outstanding balance, and the balance stays high for most of a 15- to 30-year loan, the early years pay
-        mostly interest. Each additional year of tenure adds more total interest than it saves in EMI, so it is
-        worth checking the year-by-year table above rather than only the monthly figure.
+        mostly interest. Each additional year of tenure adds more total interest than it saves in EMI, so it
+        is worth checking the year-by-year table above rather than only the monthly figure.
       </p>
 
       <h2>Worked example</h2>
       <p>
         A ₹35,00,000 home loan at 8.5% for 20 years (240 months) comes to roughly ₹30,375 a month, with total
-        interest of about ₹37,89,900 over the full term — more than the loan amount itself, which is normal for
-        a long-tenure loan at this rate.
+        interest of about ₹37,89,900 over the full term — more than the loan amount itself, which is normal
+        for a long-tenure loan at this rate.
       </p>
 
       <h2>What this leaves out</h2>
       <p>
         This estimate does not include processing fees, property insurance some lenders bundle in, or a
         floating rate that changes during the loan. It also does not account for prepayments, which most home
-        loans allow without penalty on a floating rate and which shorten the effective tenure. For whether your
-        income supports a given loan size, see the <Link href="/loan-eligibility-calculator">loan eligibility calculator</Link>.
+        loans allow without penalty on a floating rate and which shorten the effective tenure. For whether
+        your income supports a given loan size, see the{" "}
+        <Link href="/loan-eligibility-calculator">loan eligibility calculator</Link>.
       </p>
     </ToolPage>
   );

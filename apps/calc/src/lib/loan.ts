@@ -35,7 +35,11 @@ export interface AmortizationRow {
 }
 
 /** Month-by-month principal/interest split. The last row clears the balance exactly to zero. */
-export function amortizationSchedule(principalAmt: number, annualRate: number, months: number): AmortizationRow[] {
+export function amortizationSchedule(
+  principalAmt: number,
+  annualRate: number,
+  months: number,
+): AmortizationRow[] {
   if (principalAmt <= 0 || months <= 0) {
     return [];
   }

@@ -108,8 +108,8 @@ export default function LoanEligibilityCalculator() {
             </div>
           </div>
           <p className="meta mt-3">
-            An estimate based on income and existing EMIs only. Lenders also weigh credit score, employment type,
-            age, collateral and their own policy, so the real sanctioned amount can differ.
+            An estimate based on income and existing EMIs only. Lenders also weigh credit score, employment
+            type, age, collateral and their own policy, so the real sanctioned amount can differ.
           </p>
         </div>
       )}

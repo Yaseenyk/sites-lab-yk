@@ -112,10 +112,15 @@ export interface IncomeTaxResult {
 
 export function incomeTax(i: IncomeTaxInput): IncomeTaxResult {
   const gross = Math.max(0, i.annualIncome);
-  const standardDeduction = i.isSalaried ? (i.regime === "new" ? NEW_STANDARD_DEDUCTION : OLD_STANDARD_DEDUCTION) : 0;
+  const standardDeduction = i.isSalaried
+    ? i.regime === "new"
+      ? NEW_STANDARD_DEDUCTION
+      : OLD_STANDARD_DEDUCTION
+    : 0;
   const chapterVIA =
     i.regime === "old"
-      ? Math.min(Math.max(0, i.section80C), SECTION_80C_CAP) + Math.min(Math.max(0, i.section80D), SECTION_80D_CAP)
+      ? Math.min(Math.max(0, i.section80C), SECTION_80C_CAP) +
+        Math.min(Math.max(0, i.section80D), SECTION_80D_CAP)
       : 0;
   const taxableIncome = Math.max(0, gross - standardDeduction - chapterVIA);
   const brackets = i.regime === "new" ? NEW_BRACKETS : oldBrackets(i.age);

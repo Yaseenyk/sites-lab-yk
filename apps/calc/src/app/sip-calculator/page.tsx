@@ -52,21 +52,22 @@ export default function Page() {
         <li>n is the number of months invested.</li>
       </ul>
       <p>
-        This is the standard formula for a series of equal monthly investments compounding at the assumed rate,
-        with each instalment treated as invested at the start of its month (the usual SIP convention).
+        This is the standard formula for a series of equal monthly investments compounding at the assumed
+        rate, with each instalment treated as invested at the start of its month (the usual SIP convention).
       </p>
 
       <h2>Worked example</h2>
       <p>
-        ₹5,000 a month for 10 years at an assumed 12% annual return: total invested is ₹6,00,000, projecting to
-        about ₹11,61,695 — roughly ₹5,61,695 in projected returns, assuming the 12% holds for the full period.
+        ₹5,000 a month for 10 years at an assumed 12% annual return: total invested is ₹6,00,000, projecting
+        to about ₹11,61,695 — roughly ₹5,61,695 in projected returns, assuming the 12% holds for the full
+        period.
       </p>
 
       <h2>What this leaves out</h2>
       <p>
         This is a projection based on one assumed, constant return rate. It does not account for expense
-        ratios, exit load, taxes on capital gains, or the real-world variability of market returns from year to
-        year, which rarely stays flat even when the long-run average matches your assumption.
+        ratios, exit load, taxes on capital gains, or the real-world variability of market returns from year
+        to year, which rarely stays flat even when the long-run average matches your assumption.
       </p>
     </ToolPage>
   );

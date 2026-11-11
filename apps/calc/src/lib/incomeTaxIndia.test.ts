@@ -52,7 +52,13 @@ describe("incomeTax, old regime", () => {
   });
 
   it("Section 80C and 80D lower taxable income, each capped", () => {
-    const r = incomeTax({ ...base, regime: "old", annualIncome: 800_000, section80C: 200_000, section80D: 40_000 });
+    const r = incomeTax({
+      ...base,
+      regime: "old",
+      annualIncome: 800_000,
+      section80C: 200_000,
+      section80D: 40_000,
+    });
     expect(r.chapterVIA).toBe(150_000 + 25_000);
     expect(r.taxableIncome).toBeCloseTo(800_000 - 175_000, 6);
   });

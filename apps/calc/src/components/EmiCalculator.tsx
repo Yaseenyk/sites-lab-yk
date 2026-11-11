@@ -125,7 +125,11 @@ export default function EmiCalculator({
             </tbody>
           </table>
 
-          <details className="mt-4" open={showSchedule} onToggle={(e) => setShowSchedule(e.currentTarget.open)}>
+          <details
+            className="mt-4"
+            open={showSchedule}
+            onToggle={(e) => setShowSchedule(e.currentTarget.open)}
+          >
             <summary>Full month-by-month amortization schedule ({result.rows.length} months)</summary>
             {showSchedule && (
               <div className="mt-3 overflow-x-auto">

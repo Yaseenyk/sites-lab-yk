@@ -51,18 +51,21 @@ export default function Page() {
       <ol>
         <li>Takes your FOIR share of income (50% by default) as your total EMI budget.</li>
         <li>Subtracts your existing EMIs to find what&apos;s left for a new loan.</li>
-        <li>Runs that affordable EMI through the EMI formula in reverse, at your chosen rate and tenure, to find the matching loan principal.</li>
+        <li>
+          Runs that affordable EMI through the EMI formula in reverse, at your chosen rate and tenure, to find
+          the matching loan principal.
+        </li>
       </ol>
       <p>
-        It&apos;s a budgeting estimate, not a lender&apos;s underwriting model. For the EMI a specific loan amount would
-        produce, use the <Link href="/emi-calculator">EMI calculator</Link> directly.
+        It&apos;s a budgeting estimate, not a lender&apos;s underwriting model. For the EMI a specific loan
+        amount would produce, use the <Link href="/emi-calculator">EMI calculator</Link> directly.
       </p>
 
       <h2>What this leaves out</h2>
       <p>
         Real approval also depends on credit score and history, employment type and stability, age at loan
-        maturity, the asset&apos;s loan-to-value ratio for a secured loan, and the lender&apos;s own risk policy. Treat
-        the figure here as a starting estimate to plan around, not a sanction amount.
+        maturity, the asset&apos;s loan-to-value ratio for a secured loan, and the lender&apos;s own risk
+        policy. Treat the figure here as a starting estimate to plan around, not a sanction amount.
       </p>
     </ToolPage>
   );

@@ -40,17 +40,23 @@ export default function Page() {
       slug="car-loan-emi-calculator"
       lede="Enter your car or two-wheeler loan amount, interest rate and tenure to see the monthly EMI, total interest, and a year-by-year repayment breakdown."
       widget={
-        <EmiCalculator amountLabel="Loan amount" defaultAmount="800000" defaultRate="9.5" defaultYears="5" maxYears={8} />
+        <EmiCalculator
+          amountLabel="Loan amount"
+          defaultAmount="800000"
+          defaultRate="9.5"
+          defaultYears="5"
+          maxYears={8}
+        />
       }
       faq={faq}
       related={["emi-calculator", "home-loan-emi-calculator", "loan-eligibility-calculator"]}
     >
       <h2>Why car loan tenures are shorter than home loans</h2>
       <p>
-        A vehicle loses value from the day it&apos;s driven off the lot, while a home loan is secured against an
-        asset that (usually) holds or gains value. Lenders cap car and two-wheeler loan tenures, commonly at 5
-        to 7 years, so the loan doesn&apos;t outlast the vehicle&apos;s worth. A shorter tenure also means less of the
-        EMI is interest compared with a long-tenure home loan.
+        A vehicle loses value from the day it&apos;s driven off the lot, while a home loan is secured against
+        an asset that (usually) holds or gains value. Lenders cap car and two-wheeler loan tenures, commonly
+        at 5 to 7 years, so the loan doesn&apos;t outlast the vehicle&apos;s worth. A shorter tenure also
+        means less of the EMI is interest compared with a long-tenure home loan.
       </p>
 
       <h2>Worked example</h2>
@@ -62,8 +68,8 @@ export default function Page() {
       <h2>What this leaves out</h2>
       <p>
         This is the EMI math only. It doesn&apos;t include the loan processing fee, insurance the dealer may
-        bundle into the financed amount, or RTO and registration charges, which are usually paid upfront rather
-        than financed. To check whether a given EMI fits your budget, see the{" "}
+        bundle into the financed amount, or RTO and registration charges, which are usually paid upfront
+        rather than financed. To check whether a given EMI fits your budget, see the{" "}
         <Link href="/loan-eligibility-calculator">loan eligibility calculator</Link>.
       </p>
     </ToolPage>

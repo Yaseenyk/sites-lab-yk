@@ -1,7 +1,12 @@
 import { pageMetadata } from "@sites/shell";
 import IncomeTaxIndiaCalculator from "@/components/IncomeTaxIndiaCalculator";
 import ToolPage from "@/components/ToolPage";
-import { CESS_RATE, NEW_STANDARD_DEDUCTION, OLD_STANDARD_DEDUCTION, TAX_YEAR_LABEL } from "@/lib/incomeTaxIndia";
+import {
+  CESS_RATE,
+  NEW_STANDARD_DEDUCTION,
+  OLD_STANDARD_DEDUCTION,
+  TAX_YEAR_LABEL,
+} from "@/lib/incomeTaxIndia";
 import { money } from "@/lib/pay";
 import { site, toolBySlug } from "@/site";
 
@@ -85,9 +90,9 @@ export default function Page() {
       </table>
       <p>
         Rates apply only to the slice of income inside each range, not the whole amount. A{" "}
-        {money(NEW_STANDARD_DEDUCTION, 0, "INR")} standard deduction applies first for salaried income, then the
-        Section 87A rebate cancels the tax entirely if taxable income is ₹12,00,000 or under. A {CESS_RATE * 100}
-        % health and education cess applies on top of whatever tax remains.
+        {money(NEW_STANDARD_DEDUCTION, 0, "INR")} standard deduction applies first for salaried income, then
+        the Section 87A rebate cancels the tax entirely if taxable income is ₹12,00,000 or under. A{" "}
+        {CESS_RATE * 100}% health and education cess applies on top of whatever tax remains.
       </p>
 
       <h2>Old regime slabs</h2>
@@ -120,17 +125,17 @@ export default function Page() {
       <p>
         The old regime allows Sections 80C and 80D (modelled here) plus others this calculator doesn&apos;t
         cover, such as HRA and home loan interest, and its standard deduction is{" "}
-        {money(OLD_STANDARD_DEDUCTION, 0, "INR")} for salaried income. Its Section 87A rebate cancels tax only up
-        to ₹5,00,000 taxable income.
+        {money(OLD_STANDARD_DEDUCTION, 0, "INR")} for salaried income. Its Section 87A rebate cancels tax only
+        up to ₹5,00,000 taxable income.
       </p>
 
       <h2>What this estimate leaves out</h2>
       <p>
         This is a slab-and-rebate estimate, not a filing. It does not include surcharge on incomes above ₹50
         lakh, the exact marginal relief just above either rebate threshold, special rates on capital gains or
-        similar income, or old-regime deductions beyond Sections 80C and 80D such as HRA, home loan interest or
-        NPS. Use it to plan, and a CA or the Income Tax Department&apos;s own calculator for a return you&apos;re
-        filing.
+        similar income, or old-regime deductions beyond Sections 80C and 80D such as HRA, home loan interest
+        or NPS. Use it to plan, and a CA or the Income Tax Department&apos;s own calculator for a return
+        you&apos;re filing.
       </p>
 
       <h2>Sources</h2>

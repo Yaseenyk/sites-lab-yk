@@ -26,7 +26,13 @@ export default function GstCalculator() {
   return (
     <div className="tool">
       <div className="tabs" role="tablist" aria-label="Calculation type">
-        <button type="button" role="tab" aria-selected={mode === "add"} className={mode === "add" ? "" : "secondary"} onClick={() => setMode("add")}>
+        <button
+          type="button"
+          role="tab"
+          aria-selected={mode === "add"}
+          className={mode === "add" ? "" : "secondary"}
+          onClick={() => setMode("add")}
+        >
           Add GST
         </button>
         <button
@@ -42,7 +48,9 @@ export default function GstCalculator() {
 
       <div className="fields mt-4">
         <div className="fld">
-          <label htmlFor="gst-amount">{mode === "add" ? "Amount before GST (₹)" : "Amount including GST (₹)"}</label>
+          <label htmlFor="gst-amount">
+            {mode === "add" ? "Amount before GST (₹)" : "Amount including GST (₹)"}
+          </label>
           <input
             id="gst-amount"
             type="text"
@@ -74,8 +82,12 @@ export default function GstCalculator() {
         <div role="status" aria-live="polite">
           <div className="tile-grid">
             <div className="tile hero-tile">
-              <span className="tile-label">{mode === "add" ? "Total, including GST" : "Amount before GST"}</span>
-              <span className="tile-value">{money(mode === "add" ? result.g.total : result.g.base, 2, "INR")}</span>
+              <span className="tile-label">
+                {mode === "add" ? "Total, including GST" : "Amount before GST"}
+              </span>
+              <span className="tile-value">
+                {money(mode === "add" ? result.g.total : result.g.base, 2, "INR")}
+              </span>
             </div>
             <div className="tile">
               <span className="tile-label">GST amount</span>

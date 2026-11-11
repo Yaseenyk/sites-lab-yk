@@ -53,7 +53,13 @@ export default function CompoundInterestCalculator() {
         </div>
         <div className="fld">
           <label htmlFor="ci-rate">Annual interest rate (%)</label>
-          <input id="ci-rate" type="text" inputMode="decimal" value={rate} onChange={(e) => setRate(e.target.value)} />
+          <input
+            id="ci-rate"
+            type="text"
+            inputMode="decimal"
+            value={rate}
+            onChange={(e) => setRate(e.target.value)}
+          />
         </div>
         <div className="fld">
           <label htmlFor="ci-years">Time (years)</label>

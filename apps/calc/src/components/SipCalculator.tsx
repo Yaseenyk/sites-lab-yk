@@ -104,8 +104,8 @@ export default function SipCalculator() {
             </tbody>
           </table>
           <p className="meta mt-3">
-            The return rate is an assumption you set, not a guarantee. Mutual fund returns are market-linked and
-            will differ from this projection.
+            The return rate is an assumption you set, not a guarantee. Mutual fund returns are market-linked
+            and will differ from this projection.
           </p>
         </div>
       )}

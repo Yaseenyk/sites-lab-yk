@@ -44,8 +44,8 @@ export default function Page() {
     >
       <h2>The two directions of a GST calculation</h2>
       <p>
-        <strong>Adding GST</strong> (exclusive price known): GST amount = base x rate / 100; total = base + GST
-        amount.
+        <strong>Adding GST</strong> (exclusive price known): GST amount = base x rate / 100; total = base +
+        GST amount.
       </p>
       <p>
         <strong>Removing GST</strong> (inclusive price known): base = total / (1 + rate / 100); GST amount =

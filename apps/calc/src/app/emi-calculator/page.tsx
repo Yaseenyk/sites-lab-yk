@@ -39,9 +39,22 @@ export default function Page() {
     <ToolPage
       slug="emi-calculator"
       lede="Enter the loan amount, interest rate and term to see your monthly EMI, total interest, and a year-by-year breakdown of how much of each payment goes to principal versus interest."
-      widget={<EmiCalculator amountLabel="Loan amount" defaultAmount="1000000" defaultRate="9" defaultYears="5" maxYears={30} />}
+      widget={
+        <EmiCalculator
+          amountLabel="Loan amount"
+          defaultAmount="1000000"
+          defaultRate="9"
+          defaultYears="5"
+          maxYears={30}
+        />
+      }
       faq={faq}
-      related={["home-loan-emi-calculator", "car-loan-emi-calculator", "loan-eligibility-calculator", "sip-calculator"]}
+      related={[
+        "home-loan-emi-calculator",
+        "car-loan-emi-calculator",
+        "loan-eligibility-calculator",
+        "sip-calculator",
+      ]}
     >
       <h2>How EMI is calculated</h2>
       <p>
@@ -75,7 +88,8 @@ export default function Page() {
         This is the standard EMI math only. It does not include processing fees, insurance premiums some
         lenders bundle into the loan, GST on charges, or a floating-rate loan&apos;s rate changing mid-term.
         Your lender&apos;s sanction letter has the exact figures. For a sense of how large a loan you could
-        realistically take on, see the <Link href="/loan-eligibility-calculator">loan eligibility calculator</Link>.
+        realistically take on, see the{" "}
+        <Link href="/loan-eligibility-calculator">loan eligibility calculator</Link>.
       </p>
     </ToolPage>
   );

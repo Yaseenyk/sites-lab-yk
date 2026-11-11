@@ -75,11 +75,23 @@ export default function PercentageCalculator() {
           <>
             <div className="fld">
               <label htmlFor="pc-pct">Percent (%)</label>
-              <input id="pc-pct" type="text" inputMode="decimal" value={pct} onChange={(e) => setPct(e.target.value)} />
+              <input
+                id="pc-pct"
+                type="text"
+                inputMode="decimal"
+                value={pct}
+                onChange={(e) => setPct(e.target.value)}
+              />
             </div>
             <div className="fld">
               <label htmlFor="pc-of">Of this number</label>
-              <input id="pc-of" type="text" inputMode="decimal" value={of} onChange={(e) => setOf(e.target.value)} />
+              <input
+                id="pc-of"
+                type="text"
+                inputMode="decimal"
+                value={of}
+                onChange={(e) => setOf(e.target.value)}
+              />
             </div>
           </>
         )}
@@ -142,7 +154,9 @@ export default function PercentageCalculator() {
           <div className="tile hero-tile">
             <span className="tile-label">Result</span>
             <span className="tile-value">
-              {"isPercent" in result && result.isPercent ? `${result.value.toFixed(2)}%` : money(result.value, 2)}
+              {"isPercent" in result && result.isPercent
+                ? `${result.value.toFixed(2)}%`
+                : money(result.value, 2)}
             </span>
           </div>
         </div>
