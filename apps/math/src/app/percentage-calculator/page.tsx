@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { pageMetadata } from "@sites/shell";
+import LanguageHint from "@/components/LanguageHint";
 import PercentCalculator from "@/components/PercentCalculator";
 import ToolPage from "@/components/ToolPage";
 import { site, toolBySlug } from "@/site";
@@ -9,6 +10,11 @@ export const metadata = pageMetadata(site, {
   title: tool.seoTitle,
   description: tool.description,
   path: tool.path,
+  languages: {
+    en: `${site.url}${tool.path}`,
+    "zh-CN": `${site.url}/zh/percentage-calculator/`,
+    "x-default": `${site.url}${tool.path}`,
+  },
 });
 
 const faq = [
@@ -39,7 +45,12 @@ export default function Page() {
     <ToolPage
       slug="percentage-calculator"
       lede="Three answers in one place: what is X% of Y, X is what percent of Y, and X is Y% of what number. Type in any box and the result updates."
-      widget={<PercentCalculator />}
+      widget={
+        <>
+          <LanguageHint href="/zh/percentage-calculator/" text="中文版：百分比计算器" to="zh" />
+          <PercentCalculator />
+        </>
+      }
       faq={faq}
       related={[
         "percentage-increase-calculator",

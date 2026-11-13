@@ -4,6 +4,7 @@ import AgeCalculator from "./AgeCalculator";
 import { DateAddCalculator, DateDiffCalculator } from "./DateCalculators";
 import HoursCalculator from "./HoursCalculator";
 import PercentCalculator from "./PercentCalculator";
+import PercentCalculatorZh from "./PercentCalculatorZh";
 import PercentChangeTool from "./PercentChangeTool";
 import { AverageCalculator, RatioCalculator } from "./RatioAndAverage";
 import { DiscountCalculator, TimeCalculator } from "./TimeAndDiscount";
@@ -11,6 +12,24 @@ import { DiscountCalculator, TimeCalculator } from "./TimeAndDiscount";
 const set = (c: HTMLElement, id: string, value: string) =>
   fireEvent.change(c.querySelector(`#${id}`) as HTMLElement, { target: { value } });
 const text = (c: HTMLElement) => (c.textContent ?? "").replace(/\s+/g, " ");
+
+describe("PercentCalculatorZh (Chinese test page)", () => {
+  it("gives the same answers as the English calculator, in Chinese", () => {
+    const { container } = render(<PercentCalculatorZh />);
+    expect(text(container)).toMatch(/80 的 15% 是\s*12/);
+    expect(text(container)).toMatch(/12 占 80 的\s*15%/);
+    expect(text(container)).toMatch(/12 是总数的 15%，总数为\s*80/);
+  });
+
+  it("updates live and explains a division by zero in Chinese", () => {
+    const { container } = render(<PercentCalculatorZh />);
+    set(container, "z1a", "20");
+    set(container, "z1b", "50");
+    expect(text(container)).toMatch(/50 的 20% 是\s*10/);
+    set(container, "z2b", "0");
+    expect(text(container)).toContain("Y 不能为 0");
+  });
+});
 
 describe("PercentCalculator", () => {
   it("answers the three classic questions from its defaults", () => {

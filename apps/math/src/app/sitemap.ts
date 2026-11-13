@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     at("/", 1),
     ...tools.map((t) => at(t.path, 0.9)),
+    at("/zh/percentage-calculator/", 0.6),
     at("/guides/", 0.7),
     ...guides.map((g) => at(g.path, 0.7)),
     at("/about/", 0.3),

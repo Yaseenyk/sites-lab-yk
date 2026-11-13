@@ -6,14 +6,21 @@ export const OG_IMAGE = "/og.png";
 
 export function pageMetadata(
   site: SiteConfig,
-  opts: { title: string; description: string; path: string; type?: "website" | "article" },
+  opts: {
+    title: string;
+    description: string;
+    path: string;
+    type?: "website" | "article";
+    /** hreflang alternates, as full URLs keyed by language code (include the page itself and "x-default"). */
+    languages?: Record<string, string>;
+  },
 ): Metadata {
   const url = `${site.url}${opts.path}`;
   const image = `${site.url}${OG_IMAGE}`;
   return {
     title: { absolute: opts.title },
     description: opts.description,
-    alternates: { canonical: url },
+    alternates: { canonical: url, ...(opts.languages ? { languages: opts.languages } : {}) },
     openGraph: {
       title: opts.title,
       description: opts.description,
