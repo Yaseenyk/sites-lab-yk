@@ -32,6 +32,18 @@ const faq = [
     q: "Can a percentage increase be more than 100%?",
     a: "Yes. Any new value more than double the old value is an increase over 100%. From 20 to 70 is (70 - 20) / 20 x 100 = 250%.",
   },
+  {
+    q: "How do I find the original number before a percentage increase?",
+    a: "Divide the new value by 1 plus the percentage as a decimal. If a price is 125 after a 25% rise, the original was 125 / 1.25 = 100.",
+  },
+  {
+    q: "What happens if a number goes up 20% and then down 20%?",
+    a: "It ends lower than it started. 100 up 20% is 120, and 120 down 20% is 96, a net fall of 4%, because the 20% drop is taken from the bigger number.",
+  },
+  {
+    q: "How do I work out growth over several years?",
+    a: "Multiply by 1 plus the rate once per year. Three years of 5% growth is 1.05 x 1.05 x 1.05 = 1.157625, a total increase of about 15.76%, not 15%.",
+  },
 ];
 
 export default function Page() {
@@ -79,6 +91,46 @@ new value          = old x (1 + increase / 100)`}</pre>
           </tr>
         </tbody>
       </table>
+      <h2>Real-world examples</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Change</th>
+            <th>Working</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rent from 12,000 to 13,200</td>
+            <td>(13,200 - 12,000) / 12,000 x 100</td>
+            <td>10% increase</td>
+          </tr>
+          <tr>
+            <td>A 40 item now costs 46</td>
+            <td>(46 - 40) / 40 x 100</td>
+            <td>15% increase</td>
+          </tr>
+          <tr>
+            <td>Salary 50,000 raised by 8%</td>
+            <td>50,000 x 1.08</td>
+            <td>54,000</td>
+          </tr>
+          <tr>
+            <td>Users from 1.2 million to 1.5 million</td>
+            <td>(1.5 - 1.2) / 1.2 x 100</td>
+            <td>25% increase</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Percentage increase or percent change?</h2>
+      <p>
+        They use the same formula. A positive answer is an increase and a negative one a decrease, which the{" "}
+        <Link href="/percent-change-calculator">percent change calculator</Link> labels for you. If neither
+        value is the starting point, use the{" "}
+        <Link href="/percentage-difference-calculator">percentage difference calculator</Link>.
+      </p>
       <p>
         Prices, salaries, rents and populations are all compared this way. For a pay rise specifically, use
         the <a href="https://calc.streamerosai.com/pay-raise-calculator/">pay raise calculator</a>. For a

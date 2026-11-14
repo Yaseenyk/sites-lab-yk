@@ -11,7 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
   return [
     at("/", 1),
-    ...tools.map((t) => at(t.path, 0.9)),
+    // percentage-calculator is canonical to math.streamerosai.com, so it is not listed here.
+    ...tools.filter((t) => t.slug !== "percentage-calculator").map((t) => at(t.path, 0.9)),
     at("/guides/", 0.7),
     ...guides.map((g) => at(g.path, 0.7)),
     at("/about/", 0.3),

@@ -32,6 +32,18 @@ const faq = [
     q: "What is the range?",
     a: "The largest value minus the smallest. For 4, 8, 8, 10 and 15, the range is 15 - 4 = 11.",
   },
+  {
+    q: "How do I find the median of an even number of values?",
+    a: "Take the mean of the two middle values. For 3, 5, 7 and 10 the middle two are 5 and 7, so the median is 6 (the mean is 6.25).",
+  },
+  {
+    q: "How do I calculate a weighted average?",
+    a: "Multiply each value by its weight, add the results and divide by the total weight. A score of 80 worth 30% and 90 worth 70% gives 0.3 x 80 + 0.7 x 90 = 87. This calculator treats every value equally.",
+  },
+  {
+    q: "Can I average percentages?",
+    a: "Only if each percentage is of the same total. Otherwise, add up the underlying parts and totals and take the percentage of those.",
+  },
 ];
 
 export default function Page() {
@@ -54,6 +66,45 @@ range  = maximum - minimum`}</pre>
         For 4, 8, 8, 10, 15: the sum is 45 and the count is 5, so the <strong>mean is 9</strong>. In order,
         the middle value is 8, so the <strong>median is 8</strong>. The value 8 appears twice, so the{" "}
         <strong>mode is 8</strong>. The <strong>range is 11</strong>.
+      </p>
+      <h2>More examples</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Numbers</th>
+            <th>Mean</th>
+            <th>Median</th>
+            <th>Mode</th>
+            <th>Range</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>72, 85, 90, 68, 85</td>
+            <td>80 (400 / 5)</td>
+            <td>85</td>
+            <td>85</td>
+            <td>22</td>
+          </tr>
+          <tr>
+            <td>3, 5, 7, 10</td>
+            <td>6.25</td>
+            <td>6</td>
+            <td>none</td>
+            <td>7</td>
+          </tr>
+          <tr>
+            <td>30, 32, 35, 38, 200 (thousands)</td>
+            <td>67 (335 / 5)</td>
+            <td>35</td>
+            <td>none</td>
+            <td>170</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        The last row shows why the median matters: one very large salary drags the mean to 67 while the
+        typical value is 35.
       </p>
       <p>
         For percentages of a total, see the <Link href="/percentage-calculator">percentage calculator</Link>.

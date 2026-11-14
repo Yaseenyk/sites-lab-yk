@@ -13,6 +13,8 @@ export function pageMetadata(
     type?: "website" | "article";
     /** hreflang alternates, as full URLs keyed by language code (include the page itself and "x-default"). */
     languages?: Record<string, string>;
+    /** Absolute canonical URL when another page (possibly on a sister site) owns this content. */
+    canonical?: string;
   },
 ): Metadata {
   const url = `${site.url}${opts.path}`;
@@ -20,7 +22,10 @@ export function pageMetadata(
   return {
     title: { absolute: opts.title },
     description: opts.description,
-    alternates: { canonical: url, ...(opts.languages ? { languages: opts.languages } : {}) },
+    alternates: {
+      canonical: opts.canonical ?? url,
+      ...(opts.languages ? { languages: opts.languages } : {}),
+    },
     openGraph: {
       title: opts.title,
       description: opts.description,

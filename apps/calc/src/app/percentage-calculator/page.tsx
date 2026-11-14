@@ -9,6 +9,9 @@ export const metadata = pageMetadata(site, {
   title: tool.seoTitle,
   description: tool.description,
   path: tool.path,
+  // The sister site math.streamerosai.com owns the general percentage calculator; this copy stays
+  // for readers who arrive from the finance tools, but is not a second page competing for the query.
+  canonical: "https://math.streamerosai.com/percentage-calculator/",
 });
 
 const faq = [
@@ -58,7 +61,10 @@ export default function Page() {
       <p>
         For a raise, discount or any change applied to a pay figure specifically, the{" "}
         <Link href="/pay-raise-calculator">pay raise calculator</Link> covers the same math with pay-specific
-        wording and a multi-year projection.
+        wording and a multi-year projection. For plain everyday percentages (increase, decrease, change,
+        difference) see the{" "}
+        <a href="https://math.streamerosai.com/percentage-calculator/">full percentage calculator</a> on
+        StreamerOS Math Calculators.
       </p>
     </ToolPage>
   );

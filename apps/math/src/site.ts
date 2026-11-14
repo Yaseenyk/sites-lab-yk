@@ -31,7 +31,7 @@ export const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION ?? "";
 export const AD_SLOT_CONTENT = process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT ?? "";
 
 /** Date the content was last reviewed; used for dateModified and sitemap lastmod. */
-export const UPDATED = "2026-11-04";
+export const UPDATED = "2026-11-15";
 
 export interface Tool {
   slug: string;
@@ -51,10 +51,10 @@ export const tools: Tool[] = [
   {
     slug: "percentage-calculator",
     path: "/percentage-calculator/",
-    seoTitle: "Percentage Calculator: X% of Y, What % and More",
+    seoTitle: "Percentage Calculator: What Is X% of Y? (15% of 80 = 12)",
     h1: "Percentage Calculator",
     description:
-      "Free percentage calculator: find X% of Y, what percent X is of Y, or the whole number from a part. Instant answers with the formula shown.",
+      "Type two numbers: get X% of Y, what percent X is of Y, or the whole from a part. 15% of 80 is 12. Free, with the formula and worked examples.",
     blurb: "Find X% of Y, what percent one number is of another, or the whole from a part.",
     icon: "percent",
     group: "percent",
@@ -62,10 +62,10 @@ export const tools: Tool[] = [
   {
     slug: "percentage-increase-calculator",
     path: "/percentage-increase-calculator/",
-    seoTitle: "Percentage Increase Calculator: Find the % Increase",
+    seoTitle: "Percentage Increase Calculator: 50 to 65 Is +30%",
     h1: "Percentage Increase Calculator",
     description:
-      "Calculate a percentage increase between two numbers, or increase a number by a percentage. Free, instant, with the formula and worked examples.",
+      "Find the percent increase between two numbers, or raise a number by a percentage. 50 to 65 is +30%; 80 up 25% is 100. Formula and examples.",
     blurb: "Find the percent increase between two numbers, or raise a number by a percentage.",
     icon: "trend",
     group: "percent",
@@ -84,10 +84,10 @@ export const tools: Tool[] = [
   {
     slug: "percent-change-calculator",
     path: "/percent-change-calculator/",
-    seoTitle: "Percent Change Calculator: Increase, Decrease, Difference",
+    seoTitle: "Percent Change Calculator: 40 to 50 Is +25%",
     h1: "Percent Change Calculator",
     description:
-      "Calculate percent change from an old value to a new one, plus the absolute change and the percent difference. Free and instant, with the formulas.",
+      "Enter an old and a new value for percent change, absolute change and percent difference. 40 to 50 is +25%, but 50 to 40 is -20%. Free.",
     blurb: "Percent change between two values, plus the symmetric percent difference.",
     icon: "trend",
     group: "percent",
@@ -120,7 +120,7 @@ export const tools: Tool[] = [
     seoTitle: "Date Calculator: Add or Subtract Days, Months, Years",
     h1: "Date Calculator",
     description:
-      "Add or subtract days, months and years from any date and get the resulting date and weekday. Free and instant, with end-of-month rules explained.",
+      "Add or subtract days, months or years and see the date and weekday. 30 days after 4 Nov 2026 is Friday 4 Dec 2026. Month-end rules explained.",
     blurb: "Add or subtract days, months and years and see the date and weekday.",
     icon: "calendar",
     group: "dates",
@@ -197,7 +197,7 @@ export const tools: Tool[] = [
     seoTitle: "Average Calculator: Mean, Median, Mode and Range",
     h1: "Average Calculator",
     description:
-      "Mean, median, mode calculator: paste a list of numbers to get the average, sum, minimum, maximum and range instantly, with each statistic explained.",
+      "Paste your numbers for mean, median, mode, sum and range. For 4, 8, 8, 10, 15 the mean is 9 and the median and mode are 8. Free.",
     blurb: "Mean, median, mode and range for any list of numbers.",
     icon: "list",
     group: "numbers",

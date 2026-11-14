@@ -38,6 +38,18 @@ const faq = [
     q: "How do I turn a percentage into a decimal?",
     a: "Divide by 100, which moves the decimal point two places left. 15% is 0.15, and 7.5% is 0.075.",
   },
+  {
+    q: "How do I work out a test score as a percentage?",
+    a: "Divide the marks you got by the total marks and multiply by 100. 42 out of 60 is 42 / 60 x 100 = 70%.",
+  },
+  {
+    q: "Why does adding 10% twice not give 20%?",
+    a: "The second 10% is taken from the already-increased number. 100 up 10% is 110, and 110 up 10% is 121, which is a 21% total rise, not 20%.",
+  },
+  {
+    q: "What is the difference between a percentage and a percentage point?",
+    a: "A percentage point is a plain subtraction of two percentages. A rate moving from 10% to 15% is up 5 percentage points, which is a 50% relative increase (5 / 10 x 100).",
+  },
 ];
 
 export default function Page() {
@@ -86,6 +98,77 @@ export default function Page() {
           </tr>
         </tbody>
       </table>
+
+      <h2>How to use the calculator</h2>
+      <ol>
+        <li>Pick the question that matches yours: X% of Y, X is what % of Y, or X is Y% of what.</li>
+        <li>Type your two numbers in that block. The answer appears as you type; there is no button.</li>
+        <li>Check the answer against the formula table above if you want to see the working.</li>
+      </ol>
+
+      <h2>Worked examples from everyday life</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Situation</th>
+            <th>Working</th>
+            <th>Answer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>An 18% tip on a 64 bill</td>
+            <td>18 / 100 x 64</td>
+            <td>11.52</td>
+          </tr>
+          <tr>
+            <td>8% sales tax on 250</td>
+            <td>8 / 100 x 250 = 20, then 250 + 20</td>
+            <td>20 tax, 270 total</td>
+          </tr>
+          <tr>
+            <td>42 marks out of 60</td>
+            <td>42 / 60 x 100</td>
+            <td>70%</td>
+          </tr>
+          <tr>
+            <td>36 is 12% of what number?</td>
+            <td>36 / 0.12</td>
+            <td>300</td>
+          </tr>
+          <tr>
+            <td>7.5% interest on 2,400</td>
+            <td>7.5 / 100 x 2,400</td>
+            <td>180</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Common percentages as fractions</h2>
+      <p>
+        50% is 1/2, 25% is 1/4, 20% is 1/5, 12.5% is 1/8, 10% is 1/10 and 5% is 1/20. If you spot one of
+        these, divide instead of multiplying: 25% of 80 is 80 / 4 = 20.
+      </p>
+
+      <h2>Mistakes to avoid</h2>
+      <ul>
+        <li>
+          <strong>Stacking percentages by adding them.</strong> A 10% rise followed by another 10% is 21%, not
+          20%, because the second is applied to the larger number.
+        </li>
+        <li>
+          <strong>Using the wrong base.</strong> In &quot;X is what percent of Y&quot; the total Y is the
+          denominator. 20 is 25% of 80 but 80 is 400% of 20.
+        </li>
+        <li>
+          <strong>Mixing percent and percentage points.</strong> See the guide to{" "}
+          <Link href="/guides/percentage-formulas">percentage formulas</Link>.
+        </li>
+      </ul>
+      <p>
+        Working with money? The <a href="https://calc.streamerosai.com/gst-calculator/">GST calculator</a>{" "}
+        adds or removes tax in one step.
+      </p>
 
       <h2>A quick way to do it in your head</h2>
       <p>

@@ -32,6 +32,18 @@ const faq = [
     q: "How do I go back in time?",
     a: "Change the operation to Subtract. For example, subtracting 6 months from 15 March 2026 gives 15 September 2025.",
   },
+  {
+    q: "What is the date 90 days from 14 November 2026?",
+    a: "12 February 2027, a Friday. Add 90 days to the start date and the calculator also shows the weekday.",
+  },
+  {
+    q: "What is 29 February plus one year?",
+    a: "The result is 28 February of the next year when that year is not a leap year. 29 February 2028 plus 1 year is 28 February 2029.",
+  },
+  {
+    q: "Does this count working days?",
+    a: "No, it adds calendar days. To count working days between two dates, use the days between dates calculator.",
+  },
 ];
 
 export default function Page() {
@@ -80,6 +92,23 @@ export default function Page() {
           </tr>
         </tbody>
       </table>
+
+      <h2>When people use it</h2>
+      <ul>
+        <li>
+          <strong>Payment terms:</strong> an invoice dated 1 December 2026 with net 45 terms is due on 15
+          January 2027, a Friday.
+        </li>
+        <li>
+          <strong>Deadlines and notice periods:</strong> 90 days from 14 November 2026 is 12 February 2027.
+        </li>
+        <li>
+          <strong>Looking back:</strong> 60 days before 1 March 2026 is 31 December 2025.
+        </li>
+        <li>
+          <strong>Leap years:</strong> 31 January 2028 plus 1 month is 29 February 2028.
+        </li>
+      </ul>
 
       <h2>Why months need care</h2>
       <p>
