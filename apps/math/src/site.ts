@@ -128,10 +128,10 @@ export const tools: Tool[] = [
   {
     slug: "hours-calculator",
     path: "/hours-calculator/",
-    seoTitle: "Hours Calculator: Time Worked Between Two Times",
+    seoTitle: "Hours Calculator: 9:00 to 17:30 Is 8 Hours",
     h1: "Hours Calculator",
     description:
-      "Calculate hours worked between a start and end time with breaks, across several days, as hours and minutes and as decimal hours. Free and instant.",
+      "Enter start, end and break for each day. 09:00 to 17:00 with 30 minutes off is 7:30, or 7.5 decimal hours. Handles night shifts and a full week.",
     blurb: "Hours worked between start and end times, with breaks, in H:MM and decimal hours.",
     icon: "clock",
     group: "dates",
@@ -139,10 +139,10 @@ export const tools: Tool[] = [
   {
     slug: "time-calculator",
     path: "/time-calculator/",
-    seoTitle: "Time Calculator: Add or Subtract Hours, Minutes, Days",
+    seoTitle: "Time Calculator: 2 h 30 min + 1 h 45 min = 4 h 15 min",
     h1: "Time Calculator",
     description:
-      "Time calculator: add or subtract two lengths of time in days, hours, minutes and seconds. See the result in words and as total hours and minutes.",
+      "Add or subtract lengths of time in days, hours, minutes and seconds. 2 h 30 min plus 1 h 45 min is 4 h 15 min. Carries over correctly.",
     blurb: "Add or subtract days, hours, minutes and seconds.",
     icon: "clock",
     group: "dates",
