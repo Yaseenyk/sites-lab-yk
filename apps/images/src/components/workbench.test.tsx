@@ -171,6 +171,20 @@ describe("ImageWorkbench: resize", () => {
     ).toBeTruthy();
   });
 
+  it("asks for both sides when the ratio is not kept and only one is given", async () => {
+    render(<ImageWorkbench mode="resize" />);
+    fireEvent.click(screen.getByRole("checkbox"));
+    set("o-w", "500");
+    choose(img("photo.png"));
+    expect(
+      await screen.findByText(
+        /Enter both a width and a height, or tick Keep aspect ratio/,
+        {},
+        { timeout: 4000 },
+      ),
+    ).toBeTruthy();
+  });
+
   it("keeps a JPEG as a JPEG", async () => {
     render(<ImageWorkbench mode="resize" />);
     set("o-w", "800");

@@ -48,7 +48,7 @@ export const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION ?? "";
 export const AD_SLOT_CONTENT = process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT ?? "";
 
 /** Date the content was last reviewed; used for dateModified and sitemap lastmod. */
-export const UPDATED = "2026-11-04";
+export const UPDATED = "2026-11-16";
 
 export interface Tool {
   slug: string;

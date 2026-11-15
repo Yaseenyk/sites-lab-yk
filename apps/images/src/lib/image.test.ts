@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  bytesPerPixel,
   compressToTarget,
   fitWithin,
   formatBytes,
@@ -107,5 +108,13 @@ describe("naming and savings", () => {
     expect(savedPercent(200, 50)).toBe(75);
     expect(savedPercent(100, 120)).toBe(-20);
     expect(savedPercent(0, 10)).toBe(0);
+  });
+});
+
+describe("bytesPerPixel", () => {
+  it("divides the byte budget by the pixel count, counting 1 KB as 1,000 bytes", () => {
+    expect(bytesPerPixel(20, 100, 100)).toBe(2);
+    expect(bytesPerPixel(50, 1000, 500)).toBe(0.1);
+    expect(bytesPerPixel(20, 0, 100)).toBe(0);
   });
 });

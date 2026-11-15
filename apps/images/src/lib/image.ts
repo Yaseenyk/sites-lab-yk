@@ -141,3 +141,8 @@ export function outputName(original: string, mime: string, suffix: string): stri
 export function savedPercent(before: number, after: number): number {
   return before > 0 ? ((before - after) / before) * 100 : 0;
 }
+
+/** Bytes available per pixel when a `width` x `height` picture has to fit in `kb` kilobytes (1 KB = 1,000 bytes). */
+export function bytesPerPixel(kb: number, width: number, height: number): number {
+  return width > 0 && height > 0 ? (kb * 1000) / (width * height) : 0;
+}

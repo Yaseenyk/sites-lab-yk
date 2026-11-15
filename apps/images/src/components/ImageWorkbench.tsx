@@ -156,7 +156,11 @@ export default function ImageWorkbench({ mode, presetKB, convertTo = "image/jpeg
           ? scaleDims(srcSize, pct / 100)
           : resizeTo(srcSize, positive(width), positive(height), keepRatio);
         if (!target) {
-          throw new Error("Enter a width, a height or a percentage.");
+          throw new Error(
+            positive(width) !== null || positive(height) !== null
+              ? "Enter both a width and a height, or tick Keep aspect ratio."
+              : "Enter a width, a height or a percentage.",
+          );
         }
         size = target;
         mime = file.type === "image/jpeg" || file.type === "image/webp" ? (file.type as Mime) : "image/png";
@@ -255,7 +259,7 @@ export default function ImageWorkbench({ mode, presetKB, convertTo = "image/jpeg
               <label htmlFor="o-format">Output format</label>
               <select id="o-format" value={format} onChange={(e) => setFormat(e.target.value as Mime)}>
                 <option value="image/jpeg">JPEG (best for photos)</option>
-                <option value="image/webp">WebP (smaller)</option>
+                <option value="image/webp">WebP (smaller, not accepted everywhere)</option>
               </select>
             </div>
             <div className="fld">
@@ -384,8 +388,8 @@ export default function ImageWorkbench({ mode, presetKB, convertTo = "image/jpeg
                       </p>
                       {mode === "compress" && positive(targetKB) !== null && !r.out.reached && (
                         <p className="text-sm text-warn">
-                          Could not reach {targetKB} KB. This is the smallest result; try a smaller maximum
-                          width.
+                          Could not reach {targetKB} KB, even at lower quality and about a tenth of the size.
+                          This is the smallest result. Crop the picture first, or resize it smaller.
                         </p>
                       )}
                     </div>
