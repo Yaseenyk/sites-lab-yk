@@ -3,18 +3,31 @@ import type { IconName, SiteConfig } from "@sites/shell";
 export const site: SiteConfig = {
   name: "StreamerOS Dev Tools",
   brand: { lead: "StreamerOS", accent: "Dev Tools", mark: "braces" },
-  cta: { label: "Open a tool", href: "/json-formatter" },
+  cta: { label: "All tools", href: "/" },
   toolsHeading: "Tools",
   tagline: "Free developer tools that run in your browser. Your input is never uploaded.",
   url: "https://tools.streamerosai.com",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
   nav: [
-    { href: "/json-formatter", label: "JSON Formatter" },
-    { href: "/json-viewer", label: "JSON Viewer" },
-    { href: "/json-compare", label: "JSON Compare" },
-    { href: "/json-to-csv", label: "JSON to CSV" },
-    { href: "/base64", label: "Base64" },
-    { href: "/guides", label: "Guides" },
+    {
+      label: "JSON",
+      items: [
+        { href: "/json-formatter/", label: "JSON formatter" },
+        { href: "/json-validator/", label: "JSON validator" },
+        { href: "/json-viewer/", label: "JSON viewer" },
+        { href: "/json-minifier/", label: "JSON minifier" },
+        { href: "/json-compare/", label: "JSON compare (diff)" },
+        { href: "/json-to-csv/", label: "JSON to CSV" },
+      ],
+    },
+    {
+      label: "Base64",
+      items: [
+        { href: "/base64/", label: "Base64 encode and decode" },
+        { href: "/base64-decode/", label: "Base64 decode" },
+      ],
+    },
+    { href: "/guides/", label: "Guides" },
   ],
 };
 

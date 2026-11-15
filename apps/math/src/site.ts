@@ -3,19 +3,43 @@ import type { IconName, SiteConfig } from "@sites/shell";
 export const site: SiteConfig = {
   name: "StreamerOS Math Calculators",
   brand: { lead: "StreamerOS", accent: "Math Calculators", mark: "percent" },
-  cta: { label: "Percentage calculator", href: "/percentage-calculator" },
+  cta: { label: "All calculators", href: "/" },
   toolsHeading: "Calculators",
   tagline:
     "Free everyday math calculators: percentages, age, dates, hours, ratios and averages. Instant, with the formula shown.",
   url: "https://math.streamerosai.com",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
   nav: [
-    { href: "/percentage-calculator", label: "Percentage" },
-    { href: "/percent-change-calculator", label: "Percent Change" },
-    { href: "/age-calculator", label: "Age" },
-    { href: "/days-between-dates-calculator", label: "Days Between Dates" },
-    { href: "/hours-calculator", label: "Hours" },
-    { href: "/guides", label: "Guides" },
+    {
+      label: "Percentages",
+      items: [
+        { href: "/percentage-calculator/", label: "Percentage" },
+        { href: "/percent-change-calculator/", label: "Percent change" },
+        { href: "/percentage-increase-calculator/", label: "Percentage increase" },
+        { href: "/percentage-decrease-calculator/", label: "Percentage decrease" },
+        { href: "/percentage-difference-calculator/", label: "Percentage difference" },
+        { href: "/discount-calculator/", label: "Discount" },
+      ],
+    },
+    {
+      label: "Dates and time",
+      items: [
+        { href: "/age-calculator/", label: "Age" },
+        { href: "/days-between-dates-calculator/", label: "Days between dates" },
+        { href: "/date-calculator/", label: "Date (add or subtract days)" },
+        { href: "/hours-calculator/", label: "Hours" },
+        { href: "/time-calculator/", label: "Time" },
+      ],
+    },
+    {
+      label: "Numbers",
+      items: [
+        { href: "/average-calculator/", label: "Average" },
+        { href: "/standard-deviation-calculator/", label: "Standard deviation" },
+        { href: "/ratio-calculator/", label: "Ratio" },
+      ],
+    },
+    { href: "/guides/", label: "Guides" },
   ],
 };
 

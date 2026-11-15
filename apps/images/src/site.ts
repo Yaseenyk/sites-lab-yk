@@ -4,18 +4,35 @@ import { CONVERT_PAGES, SIZE_PAGES } from "@/lib/pages";
 export const site: SiteConfig = {
   name: "StreamerOS Image Tools",
   brand: { lead: "StreamerOS", accent: "Image Tools", mark: "image" },
-  cta: { label: "Compress an image", href: "/image-compressor" },
+  cta: { label: "All image tools", href: "/" },
   toolsHeading: "Image tools",
   tagline:
     "Free image tools that run in your browser: compress to a target size, resize, and convert between formats. Your photos are never uploaded.",
   url: "https://images.streamerosai.com",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
   nav: [
-    { href: "/image-compressor", label: "Compressor" },
-    { href: "/image-resizer", label: "Resizer" },
-    { href: "/png-to-jpg", label: "PNG to JPG" },
-    { href: "/webp-to-jpg", label: "WebP to JPG" },
-    { href: "/guides", label: "Guides" },
+    {
+      label: "Compress",
+      items: [
+        { href: "/image-compressor/", label: "Image compressor" },
+        { href: "/jpeg-compressor/", label: "JPEG compressor" },
+        { href: "/compress-image-to-20kb/", label: "Compress to 20KB" },
+        { href: "/compress-image-to-50kb/", label: "Compress to 50KB" },
+        { href: "/compress-image-to-100kb/", label: "Compress to 100KB" },
+      ],
+    },
+    {
+      label: "Convert",
+      items: [
+        { href: "/png-to-jpg/", label: "PNG to JPG" },
+        { href: "/jpg-to-png/", label: "JPG to PNG" },
+        { href: "/webp-to-jpg/", label: "WebP to JPG" },
+        { href: "/avif-to-jpg/", label: "AVIF to JPG" },
+        { href: "/image-to-jpg/", label: "Any image to JPG" },
+      ],
+    },
+    { href: "/image-resizer/", label: "Resize" },
+    { href: "/guides/", label: "Guides" },
   ],
 };
 
