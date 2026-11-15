@@ -51,3 +51,9 @@ jobs:
           force_orphan: true
           user_name: github-actions[bot]
           user_email: 41898282+github-actions[bot]@users.noreply.github.com
+
+      # Tell Bing and other IndexNow engines (not Google) which pages changed in this commit.
+      # A failed ping never fails a deploy.
+      - name: Submit changed pages to IndexNow
+        run: node scripts/indexnow.mjs math
+        continue-on-error: true
