@@ -106,6 +106,16 @@ describe("Base64Tool", () => {
     expect(out("b64-out")).toBe("??>>");
   });
 
+  it("tells text that is not Base64 apart from Base64 that is not UTF-8 text", () => {
+    render(<Base64Tool />);
+    type("b64-in", "!!!not base64!!!");
+    click("Decode");
+    expect(status()).toMatch(/Not valid Base64/);
+    type("b64-in", "/9j/4AAQ");
+    click("Decode");
+    expect(status()).toMatch(/not UTF-8 text/);
+  });
+
   it("shows an error for invalid Base64 and for empty input", () => {
     render(<Base64Tool />);
     click("Encode");

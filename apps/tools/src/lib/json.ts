@@ -12,20 +12,190 @@ export function sortKeys(v: unknown): unknown {
   return v;
 }
 
-/** Turn a JSON.parse error into a message with line and column when the engine only gives a position. */
+class Stop extends Error {
+  constructor(readonly at: number) {
+    super("stop");
+  }
+}
+
+/**
+ * Index of the first character that breaks the JSON grammar (RFC 8259), or null when the text is valid.
+ * Used when the engine's message has no position (Safari, and some V8 messages for a bad token).
+ */
+export function errorOffset(text: string): number | null {
+  const n = text.length;
+  let i = 0;
+  const fail = (at: number): never => {
+    throw new Stop(at);
+  };
+  const ws = () => {
+    while (i < n && (text[i] === " " || text[i] === "\t" || text[i] === "\n" || text[i] === "\r")) {
+      i++;
+    }
+  };
+  const digits = () => {
+    const start = i;
+    while (i < n && text[i]! >= "0" && text[i]! <= "9") {
+      i++;
+    }
+    if (i === start) {
+      fail(i);
+    }
+  };
+  const str = () => {
+    i++;
+    for (;;) {
+      if (i >= n) {
+        fail(n);
+      }
+      const c = text[i]!;
+      if (c === '"') {
+        i++;
+        return;
+      }
+      if (c < " ") {
+        fail(i);
+      }
+      if (c === "\\") {
+        const e = text[i + 1];
+        if (e !== undefined && '"\\/bfnrt'.includes(e)) {
+          i += 2;
+        } else if (e === "u") {
+          for (let k = 2; k < 6; k++) {
+            if (!/[0-9a-fA-F]/.test(text[i + k] ?? "")) {
+              fail(i + k);
+            }
+          }
+          i += 6;
+        } else {
+          fail(i + 1);
+        }
+      } else {
+        i++;
+      }
+    }
+  };
+  const num = () => {
+    if (text[i] === "-") {
+      i++;
+    }
+    if (text[i] === "0") {
+      i++;
+    } else {
+      digits();
+    }
+    if (text[i] === ".") {
+      i++;
+      digits();
+    }
+    if (text[i] === "e" || text[i] === "E") {
+      i++;
+      if (text[i] === "+" || text[i] === "-") {
+        i++;
+      }
+      digits();
+    }
+  };
+  const literal = (word: string) => {
+    for (const ch of word) {
+      if (text[i] !== ch) {
+        fail(i);
+      }
+      i++;
+    }
+  };
+  const value = (): void => {
+    ws();
+    const c = text[i];
+    if (c === "{") {
+      i++;
+      ws();
+      if (text[i] === "}") {
+        i++;
+        return;
+      }
+      for (;;) {
+        ws();
+        if (text[i] !== '"') {
+          fail(i);
+        }
+        str();
+        ws();
+        if (text[i] !== ":") {
+          fail(i);
+        }
+        i++;
+        value();
+        ws();
+        if (text[i] === ",") {
+          i++;
+        } else if (text[i] === "}") {
+          i++;
+          return;
+        } else {
+          fail(i);
+        }
+      }
+    } else if (c === "[") {
+      i++;
+      ws();
+      if (text[i] === "]") {
+        i++;
+        return;
+      }
+      for (;;) {
+        value();
+        ws();
+        if (text[i] === ",") {
+          i++;
+        } else if (text[i] === "]") {
+          i++;
+          return;
+        } else {
+          fail(i);
+        }
+      }
+    } else if (c === '"') {
+      str();
+    } else if (c === "t") {
+      literal("true");
+    } else if (c === "f") {
+      literal("false");
+    } else if (c === "n") {
+      literal("null");
+    } else if (c === "-" || (c !== undefined && c >= "0" && c <= "9")) {
+      num();
+    } else {
+      fail(i);
+    }
+  };
+  try {
+    value();
+    ws();
+    return i < n ? i : null;
+  } catch (e) {
+    return e instanceof Stop ? e.at : null; // anything else (such as a stack overflow) means no answer
+  }
+}
+
+const lineColumn = (input: string, offset: number) => {
+  const upTo = input.slice(0, offset);
+  return { line: upTo.split("\n").length, col: upTo.length - upTo.lastIndexOf("\n") };
+};
+
+/** Turn a JSON.parse error into a message with line and column when the engine only gives a position, or none. */
 export function describeError(input: string, err: unknown): string {
   const msg = err instanceof Error ? err.message : String(err);
   if (/line \d+ column \d+/.test(msg)) {
     return msg;
   }
   const pos = msg.match(/position (\d+)/);
-  if (pos) {
-    const upTo = input.slice(0, Number(pos[1]));
-    const line = upTo.split("\n").length;
-    const col = upTo.length - upTo.lastIndexOf("\n");
-    return `${msg} (line ${line}, column ${col})`;
+  const offset = pos ? Number(pos[1]) : errorOffset(input);
+  if (offset === null) {
+    return msg;
   }
-  return msg;
+  const { line, col } = lineColumn(input, offset);
+  return `${msg} (line ${line}, column ${col})`;
 }
 
 export function byteSize(s: string): number {

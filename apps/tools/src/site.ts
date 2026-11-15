@@ -43,7 +43,7 @@ export const GSC_VERIFICATION = "OG5PRiRPw3I5jB5p-G7nDzf_mlxdiZzrpLaFYCZ0p1M";
 export const AD_SLOT_CONTENT = process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT ?? "";
 
 /** Date the content was last reviewed; used for dateModified and sitemap lastmod. */
-export const UPDATED = "2026-11-04";
+export const UPDATED = "2026-11-16";
 
 export interface Tool {
   slug: string;
@@ -65,7 +65,7 @@ export const tools: Tool[] = [
     seoTitle: "JSON Formatter & Pretty Print Online (Free, Private)",
     h1: "JSON Formatter & Beautifier",
     description:
-      "JSON formatter and pretty print online: format and beautify JSON instantly. Free and private, runs in your browser, shows the line and column of any error.",
+      "JSON formatter and pretty print online: beautify JSON with 2 or 4 spaces or tabs, sort keys, see the line and column of any error. Runs in your browser.",
     blurb: "Pretty-print JSON with 2 or 4 spaces or tabs, sort keys, and see errors with line and column.",
     icon: "braces",
   },
@@ -85,7 +85,7 @@ export const tools: Tool[] = [
     seoTitle: "JSON Validator: Check JSON Syntax Online",
     h1: "JSON Validator",
     description:
-      "Validate JSON online and find the exact line and column of the error. Free, instant and checked in your browser, with no upload.",
+      "Validate JSON online and find the line and column of the error. Lists common error messages and fixes. Free; checked in your browser, no upload.",
     blurb: "Know instantly whether your JSON is valid, and where it breaks if it is not.",
     icon: "check",
   },
@@ -95,7 +95,7 @@ export const tools: Tool[] = [
     seoTitle: "JSON Minifier: Minify & Compress JSON Online",
     h1: "JSON Minifier",
     description:
-      "Minify JSON online by stripping whitespace to cut file size. Free, instant, and it runs in your browser, so your data stays private.",
+      "Minify JSON online: strip spaces and line breaks to cut size, with before and after byte counts. Free; runs in your browser, nothing is uploaded.",
     blurb: "Strip whitespace to make JSON smaller for APIs, config and storage.",
     icon: "minify",
   },
@@ -135,7 +135,7 @@ export const tools: Tool[] = [
     seoTitle: "Base64 Decode Online: Decode Base64 to Text",
     h1: "Base64 Decode",
     description:
-      "Decode Base64 to text online, including URL-safe Base64 and missing padding. Free, instant, and it runs in your browser.",
+      "Decode Base64 to text online, including URL-safe Base64 and missing padding. Shows why a string fails to decode. Free; runs in your browser.",
     blurb: "Paste a Base64 string and get the text back, with padding and URL-safe input handled.",
     icon: "lock",
   },

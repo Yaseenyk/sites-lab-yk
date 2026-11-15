@@ -14,16 +14,23 @@ function encodeUtf8(text: string, urlSafe: boolean): string {
   return urlSafe ? b64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "") : b64;
 }
 
+/** Thrown when the text is not Base64 at all, as opposed to Base64 whose bytes are not UTF-8 text. */
+class NotBase64 extends Error {}
+
 function decodeUtf8(b64: string): string {
   let s = b64.trim().replace(/\s+/g, "").replace(/-/g, "+").replace(/_/g, "/");
   while (s.length % 4) {
     s += "=";
   }
-  const bin = atob(s);
+  let bin: string;
+  try {
+    bin = atob(s);
+  } catch {
+    throw new NotBase64();
+  }
   const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
   return new TextDecoder("utf-8", { fatal: true }).decode(bytes);
 }
-
 export default function Base64Tool({ primary = "encode" }: { primary?: Mode }) {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -42,14 +49,16 @@ export default function Base64Tool({ primary = "encode" }: { primary?: Mode }) {
     try {
       setOutput(mode === "encode" ? encodeUtf8(input, urlSafe) : decodeUtf8(input));
       setStatus({ kind: "ok", text: mode === "encode" ? "Encoded to Base64" : "Decoded from Base64" });
-    } catch {
+    } catch (e) {
       setOutput("");
       setStatus({
         kind: "err",
         text:
-          mode === "decode"
-            ? "Not valid Base64, or it decodes to bytes that are not UTF-8 text (it may be an image or other binary data)."
-            : "Could not encode this input.",
+          mode === "encode"
+            ? "Could not encode this input."
+            : e instanceof NotBase64
+              ? "Not valid Base64: it has a character outside A-Z, a-z, 0-9, + / (or - _), misplaced = padding, or a length that cannot be right."
+              : "Valid Base64, but the bytes are not UTF-8 text. It is probably an image, a file or compressed data, which this tool cannot show.",
       });
     }
   }
@@ -129,7 +138,7 @@ export default function Base64Tool({ primary = "encode" }: { primary?: Mode }) {
         <span className="sp" />
         <label className="opt">
           <input type="checkbox" checked={urlSafe} onChange={(e) => setUrlSafe(e.target.checked)} /> URL-safe
-          (- and _, no padding)
+          output (- and _, no padding)
         </label>
       </div>
       <p className={`status ${status.kind === "idle" ? "" : status.kind}`} role="status" aria-live="polite">

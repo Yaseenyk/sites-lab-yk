@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { describeError, diffJson, flatten, formatBytes, sortKeys, toCsv } from "./json";
+import { describeError, diffJson, errorOffset, flatten, formatBytes, sortKeys, toCsv } from "./json";
 
 describe("describeError", () => {
   it("adds line and column when the engine only reports a position", () => {
@@ -88,5 +88,58 @@ describe("formatBytes", () => {
   it("scales units", () => {
     expect(formatBytes(512)).toBe("512 B");
     expect(formatBytes(2048)).toBe("2.0 KB");
+  });
+});
+
+describe("errorOffset", () => {
+  it("returns null for valid JSON, including bare values and escapes", () => {
+    for (const ok of [String.raw`{"a":[1,2.5e3,-0,"x\u00e9\n",true,null,{}]}`, "12", '"s"', " [ ] "]) {
+      expect(errorOffset(ok)).toBeNull();
+    }
+  });
+
+  it("points at the first character the grammar rejects", () => {
+    expect(errorOffset("[1,2,]")).toBe(5);
+    expect(errorOffset("{'a':1}")).toBe(1);
+    expect(errorOffset('{"a":undefined}')).toBe(5);
+    expect(errorOffset('{"a":01}')).toBe(6);
+    expect(errorOffset('{"a":1} x')).toBe(8);
+    expect(errorOffset('{"a":"x')).toBe(7);
+    expect(errorOffset("")).toBe(0);
+  });
+
+  it("agrees with JSON.parse on whether text is valid", () => {
+    const samples = [
+      '{"a":1,}',
+      "[1 2]",
+      String.raw`{"a":"\x"}`,
+      '{"a":.5}',
+      "nul",
+      '"\u0001"',
+      "[[[]]]",
+      "-",
+      "1e",
+      '{"a":1}',
+    ];
+    for (const s of samples) {
+      let valid = true;
+      try {
+        JSON.parse(s);
+      } catch {
+        valid = false;
+      }
+      expect(errorOffset(s) === null).toBe(valid);
+    }
+  });
+});
+
+describe("describeError without an engine position", () => {
+  it("adds line and column found by the grammar check", () => {
+    const input = "[\n  1,\n  2,\n]";
+    const msg = describeError(
+      input,
+      new Error("Unexpected token ']', \"[\n  1,\n  2,\n]\" is not valid JSON"),
+    );
+    expect(msg).toContain("(line 4, column 1)");
   });
 });
