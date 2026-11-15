@@ -38,7 +38,7 @@ export default function OvertimeCalculator({ mode }: { mode: "overtime" | "timeh
 
   return (
     <div className="tool">
-      <div className="fields">
+      <div className={mode === "timehalf" ? "fields four" : "fields"}>
         <div className="fld">
           <label htmlFor="o-rate">Regular hourly rate ({currencySymbol(currency)})</label>
           <input
@@ -148,6 +148,12 @@ export default function OvertimeCalculator({ mode }: { mode: "overtime" | "timeh
                   </span>
                   <span className="tile-value">{money(result.r * result.m * result.h, 2, currency)}</span>
                 </div>
+                <div className="tile">
+                  <span className="tile-label">Extra over regular pay</span>
+                  <span className="tile-value">
+                    {money(result.r * (result.m - 1) * result.h, 2, currency)}
+                  </span>
+                </div>
               </div>
               <table className="result-table">
                 <thead>
@@ -156,13 +162,17 @@ export default function OvertimeCalculator({ mode }: { mode: "overtime" | "timeh
                     <th scope="col" className="text-right">
                       Hourly rate
                     </th>
+                    <th scope="col" className="text-right">
+                      Pay for {result.h} hour{result.h === 1 ? "" : "s"}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {[1.5, 2, 2.5].map((m) => (
+                  {[1, 1.5, 2, 2.5].map((m) => (
                     <tr key={m} className={m === result.m ? "is-focus" : ""}>
-                      <th scope="row">{m}x</th>
+                      <th scope="row">{m === 1 ? "1x (regular pay)" : `${m}x`}</th>
                       <td className="text-right">{money(result.r * m, 2, currency)}</td>
+                      <td className="text-right">{money(result.r * m * result.h, 2, currency)}</td>
                     </tr>
                   ))}
                 </tbody>

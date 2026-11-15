@@ -1,3 +1,15 @@
+export interface NavLink {
+  href: string;
+  label: string;
+}
+
+/** A plain link, or (with `items`) a named group of links. A group's own `href` is not used. */
+export interface NavItem {
+  label: string;
+  href?: string;
+  items?: NavLink[];
+}
+
 export interface SiteConfig {
   /** Display name, e.g. "StreamerOS Dev Tools". */
   name: string;
@@ -13,7 +25,8 @@ export interface SiteConfig {
   cta: { label: string; href: string };
   /** Heading above the tool links in the footer. */
   toolsHeading: string;
-  nav: { href: string; label: string }[];
+  /** Header, mobile menu and footer links. An entry with `items` is a group that opens a menu. */
+  nav: NavItem[];
 }
 
 /** AdSense publisher id (ca-pub-...) from the environment; empty until approved. */

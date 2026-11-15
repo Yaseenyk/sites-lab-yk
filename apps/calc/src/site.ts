@@ -4,23 +4,53 @@ import { PAIRS } from "@/lib/pairs";
 export const site: SiteConfig = {
   name: "StreamerOS Money Calculators",
   brand: { lead: "StreamerOS", accent: "Money Calculators", mark: "calc" },
-  cta: { label: "Convert currency", href: "/currency-converter" },
+  cta: { label: "All calculators", href: "/" },
   toolsHeading: "Calculators",
   tagline:
     "Free money calculators: take-home pay, pay raises, salary and hourly pay, overtime, EMI, SIP, GST, India income tax, and live currency conversion for any currency. Instant, with the formula shown.",
   url: "https://calc.streamerosai.com",
   contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "",
   nav: [
-    { href: "/paycheck-calculator", label: "Paycheck" },
-    { href: "/pay-raise-calculator", label: "Pay Raise" },
-    { href: "/salary-calculator", label: "Salary" },
-    { href: "/overtime-pay-calculator", label: "Overtime" },
-    { href: "/emi-calculator", label: "EMI" },
-    { href: "/sip-calculator", label: "SIP" },
-    { href: "/income-tax-calculator-india", label: "India Tax" },
-    { href: "/currency-converter", label: "Currency" },
-    { href: "/usd-to-inr", label: "USD to INR" },
-    { href: "/guides", label: "Guides" },
+    {
+      label: "Pay",
+      items: [
+        { href: "/paycheck-calculator/", label: "Paycheck (take-home pay)" },
+        { href: "/hourly-paycheck-calculator/", label: "Hourly paycheck" },
+        { href: "/salary-calculator/", label: "Salary" },
+        { href: "/hourly-to-salary-calculator/", label: "Hourly to salary" },
+        { href: "/salary-to-hourly-calculator/", label: "Salary to hourly" },
+        { href: "/pay-raise-calculator/", label: "Pay raise" },
+        { href: "/overtime-pay-calculator/", label: "Overtime pay" },
+        { href: "/time-and-a-half-calculator/", label: "Time and a half" },
+      ],
+    },
+    {
+      label: "Loans",
+      items: [
+        { href: "/emi-calculator/", label: "EMI" },
+        { href: "/home-loan-emi-calculator/", label: "Home loan EMI" },
+        { href: "/car-loan-emi-calculator/", label: "Car loan EMI" },
+        { href: "/loan-eligibility-calculator/", label: "Loan eligibility" },
+      ],
+    },
+    {
+      label: "Invest and tax",
+      items: [
+        { href: "/sip-calculator/", label: "SIP" },
+        { href: "/compound-interest-calculator/", label: "Compound interest" },
+        { href: "/income-tax-calculator-india/", label: "India income tax" },
+        { href: "/gst-calculator/", label: "GST" },
+      ],
+    },
+    {
+      label: "Currency",
+      items: [
+        { href: "/currency-converter/", label: "Currency converter" },
+        { href: "/usd-to-inr/", label: "USD to INR" },
+        { href: "/usd-salary-to-inr-calculator/", label: "USD salary to INR" },
+      ],
+    },
+    { href: "/guides/", label: "Guides" },
   ],
 };
 
@@ -36,7 +66,7 @@ export const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION ?? "";
 export const AD_SLOT_CONTENT = process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT ?? "";
 
 /** Date the content was last reviewed; used for dateModified and sitemap lastmod. */
-export const UPDATED = "2026-11-12";
+export const UPDATED = "2026-11-15";
 
 export interface Tool {
   slug: string;
@@ -133,10 +163,10 @@ const payTools: Tool[] = [
   {
     slug: "time-and-a-half-calculator",
     path: "/time-and-a-half-calculator/",
-    seoTitle: "Time and a Half Calculator: Your Overtime Rate",
+    seoTitle: "Time and a Half Calculator: Overtime Rate and Pay",
     h1: "Time and a Half Calculator",
     description:
-      "Find your time-and-a-half rate from your hourly wage, plus double time and pay for the overtime hours you worked. Free and instant.",
+      "Time and a half calculator: enter your hourly rate to get your 1.5x overtime rate, pay for your overtime hours, and a chart of common wages.",
     blurb: "Your hourly rate at time and a half and double time, and pay for your hours.",
     icon: "dollar",
     group: "pay",

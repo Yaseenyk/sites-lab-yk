@@ -3,18 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import type { NavItem } from "./config";
 
 /**
  * The main menu for screens below `lg`, where the inline nav is hidden. It closes when the page changes and on Escape,
  * and the panel hangs from the sticky header so it always sits right under it.
  */
-export function MobileNav({
-  nav,
-  cta,
-}: {
-  nav: { href: string; label: string }[];
-  cta: { label: string; href: string };
-}) {
+export function MobileNav({ nav, cta }: { nav: NavItem[]; cta: { label: string; href: string } }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -34,6 +29,8 @@ export function MobileNav({
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
+
+  const item = "block rounded-xl px-3 py-3 text-base text-zinc-200 hover:bg-zinc-900 hover:text-accent";
 
   return (
     <div className="lg:hidden">
@@ -64,18 +61,30 @@ export function MobileNav({
           aria-label="Main"
           className="absolute inset-x-0 top-full border-b border-zinc-800/60 bg-ink/95 px-6 pb-5 pt-3 shadow-2xl backdrop-blur-md"
         >
-          <ul className="grid gap-1">
-            {nav.map((n) => (
-              <li key={n.href}>
-                <Link
-                  href={n.href}
-                  className="block rounded-xl px-3 py-3 text-base text-zinc-200 hover:bg-zinc-900 hover:text-accent"
-                >
+          <div className="grid max-h-[70vh] gap-1 overflow-y-auto">
+            {nav.map((n) =>
+              n.items ? (
+                <div key={n.label} className="pt-2">
+                  <p className="px-3 pb-1 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">
+                    {n.label}
+                  </p>
+                  <ul className="grid gap-0.5 sm:grid-cols-2">
+                    {n.items.map((x) => (
+                      <li key={x.href}>
+                        <Link href={x.href} className={item}>
+                          {x.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <Link key={n.label} href={n.href ?? "/"} className={item}>
                   {n.label}
                 </Link>
-              </li>
-            ))}
-          </ul>
+              ),
+            )}
+          </div>
           <Link
             href={cta.href}
             className="mt-3 block rounded-full bg-cyan px-4 py-3 text-center text-base font-semibold text-on-accent"

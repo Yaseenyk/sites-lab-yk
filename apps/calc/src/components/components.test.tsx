@@ -148,6 +148,17 @@ describe("OvertimeCalculator", () => {
     expect(text()).toContain("$50.00");
   });
 
+  it("time and a half mode: shows the extra over regular pay and the regular-pay row", () => {
+    render(<OvertimeCalculator mode="timehalf" />);
+    set("o-rate", "18");
+    set("o-hours", "10");
+    expect(text()).toContain("Extra over regular pay");
+    expect(text()).toContain("$270.00");
+    expect(text()).toContain("$90.00");
+    expect(text()).toContain("1x (regular pay)");
+    expect(text()).toContain("$180.00");
+  });
+
   it("asks for a rate and for hours", () => {
     render(<OvertimeCalculator mode="overtime" />);
     set("o-rate", "");

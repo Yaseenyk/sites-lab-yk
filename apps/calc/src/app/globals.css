@@ -249,6 +249,9 @@
   .tool .fields {
     @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
   }
+  .tool .fields.four {
+    @apply lg:grid-cols-4;
+  }
   .tool .fld label {
     @apply mb-1.5 block font-mono text-xs uppercase tracking-[0.14em] text-zinc-400;
   }
