@@ -106,6 +106,31 @@ range  = maximum - minimum`}</pre>
         The last row shows why the median matters: one very large salary drags the mean to 67 while the
         typical value is 35.
       </p>
+      <h2>Which average to quote</h2>
+      <ul>
+        <li>
+          <strong>Mean</strong> uses every value and is the right choice for evenly spread data such as test
+          scores, but a single outlier pulls it.
+        </li>
+        <li>
+          <strong>Median</strong> is the middle value and ignores how extreme the ends are, so it describes a
+          typical case for skewed figures such as salaries or house prices. With an even count it is the mean
+          of the middle two: for 3, 5, 7, 10 that is (5 + 7) / 2 = 6.
+        </li>
+        <li>
+          <strong>Mode</strong> is the most common value, useful for categories such as shoe sizes. A list can
+          have no mode, or several.
+        </li>
+      </ul>
+      <h2>A weighted average is different</h2>
+      <p>
+        When values do not count equally, the plain mean is wrong. A course is graded 30% on an exam where you
+        scored 80 and 70% on coursework where you scored 90. The weighted average is 0.30 x 80 + 0.70 x 90 =
+        24 + 63 = <strong>87</strong>, not the plain mean of 85. Multiply each value by its weight, add the
+        results, and divide by the total weight (here 1). This calculator gives the plain mean; for the spread
+        of the values, use the{" "}
+        <Link href="/standard-deviation-calculator">standard deviation calculator</Link>.
+      </p>
       <p>
         For percentages of a total, see the <Link href="/percentage-calculator">percentage calculator</Link>.
       </p>

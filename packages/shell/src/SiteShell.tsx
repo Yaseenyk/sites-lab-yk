@@ -24,6 +24,7 @@ function Brand({ site, size }: { site: SiteConfig; size: number }) {
 const SITE_LINKS: NavLink[] = [
   { href: "/about", label: "About" },
   { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
   { href: "/contact", label: "Contact" },
 ];
 

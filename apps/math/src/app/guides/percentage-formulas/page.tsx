@@ -69,6 +69,52 @@ new after Y% change  = old x (1 +/- Y / 100)         80 +25%  = 100`}</pre>
           <li>5%: half of 10%. 1%: move the decimal point two places.</li>
           <li>15% is 10% plus 5%. 25% is a quarter. 50% is half.</li>
         </ul>
+        <h2>Worked example: a price with a discount and tax</h2>
+        <p>
+          An item is listed at 1,000. It is on sale at 20% off, and 18% tax is added at the till. The order
+          matters for how you describe it but not for the result of two multiplications: 1,000 x 0.80 = 800
+          after the discount, then 800 x 1.18 = <strong>944</strong> with tax. Doing it the other way round,
+          1,000 x 1.18 x 0.80, is also 944, because multiplication can be done in either order. What is not
+          the same is adding the percentages: 1,000 x (1 + 0.18 - 0.20) would be 980, which is wrong.
+        </p>
+
+        <h2>Working backwards from a total</h2>
+        <p>
+          A bill is 1,180 and it includes 18% tax. The tax is not 18% of 1,180. The pre-tax price is 1,180 /
+          1.18 = <strong>1,000</strong>, so the tax is 180. Taking 18% of 1,180 gives 212.40, which is the
+          classic wrong answer, because 18% applies to the price before tax, not to the total. The same rule
+          finds the original price before any known percentage change: divide by (1 + the change).
+        </p>
+
+        <h2>Percent change in a row</h2>
+        <p>
+          Successive changes multiply. Up 10% and then down 10% is 100 x 1.10 x 0.90 = 99, a net fall of 1%,
+          not zero. Three years of 5% growth is 1.05 x 1.05 x 1.05 = 1.157625, so 15.76% in total, slightly
+          more than 3 x 5% = 15%, because each year&apos;s growth is on a larger base. The{" "}
+          <Link href="/percentage-increase-calculator">percentage increase calculator</Link> does one step;
+          chain the results for several.
+        </p>
+
+        <h2>When a percentage is not enough</h2>
+        <ul>
+          <li>
+            A percentage of a very small base looks dramatic: a rise from 2 to 4 cases is up 100%, but 2 more
+            cases. Quote the counts as well.
+          </li>
+          <li>
+            Percentages of different groups cannot be added or averaged without weighting them. If 50% of 10
+            people and 20% of 90 people agree, the combined figure is (5 + 18) / 100 = 23%, not 35%.
+          </li>
+          <li>
+            Percent difference and percent change answer different questions. Use change when one value is the
+            starting point and difference when neither is.
+          </li>
+        </ul>
+        <p>
+          All of the formulas on this page are standard arithmetic definitions of percentage and need no
+          external source; each example above can be checked with the calculators linked on this page or with
+          any ordinary calculator.
+        </p>
         <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>

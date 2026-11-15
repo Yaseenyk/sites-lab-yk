@@ -77,6 +77,50 @@ export default function Page() {
           <Link href="/hourly-to-salary-calculator">hourly to salary calculator</Link> goes the other way. The{" "}
           <Link href="/salary-calculator">salary calculator</Link> shows every pay period at once.
         </p>
+        <h2>Worked example: comparing two offers</h2>
+        <p>
+          Offer A is a $65,000 salary with an expected 45-hour week. Offer B is $31 an hour for 40 hours, paid
+          for the hours worked. Offer A is $65,000 / (45 x 52) = $65,000 / 2,340 = <strong>$27.78</strong> an
+          hour in practice, against $65,000 / 2,080 = $31.25 on paper. Offer B pays $31 x 2,080 = $64,480 a
+          year if you work every week, and extra hours would earn overtime if you are non-exempt. On paper the
+          two look the same; counting the real hours, B pays about $3 more per hour worked. The paper
+          comparison and the real one only agree when the hours do.
+        </p>
+
+        <h2>What the 2,080-hour method leaves out</h2>
+        <ul>
+          <li>
+            <strong>Benefits.</strong> Health insurance, retirement matching and paid leave have value that a
+            plain hourly figure ignores. Compare them separately, in money, before deciding.
+          </li>
+          <li>
+            <strong>Taxes.</strong> Every figure here is gross, before tax. Net pay depends on the country,
+            state, filing status and deductions; see the{" "}
+            <Link href="/paycheck-calculator">paycheck calculator</Link> for a US estimate.
+          </li>
+          <li>
+            <strong>Unpaid and paid weeks.</strong> If your contract pays for fewer than 52 weeks, divide by
+            the weeks you are actually paid for.
+          </li>
+          <li>
+            <strong>Commute and unpaid prep time.</strong> They are real hours of your life even when they are
+            not paid hours.
+          </li>
+        </ul>
+
+        <h2>Source</h2>
+        <p>
+          The 2,087-hour divisor used by the US federal government is explained in the Office of Personnel
+          Management fact sheet{" "}
+          <a
+            href="https://www.opm.gov/policy-data-oversight/pay-leave/pay-administration/fact-sheets/computing-hourly-rates-of-pay-using-the-2087-hour-divisor/"
+            rel="noopener noreferrer"
+          >
+            Computing Hourly Rates of Pay Using the 2087-Hour Divisor
+          </a>
+          . The 2,080-hour figure is plain arithmetic (40 x 52) and is the common private-sector convention,
+          not a legal definition; an employer or a contract may specify a different divisor.
+        </p>
         <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>

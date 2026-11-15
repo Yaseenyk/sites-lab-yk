@@ -131,6 +131,20 @@ export default function Home() {
           ))}
         </div>
       </section>
+      <section className="pt-12" aria-labelledby="about-h">
+        <p className="eyebrow">About</p>
+        <h2 id="about-h" className="page-h2 !mt-2">
+          How to read the results
+        </h2>
+        <p className="lede !mt-4 max-w-[68ch]">
+          Each calculator shows its formula and a worked example on the page, so you can check the answer by
+          hand. Pay figures are gross, before tax. The income tax tool names the financial years and slabs it
+          uses, the loan tools state their formula, and the currency tools use public daily reference rates,
+          not the rate a bank will give you. The guides explain the rules behind the numbers: how overtime is
+          calculated, where the 2,080-hour year comes from, and how exchange-rate margins work. They are
+          estimates for planning, not financial, tax or legal advice.
+        </p>
+      </section>
     </>
   );
 }

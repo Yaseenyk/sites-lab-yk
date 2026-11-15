@@ -33,6 +33,10 @@ export default function Page() {
           </Link>
         ))}
       </div>
+      <p className="guides-note mt-10 max-w-[68ch] text-sm leading-relaxed text-zinc-400">
+        Each guide works examples you can check with a pencil, lists the common mistakes, and says which
+        conventions the calculators use. The formulas are standard arithmetic and calendar rules.
+      </p>
     </>
   );
 }

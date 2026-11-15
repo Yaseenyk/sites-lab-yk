@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...guides.map((g) => at(g.path, 0.7)),
     at("/about/", 0.3),
     at("/privacy/", 0.2),
+    at("/terms/", 0.2),
     at("/contact/", 0.3),
   ];
 }

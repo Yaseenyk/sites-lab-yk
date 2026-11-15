@@ -6,7 +6,7 @@ import CurrencyConverter from "@/components/CurrencyConverter";
 import ToolPage from "@/components/ToolPage";
 import { PAIRS, pairBySlug } from "@/lib/pairs";
 import { money } from "@/lib/pay";
-import { site } from "@/site";
+import { isIndexable, site } from "@/site";
 
 export const dynamicParams = false;
 
@@ -41,6 +41,7 @@ export function generateMetadata({ params }: { params: { pair: string } }): Meta
     title: pair.seoTitle,
     description: pair.description,
     path: `/${pair.slug}/`,
+    noindex: !isIndexable(pair.slug),
   });
 }
 

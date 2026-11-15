@@ -76,6 +76,114 @@ export default function Page() {
           choice. Encoding text with accents or emoji through a function that assumes single-byte characters
           produces wrong output, which is why the tool encodes as UTF-8.
         </p>
+        <h2>Worked examples you can check</h2>
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Input</th>
+              <th scope="col">Base64</th>
+              <th scope="col">Why</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">
+                <code>Man</code>
+              </th>
+              <td>
+                <code>TWFu</code>
+              </td>
+              <td>3 bytes make exactly 4 characters, no padding</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <code>Ma</code>
+              </th>
+              <td>
+                <code>TWE=</code>
+              </td>
+              <td>2 bytes leave a short group, one = pad</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <code>M</code>
+              </th>
+              <td>
+                <code>TQ==</code>
+              </td>
+              <td>1 byte, two = pads</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <code>user:pass</code>
+              </th>
+              <td>
+                <code>dXNlcjpwYXNz</code>
+              </td>
+              <td>the form used by HTTP Basic authentication</td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <code>Hello, 世界</code>
+              </th>
+              <td>
+                <code>SGVsbG8sIOS4lueVjA==</code>
+              </td>
+              <td>13 UTF-8 bytes (each Chinese character takes 3), 20 output characters</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          The length rule is <code>4 x ceil(n / 3)</code> characters for n bytes. For 13 bytes that is 4 x 5 =
+          20, which matches the last row. The URL-safe form differs only in the two symbols: the three bytes{" "}
+          <code>FB FF FE</code> encode to <code>+//+</code> in standard Base64 and <code>-__-</code> in
+          Base64URL.
+        </p>
+
+        <h2>Why a Base64 string will not decode</h2>
+        <ul>
+          <li>
+            <strong>Wrong length.</strong> A valid string with padding has a length that is a multiple of 4.
+            Without padding, a remainder of 1 character is impossible, so the string was cut off or has an
+            extra character.
+          </li>
+          <li>
+            <strong>The wrong alphabet.</strong> A string with <code>-</code> or <code>_</code> is Base64URL;
+            a decoder expecting the standard alphabet rejects it, and the reverse is also true.
+          </li>
+          <li>
+            <strong>Line breaks and spaces.</strong> Email (MIME) wraps Base64 at 76 characters per line.
+            Strict decoders reject the line breaks; remove them first.
+          </li>
+          <li>
+            <strong>It was not text to begin with.</strong> Decoding an image or a compressed file as text
+            produces unreadable characters. That is not an error in the Base64; the bytes are simply not text.
+          </li>
+        </ul>
+        <p>
+          The <Link href="/base64-decode">Base64 decode</Link> page lists the cause it finds for a string that
+          fails, and the <Link href="/base64">Base64 encoder and decoder</Link> handles both directions with
+          UTF-8.
+        </p>
+
+        <h2>In JavaScript</h2>
+        <p>
+          Browsers have <code>btoa()</code> and <code>atob()</code>, but they work on strings of single-byte
+          characters, so <code>btoa(&quot;世&quot;)</code> throws an error. For text, convert to UTF-8 bytes
+          first (for example with <code>TextEncoder</code>) and encode those. In Node.js,{" "}
+          <code>Buffer.from(text).toString(&quot;base64&quot;)</code> does it directly, and{" "}
+          <code>&quot;base64url&quot;</code> gives the URL-safe variant.
+        </p>
+
+        <h2>Sources</h2>
+        <p>
+          The alphabet, padding and the URL-safe variant are defined in RFC 4648 (
+          <a href="https://datatracker.ietf.org/doc/html/rfc4648" rel="noopener noreferrer">
+            datatracker.ietf.org/doc/html/rfc4648
+          </a>
+          ). The 76-character line limit comes from MIME, RFC 2045 section 6.8. HTTP Basic authentication is
+          RFC 7617, and the JWT format that uses Base64URL is RFC 7519.
+        </p>
         <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>

@@ -17,7 +17,7 @@ describe("llms.txt", () => {
 
   it("lists every tool and guide page the sitemap lists", async () => {
     const body = await GET().text();
-    const skip = ["/", "/about/", "/privacy/", "/contact/", "/guides/"];
+    const skip = ["/", "/about/", "/privacy/", "/terms/", "/contact/", "/guides/"];
     for (const entry of sitemap()) {
       const path = entry.url.slice(site.url.length);
       if (skip.includes(path) || path.startsWith("/zh/")) {

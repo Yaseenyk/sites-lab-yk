@@ -40,6 +40,7 @@ export function buildLlmsTxt(i: LlmsInput): string {
     `## About\n\n${[
       { path: "/about/", title: "About" },
       { path: "/privacy/", title: "Privacy" },
+      { path: "/terms/", title: "Terms" },
       { path: "/contact/", title: "Contact" },
     ]
       .map((p) => line(i.url, p))

@@ -10,8 +10,8 @@ export const metadata = pageMetadata(site, {
   description: tool.description,
   path: tool.path,
   // The sister site math.streamerosai.com owns the general percentage calculator; this copy stays
-  // for readers who arrive from the finance tools, but is not a second page competing for the query.
-  canonical: "https://math.streamerosai.com/percentage-calculator/",
+  // for readers who arrive from the finance tools, but is kept out of search results as a duplicate.
+  noindex: true,
 });
 
 const faq = [

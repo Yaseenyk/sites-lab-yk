@@ -76,6 +76,57 @@ export default function Page() {
           fits, and reduces dimensions in steps if quality alone is not enough. Always keep the original,
           because lossy compression cannot be undone.
         </p>
+        <h2>Worked example: why resizing comes first</h2>
+        <p>
+          An uncompressed colour image stores about 3 bytes per pixel (one each for red, green and blue). A
+          4000 x 3000 photo has 12,000,000 pixels, so before compression it is about 36 MB. Scaled to 1600 x
+          1200 it has 1,920,000 pixels and is about 5.8 MB uncompressed, 16% of the original (1,920,000 /
+          12,000,000). JPEG then compresses what is left; the ratio depends heavily on the picture, with
+          detailed scenes compressing less than plain ones, so the only reliable way to know the final size is
+          to save it and look. The point of the arithmetic is the direction: the number of pixels is
+          multiplied by the quality setting, not added to it, so cutting pixels first leaves less for the
+          quality setting to have to cut.
+        </p>
+
+        <h2>Common mistakes</h2>
+        <ul>
+          <li>
+            <strong>Compressing the same file again and again.</strong> Each save of a JPEG discards a little
+            more detail. Always start from the original file, and compress once.
+          </li>
+          <li>
+            <strong>Renaming instead of converting.</strong> Changing <code>photo.png</code> to{" "}
+            <code>photo.jpg</code> in the file name does not change the data inside, and many forms inspect
+            the content, not the name.
+          </li>
+          <li>
+            <strong>Making a small image bigger.</strong> Scaling up adds pixels but no detail, so the file
+            grows and looks soft. Resize down only.
+          </li>
+          <li>
+            <strong>Using PNG for photographs.</strong> PNG stores every pixel exactly, so photographs are
+            large; it earns its size on logos, screenshots and text.
+          </li>
+          <li>
+            <strong>Expecting transparency after converting to JPG.</strong> JPEG has none; transparent areas
+            are filled with a background colour (white in these tools).
+          </li>
+        </ul>
+
+        <h2>What the quality number means</h2>
+        <p>
+          The quality value you set is passed to the browser&apos;s own image encoder as a number between 0
+          and 1 (the <code>quality</code> argument of <code>canvas.toBlob</code>, documented by MDN at{" "}
+          <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob"
+            rel="noopener noreferrer"
+          >
+            developer.mozilla.org
+          </a>
+          ). It is not a percentage of the original size, and the same number can give slightly different
+          files in different browsers, because each browser uses its own encoder. That is why the tools show
+          the real size after encoding instead of promising one.
+        </p>
         <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>

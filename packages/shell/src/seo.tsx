@@ -15,6 +15,8 @@ export function pageMetadata(
     languages?: Record<string, string>;
     /** Absolute canonical URL when another page (possibly on a sister site) owns this content. */
     canonical?: string;
+    /** Keep the page out of search results (and the sitemap, which the app must also omit it from). */
+    noindex?: boolean;
   },
 ): Metadata {
   const url = `${site.url}${opts.path}`;
@@ -22,6 +24,7 @@ export function pageMetadata(
   return {
     title: { absolute: opts.title },
     description: opts.description,
+    ...(opts.noindex ? { robots: { index: false, follow: true } } : {}),
     alternates: {
       canonical: opts.canonical ?? url,
       ...(opts.languages ? { languages: opts.languages } : {}),

@@ -312,6 +312,22 @@ const currencyTools: Tool[] = [
 
 export const tools: Tool[] = [...payTools, ...financeTools, ...currencyTools];
 
+/**
+ * Pages kept out of search results and the sitemap. The minor currency pairs share one template and
+ * differ in a few paragraphs, which Google and AdSense both treat as thin when there are many; the two
+ * dollar-rupee pages carry the search demand and stay indexed. The percentage calculator is owned by
+ * math.streamerosai.com. To bring a pair back, remove its slug here (and deepen it first).
+ */
+export const NOINDEX_SLUGS: readonly string[] = [
+  "percentage-calculator",
+  "eur-to-inr",
+  "aud-to-inr",
+  "gbp-to-inr",
+  "cad-to-inr",
+  "aed-to-inr",
+];
+export const isIndexable = (slug: string): boolean => !NOINDEX_SLUGS.includes(slug);
+
 export const toolBySlug = (slug: string): Tool => {
   const t = tools.find((x) => x.slug === slug);
   if (!t) {

@@ -105,6 +105,21 @@ export default function Home() {
           ))}
         </div>
       </section>
+      <section className="pt-12" aria-labelledby="about-h">
+        <p className="eyebrow">About</p>
+        <h2 id="about-h" className="page-h2 !mt-2">
+          How these tools are meant to be used
+        </h2>
+        <p className="lede !mt-4 max-w-[68ch]">
+          Paste text, read the result, copy it out. The formatter, validator, viewer, minifier and compare
+          tools all use the same strict JSON parser that your own code uses, so a document that passes here
+          will pass JSON.parse in a browser or in Node.js. Where a document fails, the tools report the line
+          and column of the first error rather than a vague message, and the guides explain the usual causes.
+          The Base64 tools encode text as UTF-8 and handle the URL-safe variant and missing padding. Nothing
+          you paste is sent anywhere; the privacy policy says exactly what the site does record, which is
+          page-level visit statistics only.
+        </p>
+      </section>
     </>
   );
 }

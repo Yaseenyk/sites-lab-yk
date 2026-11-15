@@ -116,6 +116,20 @@ export default function Home() {
           ))}
         </div>
       </section>
+      <section className="pt-12" aria-labelledby="about-h">
+        <p className="eyebrow">About</p>
+        <h2 id="about-h" className="page-h2 !mt-2">
+          How to read the results
+        </h2>
+        <p className="lede !mt-4 max-w-[68ch]">
+          Each calculator shows its formula and works a few examples you can check by hand. The percentage
+          tools do exact arithmetic on the numbers you type; the date tools work on calendar dates rather than
+          timestamps, so daylight saving never shifts a day; and the age calculator explains the rule it uses
+          for 29 February birthdays. Where a result depends on a convention, such as counting the end date or
+          skipping weekends, the page says which one it uses and how to switch. The guides explain the
+          formulas and the usual mistakes.
+        </p>
+      </section>
     </>
   );
 }

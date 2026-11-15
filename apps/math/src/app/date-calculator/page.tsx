@@ -117,6 +117,22 @@ export default function Page() {
         between two dates instead, use the{" "}
         <Link href="/days-between-dates-calculator">days between dates calculator</Link>.
       </p>
+
+      <h2>Weeks, days and chained months</h2>
+      <p>
+        Adding weeks is adding 7 days each: 4 weeks after 4 November 2026 is 28 days later, 2 December 2026.
+        Months are different because the end-of-month rule is applied once, to the final result. Adding 2
+        months to 31 January 2026 gives 31 March 2026, the same day number. Adding 1 month twice, one step at
+        a time, gives 28 February and then 28 March, because the first step already lost the 31st. So when you
+        need a date a number of months ahead, add all the months in one go from the original date.
+      </p>
+      <p>
+        The calculator works on calendar dates, not timestamps, so a daylight-saving change never moves the
+        answer by a day. It does not know public holidays or weekends: if a deadline falls on one, check the
+        rule in the contract or law that sets it, since some roll to the next working day and some do not. The{" "}
+        <Link href="/guides/counting-days-between-dates">guide to counting days between dates</Link> covers
+        inclusive counting and working days.
+      </p>
     </ToolPage>
   );
 }

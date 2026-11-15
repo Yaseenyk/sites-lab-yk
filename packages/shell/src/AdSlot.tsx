@@ -21,8 +21,7 @@ const HEIGHT: Record<AdPlacement, number> = {
 
 /**
  * A labelled ad container with a reserved height.
- * - Before AdSense is configured it keeps the space: a quiet, labelled box of the reserved height, so the
- *   layout is already final when ads are switched on and nothing moves.
+ * - Before AdSense is configured it renders nothing at all (no empty box, no label).
  * - Build with NEXT_PUBLIC_ADS_PREVIEW=1 to draw dashed placeholders with the placement name.
  */
 export function AdSlot({ slot, placement }: { slot: string; placement: AdPlacement }) {
@@ -44,18 +43,10 @@ export function AdSlot({ slot, placement }: { slot: string; placement: AdPlaceme
     );
   }
 
+  // Not configured: render nothing. An empty labelled box is a screen without content, which AdSense
+  // policy forbids. Layout is stable anyway because the ad container reserves its height once enabled.
   if (!ADSENSE_CLIENT || !slot) {
-    return (
-      <aside
-        className="my-10 rounded-2xl border border-zinc-800/60 bg-zinc-950/40 p-4 text-center"
-        style={{ minHeight: height }}
-        aria-hidden="true"
-        data-ad-placement={placement}
-        data-ad-state="reserved"
-      >
-        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">Advertisement</p>
-      </aside>
-    );
+    return null;
   }
   return (
     <aside className="my-10" aria-label="Advertisement" data-ad-placement={placement}>

@@ -33,6 +33,10 @@ export default function Page() {
           </Link>
         ))}
       </div>
+      <p className="guides-note mt-10 max-w-[68ch] text-sm leading-relaxed text-zinc-400">
+        Each guide ends with the standard it is based on (an RFC for both of these), worked examples whose
+        output you can check in the tools, and the situations where the usual advice does not apply.
+      </p>
     </>
   );
 }

@@ -33,6 +33,11 @@ export default function Page() {
           </Link>
         ))}
       </div>
+      <p className="guides-note mt-10 max-w-[68ch] text-sm leading-relaxed text-zinc-400">
+        Each guide works its numbers through step by step, names the official source for any rule (the US
+        Department of Labor, the Office of Personnel Management and others), and says where the rule stops
+        applying. They are written for understanding, not as advice about your own pay or money.
+      </p>
     </>
   );
 }

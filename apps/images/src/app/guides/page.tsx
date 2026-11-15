@@ -33,6 +33,11 @@ export default function Page() {
           </Link>
         ))}
       </div>
+      <p className="guides-note mt-10 max-w-[68ch] text-sm leading-relaxed text-zinc-400">
+        Each guide works through real file-size arithmetic, lists the mistakes that cause rejections, and says
+        what the tools can and cannot do. They are general, because every portal sets its own rules; the
+        instructions on the form you are filling in always win.
+      </p>
     </>
   );
 }

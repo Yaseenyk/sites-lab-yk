@@ -69,6 +69,53 @@ export default function Page() {
           February as the anniversary. Some countries&apos; laws use 1 March instead, so use the rule that
           applies where it matters legally.
         </p>
+        <h2>Worked example: a seven-week countdown</h2>
+        <p>
+          Wednesday 4 November 2026 to Friday 25 December 2026. Subtracting the dates gives{" "}
+          <strong>51 days</strong> (26 days left in November after the 4th, plus 25 in December). Counting
+          both ends gives 52. In weeks that is 7 weeks and 2 days, since 7 x 7 = 49. Because the range starts
+          on a Wednesday and ends on a Friday, the working days (Monday to Friday) are 37 if the last day is
+          not counted and 38 if it is. Public holidays inside the range, such as 25 December itself, would
+          come off that number by hand. Adding days works the same way in reverse: 15 March 2026 plus 100 days
+          is 23 June 2026.
+        </p>
+
+        <h2>Why computers get this wrong</h2>
+        <p>
+          A common bug is to subtract two timestamps and divide by 24 hours. In a time zone that changes its
+          clocks, a day can be 23 or 25 hours long, so the result is off by a fraction and rounds the wrong
+          way. A calendar-date subtraction, which ignores the time of day, avoids it. The calculators here
+          work on calendar dates, not on timestamps, for that reason.
+        </p>
+
+        <h2>Checking a result by hand</h2>
+        <ul>
+          <li>
+            Same year: subtract the day numbers of the year. 4 November is day 308 and 25 December is day 359
+            of 2026, and 359 - 308 = 51.
+          </li>
+          <li>One year later, same date: 365 days, or 366 if 29 February falls between the two dates.</li>
+          <li>
+            Weeks: divide by 7 and keep the remainder. 51 / 7 is 7 with 2 left over, so 7 weeks and 2 days.
+          </li>
+        </ul>
+
+        <h2>Date formats</h2>
+        <p>
+          Numeric dates such as 04/11/2026 mean 4 November in much of the world and 11 April in the United
+          States, which is a frequent source of off-by-months mistakes. The calculators take a date picker
+          value, not typed text, to avoid the ambiguity. For anything written down for others, the unambiguous
+          form is year-month-day (2026-11-04), the format of ISO 8601 and of RFC 3339 (
+          <a href="https://www.rfc-editor.org/rfc/rfc3339" rel="noopener noreferrer">
+            rfc-editor.org/rfc/rfc3339
+          </a>
+          ).
+        </p>
+        <p>
+          Limits: the working day count skips Saturdays and Sundays only. Some countries have a different
+          working week and every country has its own public holidays, so for payroll, legal or contract
+          deadlines check the rule in the document that governs them.
+        </p>
         <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>

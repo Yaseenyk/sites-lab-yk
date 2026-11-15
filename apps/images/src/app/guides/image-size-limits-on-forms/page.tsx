@@ -87,6 +87,45 @@ export default function Page() {
           work in your browser, so the picture never leaves your device, and the saved file has its camera and
           location data removed.
         </p>
+        <h2>KB, kilobytes and what the form means</h2>
+        <p>
+          A kilobyte is 1,000 bytes in the decimal convention and 1,024 bytes in the older binary one, and
+          portals do not say which they use. The size tools on this site aim at the smaller figure: a 50 KB
+          target means at most 50 x 1,000 = 50,000 bytes, which is also under 50 x 1,024 = 51,200 bytes, so
+          the file passes under either reading. File managers differ too, so a file shown as &quot;48.8
+          KB&quot; in one program can be &quot;50,000 bytes&quot; in another; the byte count is what the
+          portal compares.
+        </p>
+
+        <h2>Worked example: a passport-style photo for a 50 KB limit</h2>
+        <p>
+          A photo from a phone is, say, 3024 x 4032 pixels and 2.6 MB. The form asks for a JPG under 50 KB and
+          gives no pixel size. Cropping to the head and shoulders and resizing to about 600 x 800 leaves
+          480,000 pixels, about 4% of the original 12.2 million, which is more than enough for a small
+          on-screen portrait. At that size a photo on a plain background will often land under the limit near
+          the middle of the quality range; a cluttered background needs a lower setting and may not. Look at
+          the result at 100% zoom before you upload: if the face is clear, the file is good; if edges are
+          blocky, go back to the original and crop tighter instead of lowering quality further.
+        </p>
+
+        <h2>Common reasons a form still rejects the file</h2>
+        <ul>
+          <li>The pixel dimensions are outside the range the form states, even though the size is fine.</li>
+          <li>The file is a different format inside than its extension says (a renamed PNG).</li>
+          <li>The file is below a stated minimum size because it was compressed too far.</li>
+          <li>
+            The form measures the size in its own way, for example counting a different unit; read the
+            instructions again for the exact wording.
+          </li>
+          <li>
+            The photo rules were not met: background colour, face position or no glasses. No tool can fix
+            those afterwards; retake the picture.
+          </li>
+        </ul>
+        <p>
+          These numbers and rules are general. Each portal sets its own, so follow the instructions on the
+          form you are using; this guide cannot know them.
+        </p>
         <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { UPDATED, guides, site, tools } from "@/site";
+import { UPDATED, guides, isIndexable, site, tools } from "@/site";
 
 export const dynamic = "force-static";
 
@@ -11,12 +11,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   });
   return [
     at("/", 1),
-    // percentage-calculator is canonical to math.streamerosai.com, so it is not listed here.
-    ...tools.filter((t) => t.slug !== "percentage-calculator").map((t) => at(t.path, 0.9)),
+    // Noindexed pages (see NOINDEX_SLUGS) are not listed.
+    ...tools.filter((t) => isIndexable(t.slug)).map((t) => at(t.path, 0.9)),
     at("/guides/", 0.7),
     ...guides.map((g) => at(g.path, 0.7)),
     at("/about/", 0.3),
     at("/privacy/", 0.2),
+    at("/terms/", 0.2),
     at("/contact/", 0.3),
   ];
 }

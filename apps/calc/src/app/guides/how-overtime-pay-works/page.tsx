@@ -71,6 +71,59 @@ weekly pay    = regular hours x rate + overtime hours x overtime rate`}</pre>
           count toward the 40-hour total. See the{" "}
           <Link href="/time-and-a-half-calculator">time and a half calculator</Link> for the rates.
         </p>
+        <h2>Worked example: a bonus changes the overtime rate</h2>
+        <p>
+          Suppose you earn $18 an hour, work 45 hours, and are also paid a $90 non-discretionary attendance
+          bonus for the week. The regular rate is all pay for the week divided by all hours worked: ($18 x 45
+          + $90) / 45 = $900 / 45 = <strong>$20.00</strong> an hour, not $18. You have already been paid
+          straight time for all 45 hours, so what is still owed for the 5 overtime hours is the extra half:
+          0.5 x $20.00 x 5 = <strong>$50</strong>. The week comes to $900 + $50 = $950. If the bonus were
+          ignored and overtime were figured on $18, the half-time premium would be only 0.5 x $18 x 5 = $45,
+          which is $5 short. Small on one week, but it adds up over a year.
+        </p>
+
+        <h2>Worked example: daily overtime in California</h2>
+        <p>
+          A California employee at $20 an hour works five 10-hour days, 50 hours in the week. Each day has 8
+          regular hours and 2 overtime hours, so 40 regular hours pay $800 and 10 overtime hours pay 10 x $30
+          = $300, for $1,100. On a single 13-hour day the split is 8 regular hours ($160), 4 hours at 1.5
+          times ($120) and 1 hour at double time ($40), for $320. The{" "}
+          <Link href="/time-and-a-half-calculator">time and a half calculator</Link> applies the federal
+          weekly rule and does not model daily overtime, so for California use the arithmetic above.
+        </p>
+
+        <h2>Common mistakes</h2>
+        <ul>
+          <li>
+            <strong>Averaging weeks.</strong> A 50-hour week followed by a 30-hour week is still 10 hours of
+            overtime in the first week.
+          </li>
+          <li>
+            <strong>Assuming a salary means no overtime.</strong> Salary alone does not make someone exempt;
+            the job duties and the salary level both have to meet the Department of Labor tests.
+          </li>
+          <li>
+            <strong>Counting unpaid breaks.</strong> A genuine, uninterrupted meal break is normally not
+            working time, but a break spent answering calls is.
+          </li>
+          <li>
+            <strong>Forgetting that rates differ.</strong> Employers can, and some do, pay more than 1.5 times
+            by contract. The legal minimum is a floor, not a fixed rate.
+          </li>
+        </ul>
+
+        <h2>Sources and limits</h2>
+        <p>
+          The federal rules come from the Fair Labor Standards Act, summarised by the US Department of Labor
+          Wage and Hour Division in its fact sheet <em>Overtime Pay Requirements of the FLSA</em> (Fact Sheet
+          23) and, for the regular rate, Fact Sheet 56A, both at dol.gov. California&apos;s daily rules are
+          described by the state&apos;s Division of Labor Standards Enforcement at{" "}
+          <a href="https://www.dir.ca.gov/dlse/faq_overtime.htm" rel="noopener noreferrer">
+            dir.ca.gov/dlse/faq_overtime.htm
+          </a>
+          . This page explains the arithmetic. It does not decide whether a particular job is exempt, and it
+          is not legal advice; if pay looks wrong, ask your employer or your state labor department.
+        </p>
         <AdSlot slot={AD_SLOT_CONTENT} placement="article-end" />
       </article>
     </>

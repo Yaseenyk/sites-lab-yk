@@ -120,6 +120,20 @@ export default function Home() {
           ))}
         </div>
       </section>
+      <section className="pt-12" aria-labelledby="about-h">
+        <p className="eyebrow">About</p>
+        <h2 id="about-h" className="page-h2 !mt-2">
+          What happens to your picture
+        </h2>
+        <p className="lede !mt-4 max-w-[68ch]">
+          Your browser decodes the image, draws it on a canvas and saves it again at the size, dimensions and
+          format you choose, so the picture never leaves your device. The size tools search for the best
+          quality that fits the limit and shrink the dimensions if quality alone is not enough, and every
+          result shows the real file size and pixel dimensions before you download. Lossy compression cannot
+          be undone, so keep your original. The guides cover the form-upload limits that cause most rejections
+          and what each setting does to the file.
+        </p>
+      </section>
     </>
   );
 }
