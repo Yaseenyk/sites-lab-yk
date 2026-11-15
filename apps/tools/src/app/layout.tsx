@@ -1,7 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
-import { AdSenseScript, ClarityScript, JsonLd, SiteShell, ThemeScript, siteJsonLd } from "@sites/shell";
+import {
+  AdSenseScript,
+  ClarityScript,
+  JsonLd,
+  PulseScript,
+  SiteShell,
+  ThemeScript,
+  siteJsonLd,
+} from "@sites/shell";
 import "@sites/shell/theme.css";
 import "./globals.css";
 import { GA_ID, GSC_VERIFICATION, author, site } from "@/site";
@@ -56,6 +64,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
         <AdSenseScript />
         <ClarityScript />
+        <PulseScript host={new URL(site.url).hostname} />
         <JsonLd data={siteJsonLd(site, author)} />
       </head>
       <body>

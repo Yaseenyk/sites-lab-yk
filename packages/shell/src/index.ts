@@ -10,3 +10,4 @@ export * from "./ThemeToggle";
 export * from "./ClarityScript";
 export * from "./HeaderNav";
 export * from "./llms";
+export * from "./PulseScript";
