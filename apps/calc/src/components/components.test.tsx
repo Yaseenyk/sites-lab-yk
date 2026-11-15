@@ -1,7 +1,10 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import type * as Currency from "@/lib/currency";
+import CompoundInterestCalculator from "./CompoundInterestCalculator";
 import CurrencyConverter from "./CurrencyConverter";
+import GstCalculator from "./GstCalculator";
+import LoanEligibilityCalculator from "./LoanEligibilityCalculator";
 import OvertimeCalculator from "./OvertimeCalculator";
 import PayConverter from "./PayConverter";
 import RaiseCalculator from "./RaiseCalculator";
@@ -212,5 +215,51 @@ describe("CurrencyConverter", () => {
     render(<CurrencyConverter initialFrom="USD" initialTo="INR" initialAmount="1" />);
     await waitFor(() => expect(screen.getAllByRole("group", { name: "All currencies" }).length).toBe(2));
     expect(document.querySelector('#cc-from option[value="USD"]')?.textContent).toMatch(/USD - /);
+  });
+});
+
+describe("GstCalculator", () => {
+  it("adds 18% to 1,000 by default", () => {
+    render(<GstCalculator />);
+    expect(text()).toContain("₹1,180.00");
+    expect(text()).toContain("₹180.00");
+  });
+
+  it("offers the current rates, the older slabs and a free-entry rate", () => {
+    render(<GstCalculator />);
+    const labels = Array.from(document.querySelectorAll("#gst-rate option")).map((o) => o.textContent);
+    expect(labels).toContain("40%");
+    expect(labels).toContain("12% (rate before 22 Sep 2025)");
+    expect(labels).toContain("Other rate");
+  });
+
+  it("takes any typed rate when Other rate is chosen", () => {
+    render(<GstCalculator />);
+    set("gst-rate", "other");
+    set("gst-other", "3");
+    expect(text()).toContain("₹1,030.00");
+    set("gst-other", "");
+    expect(text()).toContain("Enter a GST rate");
+  });
+});
+
+describe("CompoundInterestCalculator", () => {
+  it("shows the effective annual rate beside maturity value and interest", () => {
+    render(<CompoundInterestCalculator />);
+    expect(text()).toContain("₹2,15,892");
+    expect(text()).toContain("Effective annual rate");
+    expect(text()).toContain("8%");
+    set("ci-freq", "12");
+    expect(text()).toContain("8.3%");
+  });
+});
+
+describe("LoanEligibilityCalculator", () => {
+  it("shows the loan, the affordable EMI and the interest on that loan", () => {
+    render(<LoanEligibilityCalculator />);
+    expect(text()).toContain("₹30,000");
+    expect(text()).toContain("₹14,45,201");
+    expect(text()).toContain("Total interest on that loan");
+    expect(text()).toContain("₹3,54,799");
   });
 });

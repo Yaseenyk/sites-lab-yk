@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { compoundInterest, compoundYearlyGrowth } from "./compoundInterest";
+import { compoundInterest, compoundYearlyGrowth, effectiveAnnualRate } from "./compoundInterest";
 
 describe("compoundInterest", () => {
   it("matches the textbook example: 10,000 at 10% annually for 2 years = 12,100", () => {
@@ -33,5 +33,24 @@ describe("compoundYearlyGrowth", () => {
       expect(r.interestThisYear).toBeGreaterThan(0);
     }
     expect(rows[1]!.value).toBeGreaterThan(rows[0]!.value);
+  });
+});
+
+describe("effectiveAnnualRate", () => {
+  it("equals the stated rate when compounding annually", () => {
+    expect(effectiveAnnualRate(8, 1)).toBeCloseTo(8, 9);
+  });
+
+  it("is higher for more frequent compounding: 8% monthly is about 8.2999%", () => {
+    expect(effectiveAnnualRate(8, 12)).toBeCloseTo(8.29995, 4);
+    expect(effectiveAnnualRate(8, 12)).toBeGreaterThan(effectiveAnnualRate(8, 4));
+  });
+
+  it("gives the same one-year result as compounding at the effective rate once", () => {
+    const eff = effectiveAnnualRate(12, 4);
+    expect(compoundInterest(1_000, eff, 1, 1).maturityValue).toBeCloseTo(
+      compoundInterest(1_000, 12, 1, 4).maturityValue,
+      6,
+    );
   });
 });

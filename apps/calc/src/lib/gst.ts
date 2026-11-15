@@ -1,16 +1,24 @@
 /**
- * GST (Goods and Services Tax, India) add/remove math. The four standard slabs — 5%, 12%, 18%,
- * 28% — are the ones GST Council publishes for most goods and services; a handful of categories
- * use other rates, which this calculator also accepts as a free-entry percentage.
- * Source: CBIC GST rate schedule, https://cbic-gst.gov.in/gst-goods-services-rates.html, checked
- * 11 Nov 2026.
+ * GST (Goods and Services Tax, India) add/remove math. After the 56th GST Council meeting
+ * (3 September 2025) most goods and services moved to a two-rate structure: a standard rate of
+ * 18% and a merit rate of 5%, with a special 40% rate for a few goods and services. Those changes
+ * took effect on 22 September 2025 (cigarettes, chewing tobacco and a few similar goods later).
+ * Source: GST Council press release (PIB), https://gstcouncil.gov.in/sites/default/files/2025-09/press_release_press_information_bureau_0.pdf,
+ * checked 16 Nov 2026.
+ *
+ * The old 12% and 28% slabs no longer apply to new supplies, but invoices for supplies made before
+ * 22 September 2025 still carry them, so the calculator keeps them as "older rate" options. Any
+ * other rate can be typed in.
  *
  * For a supply within one state, GST splits evenly into CGST and SGST; for an inter-state supply
  * it is charged once as IGST at the same total rate, so the "GST amount" figure is the same
  * either way and only the CGST/SGST split changes.
  */
 
-export const GST_RATES = [5, 12, 18, 28] as const;
+/** Rates in force for supplies from 22 September 2025. */
+export const GST_RATES = [5, 18, 40] as const;
+/** Slabs that applied before 22 September 2025; still found on older invoices. */
+export const GST_OLD_RATES = [12, 28] as const;
 
 export interface GstResult {
   base: number;

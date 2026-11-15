@@ -1,8 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { compoundInterest, compoundYearlyGrowth } from "@/lib/compoundInterest";
-import { money, num } from "@/lib/pay";
+import { compoundInterest, compoundYearlyGrowth, effectiveAnnualRate } from "@/lib/compoundInterest";
+import { money, num, percent } from "@/lib/pay";
 
 const FREQUENCIES = [
   { label: "Annually", value: 1 },
@@ -35,12 +35,13 @@ export default function CompoundInterestCalculator() {
       kind: "ok" as const,
       c: compoundInterest(p, r, y, n),
       yearly: compoundYearlyGrowth(p, r, y, n),
+      effective: effectiveAnnualRate(r, n),
     };
   }, [principal, rate, years, frequency]);
 
   return (
     <div className="tool">
-      <div className="fields">
+      <div className="fields four">
         <div className="fld">
           <label htmlFor="ci-principal">Principal amount (₹)</label>
           <input
@@ -97,6 +98,10 @@ export default function CompoundInterestCalculator() {
             <div className="tile">
               <span className="tile-label">Total interest</span>
               <span className="tile-value">{money(result.c.totalInterest, 0, "INR")}</span>
+            </div>
+            <div className="tile">
+              <span className="tile-label">Effective annual rate</span>
+              <span className="tile-value">{percent(result.effective, 3)}</span>
             </div>
           </div>
           <h3 className="mb-2 mt-6 text-sm font-semibold text-zinc-300">Year-by-year growth</h3>

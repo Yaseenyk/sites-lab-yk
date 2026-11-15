@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { loanEligibility } from "@/lib/loan";
+import { emi, loanEligibility } from "@/lib/loan";
 import { money, num } from "@/lib/pay";
 
 export default function LoanEligibilityCalculator() {
@@ -32,7 +32,9 @@ export default function LoanEligibilityCalculator() {
     if (!Number.isFinite(y) || y <= 0 || y > 30) {
       return { kind: "idle" as const, text: "Enter a loan term between 1 and 30 years." };
     }
-    return { kind: "ok" as const, e: loanEligibility(inc, existing, f, r, Math.round(y * 12)) };
+    const months = Math.round(y * 12);
+    const e = loanEligibility(inc, existing, f, r, months);
+    return { kind: "ok" as const, e, interest: emi(e.maxLoan, r, months).totalInterest };
   }, [income, existingEmis, foir, rate, years]);
 
   return (
@@ -67,7 +69,9 @@ export default function LoanEligibilityCalculator() {
             value={foir}
             onChange={(e) => setFoir(e.target.value)}
           />
-          <span className="text-xs text-zinc-500">Typically 40 to 50%; 50% is the default here</span>
+          <span className="text-xs text-zinc-500">
+            Each lender sets its own limit; 50% is the default here
+          </span>
         </div>
         <div className="fld">
           <label htmlFor="le-rate">Interest rate, per year (%)</label>
@@ -105,6 +109,10 @@ export default function LoanEligibilityCalculator() {
             <div className="tile">
               <span className="tile-label">Affordable EMI</span>
               <span className="tile-value">{money(result.e.affordableEmi, 0, "INR")}</span>
+            </div>
+            <div className="tile">
+              <span className="tile-label">Total interest on that loan</span>
+              <span className="tile-value">{money(result.interest, 0, "INR")}</span>
             </div>
           </div>
           <p className="meta mt-3">

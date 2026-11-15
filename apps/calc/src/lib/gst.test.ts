@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addGst, removeGst } from "./gst";
+import { GST_OLD_RATES, GST_RATES, addGst, removeGst } from "./gst";
 
 describe("addGst", () => {
   it("adds 18% to a 1,000 base: 180 GST, 1,180 total, split evenly", () => {
@@ -31,5 +31,17 @@ describe("removeGst", () => {
 
   it("is all zero for a non-positive total", () => {
     expect(removeGst(0, 18).base).toBe(0);
+  });
+});
+
+describe("GST rate lists", () => {
+  it("lists the rates in force since 22 September 2025 and the older slabs separately", () => {
+    expect([...GST_RATES]).toEqual([5, 18, 40]);
+    expect([...GST_OLD_RATES]).toEqual([12, 28]);
+  });
+
+  it("adds and removes the 40% rate", () => {
+    expect(addGst(1_000, 40).total).toBeCloseTo(1_400, 6);
+    expect(removeGst(1_400, 40).base).toBeCloseTo(1_000, 6);
   });
 });

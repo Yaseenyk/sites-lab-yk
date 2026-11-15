@@ -66,7 +66,7 @@ export const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION ?? "";
 export const AD_SLOT_CONTENT = process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT ?? "";
 
 /** Date the content was last reviewed; used for dateModified and sitemap lastmod. */
-export const UPDATED = "2026-11-15";
+export const UPDATED = "2026-11-16";
 
 export interface Tool {
   slug: string;
@@ -232,10 +232,10 @@ const financeTools: Tool[] = [
   {
     slug: "gst-calculator",
     path: "/gst-calculator/",
-    seoTitle: "GST Calculator: Add or Remove GST, with CGST/SGST",
+    seoTitle: "GST Calculator India: Add or Remove GST (5%, 18%, 40%)",
     h1: "GST Calculator",
     description:
-      "Add GST to a price or extract it from a GST-inclusive price, at 5%, 12%, 18%, 28% or any rate, with the CGST and SGST split shown.",
+      "Add GST to a price or take it out of a GST-inclusive price at 5%, 18%, 40% or any rate, with the CGST and SGST split shown.",
     blurb: "Add or remove GST at any rate, with the CGST/SGST split.",
     icon: "percent",
     group: "finance",

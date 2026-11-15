@@ -64,10 +64,12 @@ export default function PayConverter({
   const toTarget = (n: number) =>
     rates.status === "ok" ? convert(n, currency, target, rates.data.rates) : NaN;
   const digitsFor = (u: Unit) => (u === "annual" || u === "quarterly" ? 0 : 2);
+  /** A second figure beside the highlighted one, so the first row of tiles is not a single box. */
+  const companion: Unit = highlight === "annual" ? "monthly" : highlight === "hourly" ? "weekly" : "annual";
 
   return (
     <div className="tool">
-      <div className="fields">
+      <div className="fields four">
         <div className="fld">
           <label htmlFor="pay-amount">Pay amount ({currencySymbol(currency)})</label>
           <input
@@ -93,6 +95,16 @@ export default function PayConverter({
         <div className="fld">
           <label htmlFor="pay-currency">Currency</label>
           <CurrencySelect id="pay-currency" value={currency} onChange={setCurrency} />
+        </div>
+        <div className="fld">
+          <label htmlFor="pay-target">Also show in</label>
+          <CurrencySelect
+            id="pay-target"
+            value={target}
+            onChange={setTarget}
+            allowNone
+            noneLabel="Same currency only"
+          />
         </div>
         <div className="fld">
           <label htmlFor="pay-hours">Hours per week</label>
@@ -124,16 +136,6 @@ export default function PayConverter({
             onChange={(e) => setWeeks(e.target.value)}
           />
         </div>
-        <div className="fld">
-          <label htmlFor="pay-target">Also show in</label>
-          <CurrencySelect
-            id="pay-target"
-            value={target}
-            onChange={setTarget}
-            allowNone
-            noneLabel="Same currency only"
-          />
-        </div>
       </div>
 
       {result.kind !== "ok" ? (
@@ -147,6 +149,12 @@ export default function PayConverter({
               <span className="tile-label">{UNIT_LABEL[highlight]}</span>
               <span className="tile-value">
                 {money(result.values[highlight], digitsFor(highlight), currency)}
+              </span>
+            </div>
+            <div className="tile">
+              <span className="tile-label">{UNIT_LABEL[companion]}</span>
+              <span className="tile-value">
+                {money(result.values[companion], digitsFor(companion), currency)}
               </span>
             </div>
             {showTarget && (

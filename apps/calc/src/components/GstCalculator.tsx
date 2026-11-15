@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { addGst, GST_RATES, removeGst } from "@/lib/gst";
+import { addGst, GST_OLD_RATES, GST_RATES, removeGst } from "@/lib/gst";
 import { money, num } from "@/lib/pay";
 
 type Mode = "add" | "remove";
@@ -10,18 +10,20 @@ export default function GstCalculator() {
   const [mode, setMode] = useState<Mode>("add");
   const [amount, setAmount] = useState("1000");
   const [rate, setRate] = useState<string>("18");
+  const [other, setOther] = useState("");
+  const isOther = rate === "other";
 
   const result = useMemo(() => {
     const a = num(amount);
     if (!Number.isFinite(a) || a <= 0) {
       return { kind: "idle" as const, text: "Enter an amount." };
     }
-    const r = num(rate);
+    const r = num(isOther ? other : rate);
     if (!Number.isFinite(r) || r < 0 || r > 100) {
       return { kind: "idle" as const, text: "Enter a GST rate between 0 and 100 percent." };
     }
     return { kind: "ok" as const, g: mode === "add" ? addGst(a, r) : removeGst(a, r) };
-  }, [mode, amount, rate]);
+  }, [mode, amount, rate, other, isOther]);
 
   return (
     <div className="tool">
@@ -67,11 +69,27 @@ export default function GstCalculator() {
                 {g}%
               </option>
             ))}
-            {!GST_RATES.includes(Number(rate) as (typeof GST_RATES)[number]) && (
-              <option value={rate}>{rate}% (custom)</option>
-            )}
+            {GST_OLD_RATES.map((g) => (
+              <option key={g} value={g}>
+                {g}% (rate before 22 Sep 2025)
+              </option>
+            ))}
+            <option value="other">Other rate</option>
           </select>
         </div>
+        {isOther && (
+          <div className="fld">
+            <label htmlFor="gst-other">Your GST rate (%)</label>
+            <input
+              id="gst-other"
+              type="text"
+              inputMode="decimal"
+              value={other}
+              onChange={(e) => setOther(e.target.value)}
+              placeholder="e.g. 3"
+            />
+          </div>
+        )}
       </div>
 
       {result.kind !== "ok" ? (

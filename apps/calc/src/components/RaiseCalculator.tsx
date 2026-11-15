@@ -75,7 +75,7 @@ export default function RaiseCalculator() {
         ))}
       </div>
 
-      <div className="fields mt-4">
+      <div className="fields four mt-4">
         <div className="fld">
           <label htmlFor="r-current">Current pay ({currencySymbol(currency)})</label>
           <input

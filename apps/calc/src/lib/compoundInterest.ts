@@ -44,3 +44,11 @@ export function compoundYearlyGrowth(
   }
   return rows;
 }
+
+/** The yearly rate that gives the same result as `annualRatePercent` compounded `periodsPerYear` times a year. */
+export function effectiveAnnualRate(annualRatePercent: number, periodsPerYear: number): number {
+  if (periodsPerYear <= 0) {
+    return annualRatePercent;
+  }
+  return (Math.pow(1 + annualRatePercent / 100 / periodsPerYear, periodsPerYear) - 1) * 100;
+}
