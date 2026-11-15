@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { fmt, num, parseNumbers, simplifyRatio, solveRatio, stats } from "@/lib/percent";
+import { fmt, num, parseNumbers, simplifyRatio, solveRatio, stats, whatPercent } from "@/lib/percent";
 import { Block, Field, Hint, Tile } from "./ui";
 
 /** Simplify a ratio, and solve A:B = C:X for the missing value. */
@@ -9,9 +9,14 @@ export function RatioCalculator() {
   const [a, setA] = useState("6");
   const [b, setB] = useState("4");
   const [c, setC] = useState("30");
+  const [total, setTotal] = useState("500");
 
   const simple = simplifyRatio(num(a), num(b));
   const x = solveRatio(num(a), num(b), num(c));
+  const na = num(a);
+  const nb = num(b);
+  const nt = num(total);
+  const canSplit = na >= 0 && nb >= 0 && na + nb > 0 && Number.isFinite(nt);
 
   return (
     <div className="tool">
@@ -31,6 +36,12 @@ export function RatioCalculator() {
             )}
           </div>
         </div>
+        {simple && na > 0 && nb > 0 && (
+          <p className="meta mt-2">
+            Shares of the whole: {fmt(whatPercent(na, na + nb), 2)}% and {fmt(whatPercent(nb, na + nb), 2)}%.
+            As 1 : n it is 1 : {fmt(nb / na, 4)}.
+          </p>
+        )}
       </Block>
       <Block title="Solve A : B = C : X">
         <div className="fields">
@@ -44,6 +55,22 @@ export function RatioCalculator() {
               />
             ) : (
               <Hint>Enter A, B and C; A cannot be 0.</Hint>
+            )}
+          </div>
+        </div>
+      </Block>
+      <Block title="Divide a total in the ratio A : B">
+        <div className="fields">
+          <Field id="r-total" label="Total to share" value={total} onChange={setTotal} />
+          <div className="fld">
+            {canSplit ? (
+              <Tile
+                hero
+                label={`${fmt(na)} : ${fmt(nb)} of ${fmt(nt)} gives`}
+                value={`${fmt((nt * na) / (na + nb))} and ${fmt((nt * nb) / (na + nb))}`}
+              />
+            ) : (
+              <Hint>Enter A, B (not both 0) and a total.</Hint>
             )}
           </div>
         </div>
@@ -111,6 +138,7 @@ export function AverageCalculator({ variant = "average" }: { variant?: "average"
                 ["Range", fmt(s.range)],
                 ...(variant === "deviation"
                   ? ([
+                      ["Sum of squared differences", fmt(s.variance * s.count, 6)],
                       ["Variance (population)", fmt(s.variance, 6)],
                       ["Variance (sample)", s.sampleVariance === null ? "-" : fmt(s.sampleVariance, 6)],
                     ] as [string, string][])

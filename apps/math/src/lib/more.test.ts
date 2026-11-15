@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { combine, describe as describeDuration, fromSeconds, toSeconds, totalIn } from "./duration";
-import { stackedPrice, stats } from "./percent";
+import { priceBeforeDiscount, stackedPrice, stats } from "./percent";
 
 describe("standard deviation", () => {
   const s = stats([2, 4, 4, 4, 5, 5, 7, 9]);
@@ -80,5 +80,20 @@ describe("durations", () => {
     expect(totalIn(fromSeconds(5400), "minutes")).toBe(90);
     expect(totalIn(fromSeconds(-5400), "minutes")).toBe(-90);
     expect(totalIn(fromSeconds(172800), "days")).toBe(2);
+  });
+});
+
+describe("price before a discount", () => {
+  it("undoes a discount", () => {
+    expect(priceBeforeDiscount(60, 25)).toBeCloseTo(80, 10);
+    expect(priceBeforeDiscount(72, 28)).toBeCloseTo(100, 10);
+    expect(priceBeforeDiscount(50, 0)).toBe(50);
+  });
+
+  it("has no answer at 100% off or more, or with missing input", () => {
+    expect(priceBeforeDiscount(0, 100)).toBeNaN();
+    expect(priceBeforeDiscount(10, 120)).toBeNaN();
+    expect(priceBeforeDiscount(NaN, 25)).toBeNaN();
+    expect(priceBeforeDiscount(60, NaN)).toBeNaN();
   });
 });

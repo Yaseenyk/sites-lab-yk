@@ -4,6 +4,8 @@ import { useState } from "react";
 import { decreaseBy, fmt, increaseBy, num, percentChange, percentDifference } from "@/lib/percent";
 import { Block, Field, Hint, Tile } from "./ui";
 
+const signed = (n: number): string => `${n >= 0 ? "+" : ""}${fmt(n, 2)}%`;
+
 type Kind = "increase" | "decrease" | "change" | "difference";
 
 /**
@@ -46,6 +48,13 @@ export default function PercentChangeTool({ kind }: { kind: Kind }) {
               <Tile label="Absolute difference" value={fmt(Math.abs(num(to) - num(from)))} />
               <Tile label="Average of the two" value={fmt((num(from) + num(to)) / 2)} />
             </div>
+          )}
+          {Number.isFinite(pd) && num(from) !== 0 && num(to) !== 0 && (
+            <p className="meta mt-2">
+              As a change with a direction: {fmt(num(from))} to {fmt(num(to))} is{" "}
+              {signed(percentChange(num(from), num(to)))}, and {fmt(num(to))} to {fmt(num(from))} is{" "}
+              {signed(percentChange(num(to), num(from)))}.
+            </p>
           )}
         </Block>
       </div>

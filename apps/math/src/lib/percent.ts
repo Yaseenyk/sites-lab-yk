@@ -19,6 +19,10 @@ export const decreaseBy = (v: number, p: number): number => v * (1 - p / 100);
 export const stackedPrice = (price: number, discounts: number[]): number =>
   discounts.reduce((p, d) => decreaseBy(p, d), price);
 
+/** Price before a discount of `p` percent was taken off: 60 after 25% off was 80. NaN at 100% off or more. */
+export const priceBeforeDiscount = (sale: number, p: number): number =>
+  p >= 100 ? NaN : sale / (1 - p / 100);
+
 /** Percent change from `from` to `to`, relative to the starting value. Negative for a decrease. */
 export const percentChange = (from: number, to: number): number =>
   from === 0 ? NaN : ((to - from) / Math.abs(from)) * 100;

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { pageMetadata } from "@sites/shell";
 import PercentChangeTool from "@/components/PercentChangeTool";
 import ToolPage from "@/components/ToolPage";
+import { fmt, percentChange, percentDifference } from "@/lib/percent";
 import { site, toolBySlug } from "@/site";
 
 const tool = toolBySlug("percent-change-calculator");
@@ -10,6 +11,24 @@ export const metadata = pageMetadata(site, {
   description: tool.description,
   path: tool.path,
 });
+
+const signed = (n: number): string => `${n >= 0 ? "+" : ""}${fmt(n, 2)}%`;
+
+/** Moves shown in both directions to show that the base is the starting value. */
+const ROUND_TRIPS: [number, number][] = [
+  [40, 50],
+  [100, 150],
+  [200, 100],
+  [80, 120],
+  [10, 100],
+];
+
+/** Moves of the same size from different starting points. */
+const SAME_GAP: [number, number][] = [
+  [10, 20],
+  [100, 110],
+  [1000, 1010],
+];
 
 const faq = [
   {
@@ -35,6 +54,14 @@ const faq = [
   {
     q: "How do I calculate percent change in a spreadsheet?",
     a: "With the old value in A1 and the new value in B1, enter =(B1-A1)/ABS(A1) and format the cell as a percentage.",
+  },
+  {
+    q: "How do I calculate percent change step by step?",
+    a: `Subtract the old value from the new value, divide by the old value, and multiply by 100. For 62 to 78 the change is 16, and 16 / 62 x 100 = ${fmt(percentChange(62, 78), 2)}%.`,
+  },
+  {
+    q: "Why does a move of the same size give different percentages?",
+    a: `Because the base is different. A rise of 10 is ${signed(percentChange(10, 20))} from 10, ${signed(percentChange(100, 110))} from 100 and ${signed(percentChange(1000, 1010))} from 1,000.`,
   },
   {
     q: "Is a 10% change the same as 10 percentage points?",
@@ -100,6 +127,63 @@ percent difference = |a - b| / ((a + b) / 2) x 100`}</pre>
         </tbody>
       </table>
 
+      <h2>How to calculate percent change</h2>
+      <ol>
+        <li>Subtract the old value from the new value. The sign tells you the direction.</li>
+        <li>Divide by the old value, ignoring its sign. The old value is always the base.</li>
+        <li>Multiply by 100 and add a percent sign. Positive is an increase, negative a decrease.</li>
+      </ol>
+
+      <h2>The same move in both directions</h2>
+      <p>
+        Going up and coming back are not equal percentages, because each is measured against its own starting
+        value. The percent difference is shown for comparison, since it gives one answer for both.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">From, to</th>
+            <th scope="col">Percent change</th>
+            <th scope="col">Change back</th>
+            <th scope="col">Percent difference</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ROUND_TRIPS.map(([a, b]) => (
+            <tr key={`${a}-${b}`}>
+              <th scope="row">
+                {fmt(a)} to {fmt(b)}
+              </th>
+              <td>{signed(percentChange(a, b))}</td>
+              <td>{signed(percentChange(b, a))}</td>
+              <td>{fmt(percentDifference(a, b), 2)}%</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h2>The same gap from different starting points</h2>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">From, to</th>
+            <th scope="col">Absolute change</th>
+            <th scope="col">Percent change</th>
+          </tr>
+        </thead>
+        <tbody>
+          {SAME_GAP.map(([a, b]) => (
+            <tr key={`${a}-${b}`}>
+              <th scope="row">
+                {fmt(a)} to {fmt(b)}
+              </th>
+              <td>{fmt(b - a)}</td>
+              <td>{signed(percentChange(a, b))}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
       <h2>Which one should I use?</h2>
       <ul>
         <li>
@@ -111,6 +195,16 @@ percent difference = |a - b| / ((a + b) / 2) x 100`}</pre>
           measurements of the same thing.
         </li>
       </ul>
+      <h2>What this calculator leaves out</h2>
+      <p>
+        It compares two values. It does not chain several periods into growth over time; for that, multiply by
+        1 plus the rate for each period, as the{" "}
+        <Link href="/percentage-increase-calculator">percentage increase calculator</Link> page shows. When
+        the old value is zero there is no percent change, and when it is negative or near zero the result is
+        hard to interpret, so look at the absolute change as well. The{" "}
+        <Link href="/guides/percentage-formulas">guide to percentage formulas</Link> explains percent against
+        percentage points.
+      </p>
       <p>
         For a plain increase or decrease, see the <Link href="/percentage-increase-calculator">increase</Link>{" "}
         and <Link href="/percentage-decrease-calculator">decrease</Link> calculators.

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { combine, describe, totalIn, type Duration } from "@/lib/duration";
-import { decreaseBy, fmt, num, percentChange, stackedPrice } from "@/lib/percent";
+import { decreaseBy, fmt, num, percentChange, priceBeforeDiscount, stackedPrice } from "@/lib/percent";
 import { Block, Field, Hint, Tile } from "./ui";
 
 const toInt = (v: string): number => (v.trim() === "" ? 0 : Number(v));
@@ -111,6 +111,9 @@ export function DiscountCalculator() {
   const valid = [p, first, second].every(Number.isFinite) && p >= 0;
   const single = decreaseBy(p, first);
   const found = percentChange(num(orig), num(sale));
+  const [paid, setPaid] = useState("60");
+  const [pct, setPct] = useState("25");
+  const before = num(pct) < 0 ? NaN : priceBeforeDiscount(num(paid), num(pct));
 
   return (
     <div className="tool">
@@ -149,6 +152,27 @@ export function DiscountCalculator() {
             )}
           </div>
         </div>
+        {Number.isFinite(found) && found < 0 && (
+          <p className="meta mt-2">
+            Saving: {fmt(num(orig) - num(sale), 2)}. You pay {fmt(100 + found, 2)}% of the original price.
+          </p>
+        )}
+      </Block>
+      <Block title="Original price before the discount">
+        <div className="fields">
+          <Field id="d-paid" label="Price you paid" value={paid} onChange={setPaid} />
+          <Field id="d-pct" label="Discount it had (%)" value={pct} onChange={setPct} />
+          <div className="fld">
+            {Number.isFinite(before) ? (
+              <Tile hero label="Price before the discount" value={fmt(before, 2)} />
+            ) : (
+              <Hint>Enter the price paid and a discount from 0 to under 100.</Hint>
+            )}
+          </div>
+        </div>
+        {Number.isFinite(before) && (
+          <p className="meta mt-2">The discount took off {fmt(before - num(paid), 2)}.</p>
+        )}
       </Block>
     </div>
   );

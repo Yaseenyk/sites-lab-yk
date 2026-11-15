@@ -76,6 +76,10 @@ export function DateDiffCalculator() {
                 <th scope="row">Working days (Mon to Fri)</th>
                 <td className="text-right">{fmt(r.work, 0)}</td>
               </tr>
+              <tr>
+                <th scope="row">Weekend days (Sat and Sun)</th>
+                <td className="text-right">{fmt(r.days - r.work, 0)}</td>
+              </tr>
             </tbody>
           </table>
           {r.reversed && (

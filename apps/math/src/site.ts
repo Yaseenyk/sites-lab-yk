@@ -55,7 +55,7 @@ export const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION ?? "";
 export const AD_SLOT_CONTENT = process.env.NEXT_PUBLIC_ADSENSE_SLOT_CONTENT ?? "";
 
 /** Date the content was last reviewed; used for dateModified and sitemap lastmod. */
-export const UPDATED = "2026-11-15";
+export const UPDATED = "2026-11-16";
 
 export interface Tool {
   slug: string;
@@ -97,10 +97,10 @@ export const tools: Tool[] = [
   {
     slug: "percentage-decrease-calculator",
     path: "/percentage-decrease-calculator/",
-    seoTitle: "Percentage Decrease Calculator: Find the % Decrease",
+    seoTitle: "Percentage Decrease Calculator: 80 to 60 Is -25%",
     h1: "Percentage Decrease Calculator",
     description:
-      "Calculate a percentage decrease between two numbers, or reduce a number by a percentage, such as a discount. Free and instant, with the formula.",
+      "Find the percentage decrease between two numbers, or reduce a number by a percentage. 80 to 60 is a 25% decrease; 200 down 15% is 170.",
     blurb: "Find the percent decrease between two numbers, or reduce a number by a percentage.",
     icon: "diff",
     group: "percent",
