@@ -15,7 +15,7 @@ export function PrivacyBody({ site, extra }: { site: SiteConfig; extra?: ReactNo
     <>
       <p>
         This policy describes what {site.name} ({site.url}) does with information when you use it. Last
-        updated: 16 November 2026.
+        updated: 19 November 2026.
       </p>
       <h2>What the tools do with your input</h2>
       {extra}
@@ -42,8 +42,10 @@ export function PrivacyBody({ site, extra }: { site: SiteConfig; extra?: ReactNo
           <h2>Usage recording</h2>
           <p>
             This site uses Microsoft Clarity to see how pages are used, through heatmaps and anonymised
-            session recordings. Clarity is configured to mask the text on the page, so what you type or load
-            into a tool is not recorded. Clarity uses cookies; see{" "}
+            session recordings (mouse movement, clicks and scrolling). Clarity is configured to mask the text
+            on the page, so what you type or load into a tool is not recorded. Clarity sets its own cookies (
+            <code>_clck</code>, <code>_clsk</code>) and Microsoft cookies on clarity.ms and bing.com (such as{" "}
+            <code>MUID</code>); see{" "}
             <a href="https://privacy.microsoft.com/privacystatement" rel="noopener noreferrer">
               Microsoft&apos;s privacy statement
             </a>
@@ -53,11 +55,16 @@ export function PrivacyBody({ site, extra }: { site: SiteConfig; extra?: ReactNo
       )}
       <h2>First-party visit counter</h2>
       <p>
-        The site also runs a small counter of its own, a script served from our own Cloudflare Worker, to tell
-        real visits from automated ones. It records the page address, the referring site, clicks and scroll
-        depth, and a human-or-bot signal. It sets no cookies, never reads what you type or the values in input
-        fields, and switches itself off when your browser sends Do Not Track or Global Privacy Control, and on
-        localhost. The data is used only to understand how the site is used.
+        The site also runs a small counter of its own, Pulse, a script served from our own Cloudflare Worker
+        (pulse.yaseenyk.workers.dev), to tell real visits from automated ones. It records the page address
+        (without the query string), the referring site and campaign tags, country, device type, browser and
+        system name, screen size, language, the name of your network provider, scroll depth, time on the page,
+        page speed, which links and buttons were clicked, and a human-or-bot signal. It sets no cookies, never
+        reads what you type or the values in input fields, and stores no IP address or browser string: the
+        address is used in memory only, to limit abuse and to make a visitor code that changes every day (a
+        one-way hash with a random salt that is deleted the next day), so visits cannot be linked across days.
+        Records are deleted after 90 days. It switches itself off when your browser sends Do Not Track or
+        Global Privacy Control, and on localhost. The data is used only to understand how the site is used.
       </p>
       <h2>Advertising</h2>
       <p>

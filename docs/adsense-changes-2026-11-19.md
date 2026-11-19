@@ -159,3 +159,28 @@ today.
 - Plan one reviewed guide per site per week for the next few weeks; that is the clearest gap against approved tool
   sites.
 - Keep `ADSENSE_CLIENT` unset until approval.
+## Privacy and crawl audit (19 Nov 2026)
+
+Method: one tool page per site loaded in headless Chromium with every third-party request and cookie recorded, two or
+three more pages per site fetched raw, and `packages/shell` read for scripts injected later.
+
+| Site | Services loaded | Sitemap URLs | Failures |
+|---|---|---|---|
+| tools.streamerosai.com | GA4, Clarity, Pulse | 16 | none |
+| calc.streamerosai.com | GA4, Clarity, Pulse, jsDelivr (exchange rates, on the currency tools only) | 29 | none |
+| images.streamerosai.com | GA4, Clarity, Pulse | 19 | none |
+| math.streamerosai.com | GA4, Clarity, Pulse | 23 | none |
+
+GA4 sets `_ga`/`_ga_*`; Clarity sets `_clck`/`_clsk` plus Microsoft's `MUID`/`MR`/`SM` on clarity.ms and bing.com; Pulse
+sets nothing. No AdSense request, no Google Fonts request on any of the four.
+
+- Privacy pages fixed (all four share `PrivacyBody` in `packages/shell/src/LegalPages.tsx`): the Pulse paragraph did not
+  give its host, and missed country, network name, time, speed, the daily-rotating visitor code, that no IP is stored and
+  the 90-day deletion; the Clarity paragraph said only "uses cookies". Both now say what they collect and which cookies.
+  The calc page already names jsDelivr, Cloudflare Pages and ExchangeRate-API for the rates. AdSense "future use"
+  paragraph kept. The Clarity paragraph renders only when `NEXT_PUBLIC_CLARITY_ID` is set (true in all four deploys).
+- Crawl: each robots.txt allows crawling and names its sitemap. All 87 sitemap URLs return 200, none redirects, none is
+  noindex, every canonical matches.
+- Raw HTML: main text is in the static HTML on every sampled page (tool pages 1,000 to 1,700 words).
+- Gates: `lint`, `lint:shell`, `typecheck`, 60 tests pass for tools; all four apps build. `prettier --check` still
+  reports CRLF-only differences in config files on this Windows checkout (not in CI); `LegalPages.tsx` is formatted.
