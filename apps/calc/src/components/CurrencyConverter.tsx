@@ -112,18 +112,16 @@ export default function CurrencyConverter({
         <div role="status" aria-live="polite">
           <div className="tile-grid">
             <div className="tile hero-tile sm:col-span-2">
-              <span className="tile-label">
-                {money(view.a, "auto", from)} {currencyName(from)} =
-              </span>
+              <span className="tile-label">{`${money(view.a, "auto", from)} ${currencyName(from)} =`}</span>
               <span className="tile-value">{money(view.convertTo(view.a), "auto", to)}</span>
             </div>
             <div className="tile">
               <span className="tile-label">Exchange rate</span>
               <span className="tile-value text-lg">
-                1 {from} = {view.rate.toLocaleString("en-US", { maximumFractionDigits: 6 })} {to}
+                {`1 ${from} = ${view.rate.toLocaleString("en-US", { maximumFractionDigits: 6 })} ${to}`}
               </span>
               <span className="meta">
-                1 {to} = {(1 / view.rate).toLocaleString("en-US", { maximumFractionDigits: 6 })} {from}
+                {`1 ${to} = ${(1 / view.rate).toLocaleString("en-US", { maximumFractionDigits: 6 })} ${from}`}
               </span>
             </div>
           </div>

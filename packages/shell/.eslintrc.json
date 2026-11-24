@@ -59,7 +59,8 @@
         "src/seo.tsx",
         "src/AdSlot.tsx",
         "src/ThemeToggle.tsx",
-        "src/ClarityScript.tsx"
+        "src/ClarityScript.tsx",
+        "src/TranslateGuard.tsx"
       ],
       "rules": {
         "react/no-danger": "off"

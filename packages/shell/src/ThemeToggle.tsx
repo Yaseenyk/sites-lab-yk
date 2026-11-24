@@ -1,16 +1,23 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { TranslateGuard } from "./TranslateGuard";
 
 const KEY = "theme";
 
 /**
  * Runs in <head> before first paint, so a visitor who chose a theme never sees a flash of the other one.
  * With no saved choice the CSS follows the system setting (prefers-color-scheme).
+ * Every app renders this in its <head>, so it also carries the Google Translate guard (TranslateGuard.tsx).
  */
 export function ThemeScript() {
   const code = `try{var t=localStorage.getItem("${KEY}");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}`;
-  return <script dangerouslySetInnerHTML={{ __html: code }} />;
+  return (
+    <>
+      <script dangerouslySetInnerHTML={{ __html: code }} />
+      <TranslateGuard />
+    </>
+  );
 }
 
 function currentTheme(): "light" | "dark" {

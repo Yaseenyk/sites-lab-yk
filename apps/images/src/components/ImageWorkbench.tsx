@@ -244,7 +244,7 @@ export default function ImageWorkbench({ mode, presetKB, convertTo = "image/jpeg
             </div>
             {positive(targetKB) === null && (
               <div className="fld">
-                <label htmlFor="o-quality">Quality: {quality}%</label>
+                <label htmlFor="o-quality">{`Quality: ${quality}%`}</label>
                 <input
                   id="o-quality"
                   type="range"
@@ -279,7 +279,7 @@ export default function ImageWorkbench({ mode, presetKB, convertTo = "image/jpeg
           <>
             {convertTo !== "image/png" && (
               <div className="fld">
-                <label htmlFor="o-quality">Quality: {quality}%</label>
+                <label htmlFor="o-quality">{`Quality: ${quality}%`}</label>
                 <input
                   id="o-quality"
                   type="range"

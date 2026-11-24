@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { HeaderNav } from "../../../../packages/shell/src/HeaderNav";
 import { MobileNav } from "../../../../packages/shell/src/MobileNav";
 import { ThemeScript, ThemeToggle } from "../../../../packages/shell/src/ThemeToggle";
+import { TRANSLATE_GUARD_JS } from "../../../../packages/shell/src/TranslateGuard";
 
 let pathname = "/";
 vi.mock("next/navigation", () => ({ usePathname: () => pathname }));
@@ -67,6 +68,39 @@ describe("ThemeToggle", () => {
     localStorage.setItem("theme", "purple");
     new Function(code)();
     expect(document.documentElement.getAttribute("data-theme")).toBeNull();
+  });
+});
+
+describe("TranslateGuard", () => {
+  it("is rendered with the theme script, so every app's head carries it", () => {
+    const { container } = render(<ThemeScript />);
+    const scripts = [...container.querySelectorAll("script")].map((s) => s.innerHTML);
+    expect(scripts).toContain(TRANSLATE_GUARD_JS);
+  });
+
+  it("stops removeChild and insertBefore from throwing after a translator moved the node", () => {
+    const removeChild = Node.prototype.removeChild;
+    const insertBefore = Node.prototype.insertBefore;
+    try {
+      new Function(TRANSLATE_GUARD_JS)();
+      const parent = document.createElement("p");
+      const text = document.createTextNode("7");
+      parent.appendChild(text);
+      // What Google Translate does: the text node is swapped for <font> elements.
+      const font = document.createElement("font");
+      parent.replaceChild(font, text);
+      font.appendChild(text);
+      expect(() => parent.removeChild(text)).not.toThrow();
+      const added = document.createElement("span");
+      expect(() => parent.insertBefore(added, text)).not.toThrow();
+      expect(added.parentNode).toBe(parent);
+      // Normal calls still work.
+      parent.removeChild(added);
+      expect(added.parentNode).toBeNull();
+    } finally {
+      Node.prototype.removeChild = removeChild;
+      Node.prototype.insertBefore = insertBefore;
+    }
   });
 });
 

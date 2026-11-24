@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "next dev -p 3011",
-    "build": "next build && node ../../scripts/generate-llms-full.mjs calc",
+    "build": "next build && node ../../scripts/inline-css.mjs out && node ../../scripts/generate-llms-full.mjs calc",
     "start": "npx serve out",
     "lint": "next lint --max-warnings 0",
     "typecheck": "tsc --noEmit",

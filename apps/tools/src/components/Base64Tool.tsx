@@ -142,8 +142,7 @@ export default function Base64Tool({ primary = "encode" }: { primary?: Mode }) {
         </label>
       </div>
       <p className={`status ${status.kind === "idle" ? "" : status.kind}`} role="status" aria-live="polite">
-        {status.kind === "ok" ? "✓ " : status.kind === "err" ? "✕ " : ""}
-        {status.text}
+        {`${status.kind === "ok" ? "✓ " : status.kind === "err" ? "✕ " : ""}${status.text}`}
       </p>
     </div>
   );

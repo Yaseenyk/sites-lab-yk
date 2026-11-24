@@ -114,7 +114,7 @@ export default function GstCalculator() {
             <div className="tile">
               <span className="tile-label">CGST + SGST</span>
               <span className="tile-value">
-                {money(result.g.cgst, 2, "INR")} + {money(result.g.sgst, 2, "INR")}
+                {`${money(result.g.cgst, 2, "INR")} + ${money(result.g.sgst, 2, "INR")}`}
               </span>
             </div>
           </div>

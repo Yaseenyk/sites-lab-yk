@@ -128,7 +128,7 @@ export default function IncomeTaxIndiaCalculator() {
             </div>
             <div className="tile">
               <span className="tile-label">Effective tax rate</span>
-              <span className="tile-value">{result.t.effectiveRate.toFixed(1)}%</span>
+              <span className="tile-value">{`${result.t.effectiveRate.toFixed(1)}%`}</span>
             </div>
           </div>
           <table className="result-table">
@@ -147,12 +147,12 @@ export default function IncomeTaxIndiaCalculator() {
               </tr>
               <tr>
                 <th scope="row">Standard deduction</th>
-                <td className="text-right">-{money(result.t.standardDeduction, 0, "INR")}</td>
+                <td className="text-right">{`-${money(result.t.standardDeduction, 0, "INR")}`}</td>
               </tr>
               {regime === "old" && (
                 <tr>
                   <th scope="row">Section 80C + 80D</th>
-                  <td className="text-right">-{money(result.t.chapterVIA, 0, "INR")}</td>
+                  <td className="text-right">{`-${money(result.t.chapterVIA, 0, "INR")}`}</td>
                 </tr>
               )}
               <tr>
@@ -165,7 +165,7 @@ export default function IncomeTaxIndiaCalculator() {
               </tr>
               <tr>
                 <th scope="row">Section 87A rebate</th>
-                <td className="text-right">-{money(result.t.rebate, 0, "INR")}</td>
+                <td className="text-right">{`-${money(result.t.rebate, 0, "INR")}`}</td>
               </tr>
               <tr>
                 <th scope="row">Health and education cess (4%)</th>

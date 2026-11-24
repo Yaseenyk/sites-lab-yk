@@ -129,8 +129,7 @@ export default function JsonTool({ primary = "format" }: { primary?: Action }) {
         </label>
       </div>
       <p className={`status ${status.kind === "idle" ? "" : status.kind}`} role="status" aria-live="polite">
-        {status.kind === "ok" ? "✓ " : status.kind === "err" ? "✕ " : ""}
-        {status.text}
+        {`${status.kind === "ok" ? "✓ " : status.kind === "err" ? "✕ " : ""}${status.text}`}
       </p>
     </div>
   );
