@@ -15,7 +15,7 @@ export function PrivacyBody({ site, extra }: { site: SiteConfig; extra?: ReactNo
     <>
       <p>
         This policy describes what {site.name} ({site.url}) does with information when you use it. Last
-        updated: 19 November 2026.
+        updated: 24 November 2026.
       </p>
       <h2>What the tools do with your input</h2>
       {extra}
@@ -34,6 +34,13 @@ export function PrivacyBody({ site, extra }: { site: SiteConfig; extra?: ReactNo
         identifiers. It does not receive the text you enter into the tools. You can opt out with the{" "}
         <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener noreferrer">
           Google Analytics opt-out browser add-on
+        </a>
+        . Google signals is on, so for visitors signed in to a Google account with ad personalisation turned
+        on, Google may associate this site&apos;s visit data with that account to give us aggregated reports
+        on age group, gender and interests; no individual is identified to us. You can turn this off in your
+        Google account under Data &amp; privacy, or in{" "}
+        <a href="https://myadcenter.google.com/" rel="noopener noreferrer">
+          My Ad Center
         </a>
         . We do not sell personal information.
       </p>
@@ -59,12 +66,17 @@ export function PrivacyBody({ site, extra }: { site: SiteConfig; extra?: ReactNo
         (pulse.yaseenyk.workers.dev), to tell real visits from automated ones. It records the page address
         (without the query string), the referring site and campaign tags, country, device type, browser and
         system name, screen size, language, the name of your network provider, scroll depth, time on the page,
-        page speed, which links and buttons were clicked, and a human-or-bot signal. It sets no cookies, never
-        reads what you type or the values in input fields, and stores no IP address or browser string: the
-        address is used in memory only, to limit abuse and to make a visitor code that changes every day (a
-        one-way hash with a random salt that is deleted the next day), so visits cannot be linked across days.
-        Records are deleted after 90 days. It switches itself off when your browser sends Do Not Track or
-        Global Privacy Control, and on localhost. The data is used only to understand how the site is used.
+        page speed, which links and buttons were clicked, and a human-or-bot signal. Since 24 November 2026 it
+        also records a few technical details: up to three script error messages per page (the message, script
+        file and line), whether your browser translated the page and into which language, the connection type
+        (such as 4g or 3g), how fast the page responded to a tap, layout jumps, and the name of a form that
+        was sent or started but not sent (never what was typed; these sites have no forms today). It sets no
+        cookies, never reads what you type or the values in input fields, and stores no IP address or browser
+        string: the address is used in memory only, to limit abuse and to make a visitor code that changes
+        every day (a one-way hash with a random salt that is deleted the next day), so visits cannot be linked
+        across days. Records are deleted after 90 days. It switches itself off when your browser sends Do Not
+        Track or Global Privacy Control, and on localhost. The data is used only to understand how the site is
+        used.
       </p>
       <h2>Advertising</h2>
       <p>
